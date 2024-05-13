@@ -3,6 +3,7 @@ import {
   index,
   text,
   pgTable,
+  serial,
   uuid,
   varchar,
   unique,
@@ -14,7 +15,8 @@ import {
 export const studentUserTable = pgTable(
   "student_users",
   {
-    id: uuid("id").primaryKey(),  // 使用uuid生成學生ID
+    id: serial("id").primaryKey(),  // 使用serial生成學生id
+    displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成學生DisplayID
     name: varchar("name", { length: 100 }).notNull(),
     email: varchar("email", { length: 100 }).notNull().unique(),
     class: varchar("class_name", { length: 100 }).notNull(),
@@ -22,6 +24,7 @@ export const studentUserTable = pgTable(
   },
   (table) => ({
     emailIndex: index("email_index").on(table.email),
+    displayIdIndex: index("display_id_index").on(table.displayId),
   }),
 );
 
@@ -29,12 +32,14 @@ export const studentUserTable = pgTable(
 export const teacherUserTable = pgTable(
   "teacher_users",
   {
-    id: uuid("id").primaryKey(),  // 使用uuid生成教師ID
+    id: serial("id").primaryKey(),  // 使用serial生成教師id
+    displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成教師DisplayID
     name: varchar("name", { length: 100 }).notNull(),
     email: varchar("email", { length: 100 }).notNull().unique(),
   },
   (table) => ({
     emailIndex: index("email_index").on(table.email),
+    displayIdIndex: index("display_id_index").on(table.displayId),
   }),
 );
 
@@ -42,7 +47,8 @@ export const teacherUserTable = pgTable(
 export const classTable = pgTable(
   "classes",
   {
-    id: uuid("id").primaryKey(),
+    id: serial("id").primaryKey(),  // 使用serial生成班級id
+    displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成班級DisplayID
     name: varchar("name", { length: 100 }).notNull(),
     teacherId: uuid("teacher_id")
       .notNull()
@@ -53,6 +59,7 @@ export const classTable = pgTable(
   },
   (table) => ({
     teacherIndex: index("teacher_index").on(table.teacherId),
+    displayIdIndex: index("display_id_index").on(table.displayId),
   }),
 );
 
@@ -60,21 +67,25 @@ export const classTable = pgTable(
 export const pictureTable = pgTable(
   "pictures",
   {
-    id: uuid("id").primaryKey(),
+    id: serial("id").primaryKey(),  // 使用serial生成圖片id
+    displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成圖片DisplayID
     image: varchar("image").notNull(),
     text: text("text").notNull(),
     date: timestamp("date")
       .notNull()
       .default(sql`now()`),
   },
-  (table) => ({}),
+  (table) => ({
+    displayIdIndex: index("display_id_index").on(table.displayId),
+  }),
 );
 
 // 繪本資料表
 export const pictureBookTable = pgTable(
   "picture_books",
   {
-    id: uuid("id").primaryKey(),
+    id: serial("id").primaryKey(),  // 使用serial生成繪本id
+    displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成繪本DisplayID
     pictureId: uuid("picture_id")
       .notNull()
       .references(() => pictureTable.id, {
@@ -85,6 +96,7 @@ export const pictureBookTable = pgTable(
   },
   (table) => ({
     pictureIndex: index("picture_index").on(table.pictureId),
+    displayIdIndex: index("display_id_index").on(table.displayId),
   }),
 );
 
