@@ -6,7 +6,6 @@ import {
   serial,
   uuid,
   varchar,
-  unique,
   boolean,
   timestamp,
 } from "drizzle-orm/pg-core";
@@ -15,7 +14,7 @@ import {
 export const studentUserTable = pgTable(
   "student_users",
   {
-    id: serial("id").primaryKey(),  // 使用serial生成學生id
+    id: serial("id").primaryKey(), // 使用serial生成學生id
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成學生DisplayID
     name: varchar("name", { length: 100 }).notNull(),
     email: varchar("email", { length: 100 }).notNull().unique(),
@@ -32,7 +31,7 @@ export const studentUserTable = pgTable(
 export const teacherUserTable = pgTable(
   "teacher_users",
   {
-    id: serial("id").primaryKey(),  // 使用serial生成教師id
+    id: serial("id").primaryKey(), // 使用serial生成教師id
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成教師DisplayID
     name: varchar("name", { length: 100 }).notNull(),
     email: varchar("email", { length: 100 }).notNull().unique(),
@@ -47,7 +46,7 @@ export const teacherUserTable = pgTable(
 export const classTable = pgTable(
   "classes",
   {
-    id: serial("id").primaryKey(),  // 使用serial生成班級id
+    id: serial("id").primaryKey(), // 使用serial生成班級id
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成班級DisplayID
     name: varchar("name", { length: 100 }).notNull(),
     teacherId: uuid("teacher_id")
@@ -67,7 +66,7 @@ export const classTable = pgTable(
 export const pictureTable = pgTable(
   "pictures",
   {
-    id: serial("id").primaryKey(),  // 使用serial生成圖片id
+    id: serial("id").primaryKey(), // 使用serial生成圖片id
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成圖片DisplayID
     image: varchar("image").notNull(),
     text: text("text").notNull(),
@@ -84,7 +83,7 @@ export const pictureTable = pgTable(
 export const pictureBookTable = pgTable(
   "picture_books",
   {
-    id: serial("id").primaryKey(),  // 使用serial生成繪本id
+    id: serial("id").primaryKey(), // 使用serial生成繪本id
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成繪本DisplayID
     pictureId: uuid("picture_id")
       .notNull()
