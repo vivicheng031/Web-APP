@@ -91,7 +91,7 @@ function Preference() {
   };
 
   return (
-    <div className="relative z-50 flex min-h-screen items-center justify-center bg-brand">
+    <div className="bg-brand relative z-50 flex min-h-screen items-center justify-center">
       <AlertDialog>
         <AlertDialogTrigger ref={alertDialogTriggerRef}></AlertDialogTrigger>
         <AlertDialogContent>
@@ -113,7 +113,7 @@ function Preference() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-      <Card className="w-4/5 border-4 border-bdr bg-brand md:w-[600px] lg:w-[800px]">
+      <Card className="border-bdr bg-brand w-4/5 border-4 md:w-[600px] lg:w-[800px]">
         <CardHeader>
           <CardTitle className="flex items-center justify-between text-4xl">
             <Link href="/" className="mr-6 flex items-center">
@@ -129,13 +129,13 @@ function Preference() {
             </Link>
             <div className="hidden items-center md:flex md:flex-col">
               <div className="flex">
-                <p className="mr-2 text-description">Set up your</p>
+                <p className="text-description mr-2">Set up your</p>
                 <p className="text-txt_2">D</p>
                 <p className="text-txt_3">A</p>
                 <p className="text-txt_2">I</p>
                 <p className="text-txt_3">L</p>
                 <p className="text-txt_2">Y</p>
-                <p className="ml-2 text-description">mission !</p>
+                <p className="text-description ml-2">mission !</p>
               </div>
               <div className="mt-2 flex grow justify-end">
                 <p className="ml-2 text-lg text-gray-500">
@@ -145,7 +145,7 @@ function Preference() {
             </div>
             <div className="flex-col items-center justify-center text-2xl md:hidden">
               <div className="flex-wrap">
-                <p className="ml-2 text-description">Set up your</p>
+                <p className="text-description ml-2">Set up your</p>
                 <div className="ml-2 flex">
                   <p className="text-txt_2">D</p>
                   <p className="text-txt_3">A</p>
@@ -153,7 +153,7 @@ function Preference() {
                   <p className="text-txt_3">L</p>
                   <p className="text-txt_2">Y</p>
                 </div>
-                <p className="ml-2 text-description">mission !</p>
+                <p className="text-description ml-2">mission !</p>
               </div>
               <div className="flex items-center justify-center">
                 <p className="ml-2 text-lg text-gray-500">
@@ -179,7 +179,7 @@ function Preference() {
                   setSubject(e.target.value)
                 }
                 placeholder="e.g. Animal Party"
-                className="w-2/3 border-4 border-txt_4 bg-btn_3 text-xl"
+                className="border-txt_4 bg-btn_3 w-2/3 border-4 text-xl"
               />
             </div>
             <div className="mb-2 flex w-full flex-col items-center gap-4 text-center md:flex-row md:items-center">
@@ -198,12 +198,12 @@ function Preference() {
                   setLastingDays(newValue);
                 }}
                 placeholder="21 ~ 60 days"
-                className="w-2/3 border-4 border-txt_4 bg-btn_3 text-xl"
+                className="border-txt_4 bg-btn_3 w-2/3 border-4 text-xl"
               />
             </div>
             <Button
               type="submit"
-              className="mt-2 w-1/2 rounded-2xl border-4 border-bdr bg-btn_2 text-center text-xl text-txt"
+              className="border-bdr bg-btn_2 text-txt mt-2 w-1/2 rounded-2xl border-4 text-center text-xl"
             >
               Confirm
             </Button>

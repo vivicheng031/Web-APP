@@ -18,7 +18,7 @@ async function Painting({ children }: Props) {
     <main className="flex h-screen w-full flex-col justify-center overflow-y-scroll md:overflow-hidden">
       {/* overflow-y-scroll for child to show scrollbar */}
       <div className="h-1/6 w-full"></div>
-      <div className="flex-rows h-5/6 w-full bg-brand_2 md:flex">
+      <div className="flex-rows bg-brand_2 h-5/6 w-full md:flex">
         {/* overflow-y-scroll for child to show scrollbar */}
         <div className="md:mt-30 w-full overflow-y-auto lg:mt-0">
           {children}

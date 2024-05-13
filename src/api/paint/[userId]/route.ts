@@ -12,20 +12,19 @@ import { postSchema } from "@/validators/post";
 const postsTable = [
   {
     id: 1,
-    userId: 'berlin',
-    topic: 'First post',
-    description: 'This is the first post.',
-    createdAt: new Date('2024-05-12T12:00:00Z'),
+    userId: "berlin",
+    topic: "First post",
+    description: "This is the first post.",
+    createdAt: new Date("2024-05-12T12:00:00Z"),
   },
   {
     id: 2,
-    userId: 'user2',
-    topic: 'Second post',
-    description: 'This is the second post.',
-    createdAt: new Date('2024-05-11T12:00:00Z'),
+    userId: "user2",
+    topic: "Second post",
+    description: "This is the second post.",
+    createdAt: new Date("2024-05-11T12:00:00Z"),
   },
 ];
-
 
 // POST /api/paint/:userId
 export async function POST(
@@ -105,7 +104,7 @@ export async function GET(
     //   orderBy: [desc(postsTable.createdAt)],
     // });
 
-    const post = postsTable.find(post => post.userId === params.userId);
+    const post = postsTable.find((post) => post.userId === params.userId);
 
     if (!post) {
       return NextResponse.json(

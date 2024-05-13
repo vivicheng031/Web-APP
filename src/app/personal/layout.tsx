@@ -134,7 +134,7 @@ async function PersonalLayout({ children }: Props) {
         </AlertDialog>
       )}
       <div className="h-1/6 w-full"></div>
-      <div className="relative h-5/6 w-full bg-brand_2 lg:flex">
+      <div className="bg-brand_2 relative h-5/6 w-full lg:flex">
         <div className=" flex w-full justify-center overflow-hidden p-4 text-xl font-bold lg:hidden lg:items-center lg:rounded-2xl">
           <div className="m-2 flex w-[20%] flex-col justify-center md:w-[30%] ">
             <div className="mb-3 text-center md:mb-5"> Topic </div>
@@ -160,10 +160,10 @@ async function PersonalLayout({ children }: Props) {
             </div>
           </div>
         </div>
-        <div className="overflow-y-auto bg-brand_2 px-12 py-6 md:px-36 lg:w-3/4 lg:px-8">
+        <div className="bg-brand_2 overflow-y-auto px-12 py-6 md:px-36 lg:w-3/4 lg:px-8">
           {children}
         </div>
-        <div className="mx-6 my-6 hidden w-1/4 flex-col items-center justify-center overflow-hidden rounded-2xl bg-header text-xl font-bold text-[#998D73] lg:flex">
+        <div className="bg-header mx-6 my-6 hidden w-1/4 flex-col items-center justify-center overflow-hidden rounded-2xl text-xl font-bold text-[#998D73] lg:flex">
           <div className="flex h-full w-full flex-col justify-center">
             <div className="mx-4 h-[12%] items-center  rounded-2xl">
               <div className="mb-1 text-center"> Topic </div>

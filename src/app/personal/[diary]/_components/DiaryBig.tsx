@@ -27,7 +27,7 @@ function DiaryBig({
     (${daysOfWeek[createdAt.getDay()]})`;
   return (
     <div className="w-full gap-2 lg:flex-col">
-      <div className="mb-4 flex justify-center rounded-2xl bg-description/60 p-2 text-center text-xl sm:text-2xl lg:bg-description/0">
+      <div className="bg-description/60 lg:bg-description/0 mb-4 flex justify-center rounded-2xl p-2 text-center text-xl sm:text-2xl">
         {topic}
       </div>
       <div className="relative aspect-[4/3] w-full rounded-2xl border-2 border-solid border-[#7C5A16] bg-white lg:mx-auto lg:w-[70%]">

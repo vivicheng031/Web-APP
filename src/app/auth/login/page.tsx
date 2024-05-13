@@ -45,8 +45,8 @@ function Login() {
   };
 
   return (
-    <div className="relative z-50 flex min-h-screen items-center justify-center bg-brand">
-      <Card className="w-4/5 border-4 border-bdr bg-brand md:w-[600px] lg:w-[800px]">
+    <div className="bg-brand relative z-50 flex min-h-screen items-center justify-center">
+      <Card className="border-bdr bg-brand w-4/5 border-4 md:w-[600px] lg:w-[800px]">
         <CardHeader>
           <CardTitle className="flex items-center justify-between text-4xl">
             <Link href="/" className="mr-4 flex items-center">
@@ -61,17 +61,17 @@ function Login() {
               </div>
             </Link>
             <div className="hidden items-center md:flex">
-              <p className="mr-2 text-description">Welcome Back to</p>
+              <p className="text-description mr-2">Welcome Back to</p>
               <p className="text-txt_2">S</p>
               <p className="text-txt_3">O</p>
               <p className="text-txt_2">U</p>
               <p className="text-txt_3">L</p>
               <p className="text-txt_2">Y</p>
-              <p className="ml-2 text-description">!</p>
+              <p className="text-description ml-2">!</p>
             </div>
             <div className="flex-col items-center justify-center text-xl md:hidden">
               <div className="flex text-center">
-                <p className="mr-2 text-description">Welcome Back to</p>
+                <p className="text-description mr-2">Welcome Back to</p>
               </div>
               <div className="flex items-center justify-center">
                 <p className="text-txt_2">S</p>
@@ -79,7 +79,7 @@ function Login() {
                 <p className="text-txt_2">U</p>
                 <p className="text-txt_3">L</p>
                 <p className="text-txt_2">Y</p>
-                <p className="ml-2 text-description">!</p>
+                <p className="text-description ml-2">!</p>
               </div>
             </div>
           </CardTitle>
@@ -113,7 +113,7 @@ function Login() {
             </div>
             <Button
               type="submit"
-              className="w-full rounded-2xl border-4 border-bdr bg-btn_2 text-center text-xl text-txt"
+              className="border-bdr bg-btn_2 text-txt w-full rounded-2xl border-4 text-center text-xl"
             >
               Sign In
             </Button>
@@ -123,7 +123,7 @@ function Login() {
                   callbackUrl: `${publicEnv.NEXT_PUBLIC_BASE_URL}/personal`,
                 });
               }}
-              className="mt-4 w-full rounded-2xl border-4 border-bdr bg-btn text-center text-xl text-txt"
+              className="border-bdr bg-btn text-txt mt-4 w-full rounded-2xl border-4 text-center text-xl"
             >
               <Image
                 src="/google.png"

@@ -27,7 +27,7 @@ import type { Draw } from "@/lib/types/shared_types";
 import "./style.css";
 
 export default function Painting() {
-//   const { data: session, status } = useSession();
+  //   const { data: session, status } = useSession();
   const router = useRouter();
   // router.push("/painting");
 
@@ -60,7 +60,6 @@ export default function Painting() {
   const userId = "berlin";
 
   console.log("painting...");
-
 
   useEffect(() => {
     const checkPost = async () => {
@@ -121,7 +120,7 @@ export default function Painting() {
     } else {
       setIsPostDialog(true);
     }
-  // }, [fetchTopic, firstPost, isFirstPost, isPost, userId]);
+    // }, [fetchTopic, firstPost, isFirstPost, isPost, userId]);
   }, [fetchTopic, firstPost, isFirstPost, isPost, router, userId]);
 
   // if (!userId || userId === "") {
@@ -230,330 +229,328 @@ export default function Painting() {
     ctx.fill();
   }
 
-//   if (status !== "authenticated") {
-//     router.push("/auth/login");
-//   } else {
+  //   if (status !== "authenticated") {
+  //     router.push("/auth/login");
+  //   } else {
 
   const studentName = "Student's name";
   const currentTopic = "Current Topic";
   const deadline = "2024/01/09(Mon.)";
-  
-//   return (
-//     <div className="flex flex-col items-center pb-5 bg-stone-300">
-//       <Header
-//         studentName={studentName}
-//         currentTopic={currentTopic}
-//         deadline={deadline}
-//       />
-//       <div className="mt-9 text-5xl text-yellow-600 max-md:max-w-full max-md:text-4xl">
-//         {currentTopic}{" "}
-//         <span className="text-4xl">deadline: {deadline}</span>
-//       </div>
-//       <main className="mt-3.5 w-full max-w-[1350px] max-md:max-w-full">
-//         <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-//           <div className="flex flex-col w-[83%] max-md:ml-0 max-md:w-full">
-//             <Page pageNumber={1} />
-//           </div>
-//           <aside className="flex flex-col ml-5 w-[17%] max-md:ml-0 max-md:w-full">
-//             <div className="flex flex-col grow text-5xl text-center text-amber-700 whitespace-nowrap max-md:mt-2 max-md:text-4xl">
-//               <div className="shrink-0 rounded-3xl bg-zinc-300 h-[541px]" />
-//               <div className="flex flex-col pl-4 mt-20 max-md:mt-10 max-md:text-4xl">
-//                 <Button label="Next" />
-//                 <div className="mt-6">
-//                   <Button label="Done" />
-//                 </div>
-//               </div>
-//             </div>
-//           </aside>
-//         </div>
-//       </main>
-//     </div>
-//   );
-// }
 
-return (
-  <div id="main-element" className="h-full blur-lg">
-    <main className={`flex flex-col items-center bg-brand_2`}>
-      <AlertDialog open={isPostDialog}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle className="text-2xl">
-              You have already posted today !
-            </AlertDialogTitle>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogAction onClick={handleClosePostDialog}>
-              OK
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-      <AlertDialog open={isConfirmed}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle className="text-2xl">
-              Are you sure you want to post?
-            </AlertDialogTitle>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => setIsConfirmed(false)}>
-              Back
-            </AlertDialogCancel>
-            <AlertDialogAction onClick={handlePostClick}>
-              Confirm
-              {loading && (
-                <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-gray-800 bg-opacity-75">
-                  <div role="status">
-                    <svg
-                      aria-hidden="true"
-                      className="h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
-                      viewBox="0 0 100 101"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                        fill="currentColor"
-                      />
-                      <path
-                        d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                        fill="currentFill"
-                      />
-                    </svg>
-                    <span className="sr-only">Loading...</span>
+  //   return (
+  //     <div className="flex flex-col items-center pb-5 bg-stone-300">
+  //       <Header
+  //         studentName={studentName}
+  //         currentTopic={currentTopic}
+  //         deadline={deadline}
+  //       />
+  //       <div className="mt-9 text-5xl text-yellow-600 max-md:max-w-full max-md:text-4xl">
+  //         {currentTopic}{" "}
+  //         <span className="text-4xl">deadline: {deadline}</span>
+  //       </div>
+  //       <main className="mt-3.5 w-full max-w-[1350px] max-md:max-w-full">
+  //         <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+  //           <div className="flex flex-col w-[83%] max-md:ml-0 max-md:w-full">
+  //             <Page pageNumber={1} />
+  //           </div>
+  //           <aside className="flex flex-col ml-5 w-[17%] max-md:ml-0 max-md:w-full">
+  //             <div className="flex flex-col grow text-5xl text-center text-amber-700 whitespace-nowrap max-md:mt-2 max-md:text-4xl">
+  //               <div className="shrink-0 rounded-3xl bg-zinc-300 h-[541px]" />
+  //               <div className="flex flex-col pl-4 mt-20 max-md:mt-10 max-md:text-4xl">
+  //                 <Button label="Next" />
+  //                 <div className="mt-6">
+  //                   <Button label="Done" />
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           </aside>
+  //         </div>
+  //       </main>
+  //     </div>
+  //   );
+  // }
+
+  return (
+    <div id="main-element" className="h-full blur-lg">
+      <main className={`bg-brand_2 flex flex-col items-center`}>
+        <AlertDialog open={isPostDialog}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle className="text-2xl">
+                You have already posted today !
+              </AlertDialogTitle>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction onClick={handleClosePostDialog}>
+                OK
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+        <AlertDialog open={isConfirmed}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle className="text-2xl">
+                Are you sure you want to post?
+              </AlertDialogTitle>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => setIsConfirmed(false)}>
+                Back
+              </AlertDialogCancel>
+              <AlertDialogAction onClick={handlePostClick}>
+                Confirm
+                {loading && (
+                  <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-gray-800 bg-opacity-75">
+                    <div role="status">
+                      <svg
+                        aria-hidden="true"
+                        className="h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
+                        viewBox="0 0 100 101"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                          fill="currentColor"
+                        />
+                        <path
+                          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                          fill="currentFill"
+                        />
+                      </svg>
+                      <span className="sr-only">Loading...</span>
+                    </div>
                   </div>
+                )}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+        <div className="flex w-full flex-col justify-center overflow-y-auto px-6 lg:mt-0 lg:px-12">
+          <header className="flex w-full justify-between gap-5 self-stretch bg-amber-100 py-3.5 pl-7 pr-16 max-md:max-w-full max-md:flex-wrap max-md:px-5">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/f1d95e80fabf868206df9b29bdd52e13fef2d1bad797e7bb291ba9fe670824e4?apiKey=1661ea4d66254cafac7fd5965b2f5a8a&"
+              alt="Logo"
+              className="aspect-[1.01] w-[124px] max-w-full shrink-0"
+            />
+            <div className="my-auto flex gap-5 max-md:max-w-full max-md:flex-wrap">
+              <div className="flex flex-auto gap-5 whitespace-nowrap text-center text-5xl">
+                <div className="justify-center rounded-3xl bg-orange-200 px-6 py-3 text-amber-500 max-md:px-5">
+                  Paint
                 </div>
-              )}
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-      <div className="flex w-full flex-col justify-center overflow-y-auto px-6 lg:mt-0 lg:px-12">
-      <header className="flex gap-5 justify-between self-stretch py-3.5 pr-16 pl-7 w-full bg-amber-100 max-md:flex-wrap max-md:px-5 max-md:max-w-full">
-       <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f1d95e80fabf868206df9b29bdd52e13fef2d1bad797e7bb291ba9fe670824e4?apiKey=1661ea4d66254cafac7fd5965b2f5a8a&" alt="Logo" className="shrink-0 max-w-full aspect-[1.01] w-[124px]" />
-       <div className="flex gap-5 my-auto max-md:flex-wrap max-md:max-w-full">
-         <div className="flex flex-auto gap-5 text-5xl text-center whitespace-nowrap">
-           <div className="justify-center px-6 py-3 text-amber-500 bg-orange-200 rounded-3xl max-md:px-5">
-             Paint
-           </div>
-           <div className="flex-auto my-auto text-amber-500">Works</div>
-         </div>
-         <div className="flex-auto my-auto text-6xl text-yellow-700 max-md:text-4xl">
-           {studentName}
-         </div>
-       </div>
-     </header>
-
-
-        <div className="flex w-full justify-center gap-4 lg:justify-start">
-          <PiPaintBrushDuotone
-            className={`h-[40px] w-[40px] cursor-pointer self-center rounded-full p-1 ${
-              brush && "bg-slate-100/50"
-            }`}
-            onClick={() => {
-              setEraser(false);
-              setBrush(true);
-              setColor(displayColor);
-            }}
-          />
-          <BsEraser
-            className={`h-[40px] w-[40px] cursor-pointer self-center rounded-full p-1 ${
-              eraser && "bg-slate-100/50"
-            }`}
-            onClick={() => {
-              setColor("#fff");
-              setEraser(true);
-              setBrush(false);
-            }}
-          />
-          <div
-            className="h-[30px] w-[30px] cursor-pointer self-center rounded-full p-1"
-            onClick={handleColorIconClick}
-            style={{ backgroundColor: displayColor }}
-          ></div>
-          <div
-            className={`cursor-pointer self-center rounded-full bg-black`}
-            style={{ height: `${brushSize}px`, width: "40px" }}
-            onClick={toggleExpansion}
-          ></div>
-          {showPicker && (
-            <div className="z-10 h-[25px] w-[125px] cursor-pointer self-center p-1">
-              <ChromePicker
-                color={displayColor}
-                onChange={(e: ColorResult) => {
-                  setColor(e.hex);
-                  setDisplayColor(e.hex);
-                }}
-              />
+                <div className="my-auto flex-auto text-amber-500">Works</div>
+              </div>
+              <div className="my-auto flex-auto text-6xl text-yellow-700 max-md:text-4xl">
+                {studentName}
+              </div>
             </div>
-          )}
-          {isExpanded && (
-            <>
-              <div className="mt-2 h-[40px] w-[150px] cursor-pointer self-center p-1">
-                <input
-                  type="range"
-                  min="1"
-                  max="30"
-                  value={brushSize}
-                  onChange={handleSizeChange}
+          </header>
+
+          <div className="flex w-full justify-center gap-4 lg:justify-start">
+            <PiPaintBrushDuotone
+              className={`h-[40px] w-[40px] cursor-pointer self-center rounded-full p-1 ${
+                brush && "bg-slate-100/50"
+              }`}
+              onClick={() => {
+                setEraser(false);
+                setBrush(true);
+                setColor(displayColor);
+              }}
+            />
+            <BsEraser
+              className={`h-[40px] w-[40px] cursor-pointer self-center rounded-full p-1 ${
+                eraser && "bg-slate-100/50"
+              }`}
+              onClick={() => {
+                setColor("#fff");
+                setEraser(true);
+                setBrush(false);
+              }}
+            />
+            <div
+              className="h-[30px] w-[30px] cursor-pointer self-center rounded-full p-1"
+              onClick={handleColorIconClick}
+              style={{ backgroundColor: displayColor }}
+            ></div>
+            <div
+              className={`cursor-pointer self-center rounded-full bg-black`}
+              style={{ height: `${brushSize}px`, width: "40px" }}
+              onClick={toggleExpansion}
+            ></div>
+            {showPicker && (
+              <div className="z-10 h-[25px] w-[125px] cursor-pointer self-center p-1">
+                <ChromePicker
+                  color={displayColor}
+                  onChange={(e: ColorResult) => {
+                    setColor(e.hex);
+                    setDisplayColor(e.hex);
+                  }}
                 />
               </div>
-              <span className="self-center p-1">{brushSize}</span>
-            </>
-          )}
-          <button
-            type="button"
-            className="my-4 flex items-end rounded-lg border-2 border-black px-2 text-base text-black hover:bg-description/80"
-            onClick={clear}
-          >
-            Clear
-          </button>
-
-          <div className="grow"></div>
-          <div className="ml-auto mt-auto flex hidden text-xl text-gray-500 lg:block">
-            {`${new Date().getFullYear()}/${
-              new Date().getMonth() + 1
-            }/${new Date().getDate()} (${new Date().toLocaleDateString(
-              "en-US",
-              { weekday: "short" },
-            )})`}
-          </div>
-        </div>
-        <div className="mb-4 gap-4 lg:flex">
-          <div className="relative aspect-[5/3] rounded-2xl border-4 border-bdr_2 lg:w-[55%]">
-            <div
-              ref={elementRef}
-              className="flex h-full w-full justify-center rounded-2xl bg-white"
+            )}
+            {isExpanded && (
+              <>
+                <div className="mt-2 h-[40px] w-[150px] cursor-pointer self-center p-1">
+                  <input
+                    type="range"
+                    min="1"
+                    max="30"
+                    value={brushSize}
+                    onChange={handleSizeChange}
+                  />
+                </div>
+                <span className="self-center p-1">{brushSize}</span>
+              </>
+            )}
+            <button
+              type="button"
+              className="hover:bg-description/80 my-4 flex items-end rounded-lg border-2 border-black px-2 text-base text-black"
+              onClick={clear}
             >
-              <canvas
-                ref={canvasRef}
-                onMouseDown={onMouseDown}
-                onTouchMove={onTouchStart}
-                className="h-full w-full rounded-2xl"
-              />
+              Clear
+            </button>
+
+            <div className="grow"></div>
+            <div className="ml-auto mt-auto flex hidden text-xl text-gray-500 lg:block">
+              {`${new Date().getFullYear()}/${
+                new Date().getMonth() + 1
+              }/${new Date().getDate()} (${new Date().toLocaleDateString(
+                "en-US",
+                { weekday: "short" },
+              )})`}
             </div>
           </div>
-          <div className="mt-2 flex flex-col lg:mb-0 lg:grow">
-            <p className="text-md mb-2 ml-2 mt-2 flex w-5/6 w-full justify-center text-center text-start text-gray-500 lg:hidden">
-              type something, do not exceed 50 words
-            </p>
-            <textarea
-              onChange={(e) => setDescription(e.target.value)}
-              className="h-full w-full resize-none items-start rounded-2xl border-4 border-bdr_2 bg-brand p-2 p-4 text-3xl"
-              placeholder="Type something..."
-              maxLength={50}
-            />
-            <div className="flex justify-center">
-              <p className="text-md ml-2 mt-2 hidden w-5/6 text-start text-gray-500 lg:block">
-                type something to further deliver your thought, do not
-                exceed 50 words
+          <div className="mb-4 gap-4 lg:flex">
+            <div className="border-bdr_2 relative aspect-[5/3] rounded-2xl border-4 lg:w-[55%]">
+              <div
+                ref={elementRef}
+                className="flex h-full w-full justify-center rounded-2xl bg-white"
+              >
+                <canvas
+                  ref={canvasRef}
+                  onMouseDown={onMouseDown}
+                  onTouchMove={onTouchStart}
+                  className="h-full w-full rounded-2xl"
+                />
+              </div>
+            </div>
+            <div className="mt-2 flex flex-col lg:mb-0 lg:grow">
+              <p className="text-md mb-2 ml-2 mt-2 flex w-5/6 w-full justify-center text-center text-start text-gray-500 lg:hidden">
+                type something, do not exceed 50 words
               </p>
-              <button
-                disabled={loading}
-                onClick={handleConfirmDialog}
-                className="justify-center px-14 py-3.5 bg-orange-300 rounded-3xl border-amber-700 border-solid border-[5px] max-md:px-5 max-md:text-4xl">
-                POST
-              </button>
-
+              <textarea
+                onChange={(e) => setDescription(e.target.value)}
+                className="border-bdr_2 bg-brand h-full w-full resize-none items-start rounded-2xl border-4 p-2 p-4 text-3xl"
+                placeholder="Type something..."
+                maxLength={50}
+              />
+              <div className="flex justify-center">
+                <p className="text-md ml-2 mt-2 hidden w-5/6 text-start text-gray-500 lg:block">
+                  type something to further deliver your thought, do not exceed
+                  50 words
+                </p>
+                <button
+                  disabled={loading}
+                  onClick={handleConfirmDialog}
+                  className="justify-center rounded-3xl border-[5px] border-solid border-amber-700 bg-orange-300 px-14 py-3.5 max-md:px-5 max-md:text-4xl"
+                >
+                  POST
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </main>
-    <AlertDialog open={isFirstPost && welcomeDialog}>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle className="text-4xl">
-            Welcome to <span className="text-txt_2">S</span>
-            <span className="text-txt_3">O</span>
-            <span className="text-txt_2">U</span>
-            <span className="text-txt_3">L</span>
-            <span className="text-txt_2">Y</span> !
-          </AlertDialogTitle>
-          <AlertDialogDescription className="text-2xl">
-            We're thrilled to have you here as part of our creative
-            community. At <span className="text-txt_2">S</span>
-            <span className="text-txt_3">O</span>
-            <span className="text-txt_2">U</span>
-            <span className="text-txt_3">L</span>
-            <span className="text-txt_2">Y</span>, you have the artistic
-            freedom to express yourself through daily drawings based on
-            unique topics.
-          </AlertDialogDescription>
-          <AlertDialogDescription className="text-2xl">
-            Starting today, we'll provide you with a daily drawing topic to
-            inspire your creations. Remember, you can post once a day, so
-            make it count!
-          </AlertDialogDescription>
-          <AlertDialogFooter>
-            <AlertDialogAction onClick={handleSecondDialog}>
-              Next
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogHeader>
-      </AlertDialogContent>
-    </AlertDialog>
-    <AlertDialog open={isFirstPost && personalDialog}>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle className="text-4xl">
-            Additionally, explore the personal page...
-          </AlertDialogTitle>
-          <AlertDialogDescription className="text-2xl">
-            Head over to your personal page to view and cherish your posted
-            artworks. It's your personal gallery showcasing your artistic
-            journey.
-          </AlertDialogDescription>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={handleFirstDialog}>
-              Back
-            </AlertDialogCancel>
-            <AlertDialogAction onClick={handleThirdDialog}>
-              Next
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogHeader>
-      </AlertDialogContent>
-    </AlertDialog>
-    <AlertDialog open={isFirstPost && socialDialog}>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle className="text-4xl">
-            Additionally, explore the social page...
-          </AlertDialogTitle>
-          <AlertDialogDescription className="text-2xl">
-            discover the incredible artworks posted by fellow{" "}
-            <span className="text-txt_2">S</span>
-            <span className="text-txt_3">O</span>
-            <span className="text-txt_2">U</span>
-            <span className="text-txt_3">L</span>
-            <span className="text-txt_2">Y</span> creators. It's a space to
-            connect, be inspired, and celebrate the diverse talents within
-            our community.
-          </AlertDialogDescription>
-          <AlertDialogDescription className="text-2xl">
-            Now, let's embark on this creative adventure together. We hope
-            you find joy, inspiration, and a piece of your soul in every
-            stroke!
-          </AlertDialogDescription>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={handleSecondDialog}>
-              Back
-            </AlertDialogCancel>
-            <AlertDialogAction onClick={handleCloseDialog}>
-              OK
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogHeader>
-      </AlertDialogContent>
-    </AlertDialog>
-  </div>
-);
+      </main>
+      <AlertDialog open={isFirstPost && welcomeDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-4xl">
+              Welcome to <span className="text-txt_2">S</span>
+              <span className="text-txt_3">O</span>
+              <span className="text-txt_2">U</span>
+              <span className="text-txt_3">L</span>
+              <span className="text-txt_2">Y</span> !
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-2xl">
+              We're thrilled to have you here as part of our creative community.
+              At <span className="text-txt_2">S</span>
+              <span className="text-txt_3">O</span>
+              <span className="text-txt_2">U</span>
+              <span className="text-txt_3">L</span>
+              <span className="text-txt_2">Y</span>, you have the artistic
+              freedom to express yourself through daily drawings based on unique
+              topics.
+            </AlertDialogDescription>
+            <AlertDialogDescription className="text-2xl">
+              Starting today, we'll provide you with a daily drawing topic to
+              inspire your creations. Remember, you can post once a day, so make
+              it count!
+            </AlertDialogDescription>
+            <AlertDialogFooter>
+              <AlertDialogAction onClick={handleSecondDialog}>
+                Next
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogHeader>
+        </AlertDialogContent>
+      </AlertDialog>
+      <AlertDialog open={isFirstPost && personalDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-4xl">
+              Additionally, explore the personal page...
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-2xl">
+              Head over to your personal page to view and cherish your posted
+              artworks. It's your personal gallery showcasing your artistic
+              journey.
+            </AlertDialogDescription>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={handleFirstDialog}>
+                Back
+              </AlertDialogCancel>
+              <AlertDialogAction onClick={handleThirdDialog}>
+                Next
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogHeader>
+        </AlertDialogContent>
+      </AlertDialog>
+      <AlertDialog open={isFirstPost && socialDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-4xl">
+              Additionally, explore the social page...
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-2xl">
+              discover the incredible artworks posted by fellow{" "}
+              <span className="text-txt_2">S</span>
+              <span className="text-txt_3">O</span>
+              <span className="text-txt_2">U</span>
+              <span className="text-txt_3">L</span>
+              <span className="text-txt_2">Y</span> creators. It's a space to
+              connect, be inspired, and celebrate the diverse talents within our
+              community.
+            </AlertDialogDescription>
+            <AlertDialogDescription className="text-2xl">
+              Now, let's embark on this creative adventure together. We hope you
+              find joy, inspiration, and a piece of your soul in every stroke!
+            </AlertDialogDescription>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={handleSecondDialog}>
+                Back
+              </AlertDialogCancel>
+              <AlertDialogAction onClick={handleCloseDialog}>
+                OK
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogHeader>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
+  );
 }
-
-
-
-
 
 // interface HeaderProps {
 //   studentName: string;
@@ -609,10 +606,9 @@ return (
 //   );
 // };
 
-
-
 // For reference
-{/* <AlertDialog open={isConfirmed}>
+{
+  /* <AlertDialog open={isConfirmed}>
             <AlertDialogContent>
               <AlertDialogHeader>
                 <AlertDialogTitle className="text-2xl">
@@ -777,4 +773,5 @@ return (
                 </div>
               </div>
             </div>
-          </div> */}
+          </div> */
+}

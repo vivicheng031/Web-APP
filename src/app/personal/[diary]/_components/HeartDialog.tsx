@@ -23,16 +23,16 @@ async function HeartDialog({ likeslist }: HeartProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-null items-center rounded-full px-3 py-1 text-base text-bdr_3 hover:bg-btn_2 md:text-2xl lg:text-3xl">
+        <Button className="bg-null text-bdr_3 hover:bg-btn_2 items-center rounded-full px-3 py-1 text-base md:text-2xl lg:text-3xl">
           <FaHeart />
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="py-1 text-3xl text-description">
+          <DialogTitle className="text-description py-1 text-3xl">
             People who likes your painting
           </DialogTitle>
-          <DialogDescription className="text-xl text-txt_5">
+          <DialogDescription className="text-txt_5 text-xl">
             You can also see their paintings on social page !
           </DialogDescription>
         </DialogHeader>

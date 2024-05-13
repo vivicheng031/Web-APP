@@ -52,7 +52,7 @@ async function PersonalPage() {
   return (
     <>
       <div className="flex w-full justify-center">
-        <div className="mb-2 flex justify-center rounded-2xl bg-description/40 p-2 px-4 md:text-2xl">
+        <div className="bg-description/40 mb-2 flex justify-center rounded-2xl p-2 px-4 md:text-2xl">
           Hi !
         </div>
       </div>
