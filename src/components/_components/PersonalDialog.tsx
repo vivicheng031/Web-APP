@@ -22,12 +22,12 @@ async function PersonalDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="cursor-pointer p-2 text-5xl text-description transition-colors hover:text-description/80 sm:px-4">
+        <Button className="text-description hover:text-description/80 cursor-pointer p-2 text-5xl transition-colors sm:px-4">
           <IoPersonCircleSharp />
         </Button>
       </DialogTrigger>
       <DialogContent className="min-h-[120px]">
-        <div className="divide-y-2 divide-slate-400/25 text-2xl text-txt_8">
+        <div className="text-txt_8 divide-y-2 divide-slate-400/25 text-2xl">
           <form
             action={async () => {
               "use server";

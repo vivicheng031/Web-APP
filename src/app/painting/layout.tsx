@@ -1,7 +1,7 @@
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
-import { auth } from "@/lib/auth";
-import { publicEnv } from "@/lib/env/public";
+// import { auth } from "@/lib/auth";
+// import { publicEnv } from "@/lib/env/public";
 
 type Props = {
   children: React.ReactNode;
@@ -37,16 +37,13 @@ async function Painting({ children }: Props) {
     //   </div>
     // </main>
 
-<main className="flex h-screen w-full flex-col justify-center overflow-hidden">
-{/* Ensure the child takes full height without overflow */}
-<div className="flex h-full w-full bg-brand_2">
-  {/* Ensure this container takes full height and width */}
-  <div className="flex h-full w-full">
-    {children}
-  </div>
-</div>
-</main>
-
+    <main className="flex h-screen w-full flex-col justify-center overflow-hidden">
+      {/* Ensure the child takes full height without overflow */}
+      <div className="bg-brand_2 flex h-full w-full">
+        {/* Ensure this container takes full height and width */}
+        <div className="flex h-full w-full">{children}</div>
+      </div>
+    </main>
   );
 }
 

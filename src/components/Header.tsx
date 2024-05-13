@@ -19,7 +19,7 @@ async function Header() {
 
   if (!session) {
     return (
-      <div className="fixed top-0 z-40 grid h-1/6 w-full bg-header px-8 py-4 text-3xl font-bold text-description sm:px-8">
+      <div className="bg-header text-description fixed top-0 z-40 grid h-1/6 w-full px-8 py-4 text-3xl font-bold sm:px-8">
         <div className="flex items-center gap-2">
           <Link href="/" className="mr-6 flex items-center text-5xl">
             <div className="h-20 w-20">
@@ -39,7 +39,7 @@ async function Header() {
           </Link>
           <div className="grow"></div>
           <Link
-            className="hidden rounded-2xl p-2 px-4 transition-colors hover:bg-description/30 sm:block"
+            className="hover:bg-description/30 hidden rounded-2xl p-2 px-4 transition-colors sm:block"
             href={{
               pathname: `/introduction`,
             }}
@@ -47,7 +47,7 @@ async function Header() {
             <div className="hidden sm:block">About Us</div>
           </Link>
           <Link
-            className="hidden rounded-2xl border-4 border-bdr bg-btn_2 p-2 px-4 text-txt transition-colors hover:bg-btn_2/30 sm:block"
+            className="border-bdr bg-btn_2 text-txt hover:bg-btn_2/30 hidden rounded-2xl border-4 p-2 px-4 transition-colors sm:block"
             href={{
               pathname: `/auth/login`,
             }}
@@ -55,7 +55,7 @@ async function Header() {
             <div className="hidden sm:block">Sign In</div>
           </Link>
           <Link
-            className="hidden rounded-2xl border-4 border-bdr bg-btn p-2 px-4 text-txt transition-colors hover:bg-btn/30 sm:block"
+            className="border-bdr bg-btn text-txt hover:bg-btn/30 hidden rounded-2xl border-4 p-2 px-4 transition-colors sm:block"
             href={{
               pathname: `/auth/signup`,
             }}
@@ -68,7 +68,7 @@ async function Header() {
   }
 
   return (
-    <div className="fixed top-0 z-40 grid h-1/6 w-full bg-header px-4 text-3xl font-bold text-description shadow-lg sm:px-8">
+    <div className="bg-header text-description fixed top-0 z-40 grid h-1/6 w-full px-4 text-3xl font-bold shadow-lg sm:px-8">
       <div className="flex items-center gap-0 sm:gap-2">
         <Link href="/" className="mr-6 flex items-center xl:text-4xl">
           <div className="h-20 w-20">
@@ -88,7 +88,7 @@ async function Header() {
         </Link>
         <div className="grow"></div>
         <Link
-          className="hidden rounded-2xl p-2 px-4 transition-colors hover:bg-description/30 lg:block lg:text-2xl xl:block xl:text-3xl"
+          className="hover:bg-description/30 hidden rounded-2xl p-2 px-4 transition-colors lg:block lg:text-2xl xl:block xl:text-3xl"
           href={{
             pathname: `/introduction`,
           }}
@@ -96,7 +96,7 @@ async function Header() {
           <div className="">About Us</div>
         </Link>
         <Link
-          className="hidden rounded-2xl p-2 px-4 transition-colors hover:bg-description/30 lg:block lg:text-2xl xl:block xl:text-3xl"
+          className="hover:bg-description/30 hidden rounded-2xl p-2 px-4 transition-colors lg:block lg:text-2xl xl:block xl:text-3xl"
           href={{
             pathname: `/painting`,
           }}
@@ -104,7 +104,7 @@ async function Header() {
           <div className="">Painting</div>
         </Link>
         <Link
-          className="hidden rounded-2xl p-2 px-4 transition-colors hover:bg-description/30 lg:block lg:text-2xl xl:block xl:text-3xl"
+          className="hover:bg-description/30 hidden rounded-2xl p-2 px-4 transition-colors lg:block lg:text-2xl xl:block xl:text-3xl"
           href={{
             pathname: `/personal`,
           }}
@@ -112,7 +112,7 @@ async function Header() {
           <div className="">Personal</div>
         </Link>
         <Link
-          className="hidden rounded-2xl p-2 px-4 transition-colors hover:bg-description/30 lg:block lg:text-2xl xl:block xl:text-3xl"
+          className="hover:bg-description/30 hidden rounded-2xl p-2 px-4 transition-colors lg:block lg:text-2xl xl:block xl:text-3xl"
           href={{
             pathname: `/social`,
           }}
@@ -125,15 +125,15 @@ async function Header() {
         <div className="lg:hidden">
           <Dialog>
             <DialogTrigger asChild>
-              <Button className="bg-null items-center rounded-full px-2 py-2 text-bdr_3 hover:bg-btn_2 sm:px-3 sm:text-4xl">
+              <Button className="bg-null text-bdr_3 hover:bg-btn_2 items-center rounded-full px-2 py-2 sm:px-3 sm:text-4xl">
                 <TfiMenuAlt className="pt-0.5 text-4xl sm:text-[40px]" />
               </Button>
             </DialogTrigger>
             <DialogContent>
-              <div className="text-2xl font-bold text-description lg:hidden">
+              <div className="text-description text-2xl font-bold lg:hidden">
                 <div className="flex flex-col gap-4 pt-2">
                   <Link
-                    className="px-2 transition-colors hover:bg-description/30"
+                    className="hover:bg-description/30 px-2 transition-colors"
                     href={{
                       pathname: `/introduction`,
                     }}
@@ -142,7 +142,7 @@ async function Header() {
                   </Link>
 
                   <Link
-                    className="px-2 transition-colors hover:bg-description/30"
+                    className="hover:bg-description/30 px-2 transition-colors"
                     href={{
                       pathname: `/painting`,
                     }}
@@ -150,7 +150,7 @@ async function Header() {
                     <div className="">Painting</div>
                   </Link>
                   <Link
-                    className="px-2 transition-colors hover:bg-description/30"
+                    className="hover:bg-description/30 px-2 transition-colors"
                     href={{
                       pathname: `/personal`,
                     }}
@@ -158,7 +158,7 @@ async function Header() {
                     <div className="">Personal</div>
                   </Link>
                   <Link
-                    className="px-2 transition-colors hover:bg-description/30"
+                    className="hover:bg-description/30 px-2 transition-colors"
                     href={{
                       pathname: `/social`,
                     }}
