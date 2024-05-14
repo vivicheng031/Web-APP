@@ -1,36 +1,35 @@
 .label-color {
-    color: #846425; /* Replace with your desired hex color */
-  }
+  color: #846425; /* Replace with your desired hex color */
+}
 
 .button-color {
-    color: #A8450F; /* Replace with your desired hex color */
-  }
+  color: #a8450f; /* Replace with your desired hex color */
+}
 
 .custom-card {
-    width: 913px;
-    height: 543px;
-    border-radius: 20px;
+  width: 913px;
+  height: 543px;
+  border-radius: 20px;
 }
 
 @media (min-width: 768px) {
-.custom-card {
+  .custom-card {
     width: 913px; /* 更寬的螢幕上更寬 */
     height: 600px; /* 更寬的螢幕上更高 */
     border-radius: 50px; /* 更寬的螢幕上邊角更圓滑 */
-}
+  }
 }
 
 .card-description-height {
-    height: 100px;  /* 或者使用其他的單位，如 em, %, vh 等 */
-  }
-  
+  height: 100px; /* 或者使用其他的單位，如 em, %, vh 等 */
+}
+
 /* style.css */
 
 .card-description {
-    flex: 3; /* 例如，使描述部分佔據 30% 的寬度 */
-  }
-  
-  .card-content {
-    flex: 7; /* 使內容部分佔據 70% 的寬度 */
-  }
-  
+  flex: 3; /* 例如，使描述部分佔據 30% 的寬度 */
+}
+
+.card-content {
+  flex: 7; /* 使內容部分佔據 70% 的寬度 */
+}

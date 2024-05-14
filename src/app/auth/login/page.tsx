@@ -7,15 +7,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 import AuthInput from "../_components/AuthInput";
+import "../_components/style.css";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { publicEnv } from "@/lib/env/public";
 
-import "../_components/style.css"
-
 const backgroundColor = "#FCEFCD";
-
 
 function Login() {
   const [email, setEmail] = useState<string>("");
@@ -51,7 +49,10 @@ function Login() {
 
   return (
     <div className="bg-brand relative z-50 flex min-h-screen items-center justify-center">
-      <Card className="rounded-xl bg-brand w-4/5 md:w-[600px] lg:w-[800px] flex flex-col h-full" style={{ backgroundColor }}>
+      <Card
+        className="bg-brand flex h-full w-4/5 flex-col rounded-xl md:w-[600px] lg:w-[800px]"
+        style={{ backgroundColor }}
+      >
         <CardHeader>
           <CardTitle className="flex items-center justify-between text-4xl">
             <Link href="/" className="mr-4 flex items-center">
@@ -65,13 +66,16 @@ function Login() {
                 />
               </div>
             </Link>
-            <div className="hidden items-center md:flex text-6xl">
+            <div className="hidden items-center text-6xl md:flex">
               <p className="text-description mr-2">Start Your Journey</p>
             </div>
           </CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-col h-full flex-grow">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 mr-8 max-md:text-4xl">
+        <CardContent className="flex h-full flex-grow flex-col">
+          <form
+            onSubmit={handleSubmit}
+            className="mr-8 flex flex-col gap-4 max-md:text-4xl"
+          >
             <AuthInput
               label="Email"
               type="email"
@@ -90,12 +94,11 @@ function Login() {
             <div className="flex justify-center">
               <Button
                 type="submit"
-                className="custom-max-width border-bdr bg-btn_2 text-txt w-full rounded-2xl border-4 text-center text-4xl button-custom-border button-custom-background"
+                className="custom-max-width border-bdr bg-btn_2 text-txt button-custom-border button-custom-background w-full rounded-2xl border-4 text-center text-4xl"
               >
                 Sign In
               </Button>
             </div>
-            
           </form>
         </CardContent>
       </Card>

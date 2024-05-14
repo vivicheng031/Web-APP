@@ -1,13 +1,13 @@
 import * as React from "react";
 
+import localFont from "next/font/local";
+
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils/shadcn";
 
-import "./style.css"
-
-import localFont from "next/font/local";
+import "./style.css";
 
 const pattaya = localFont({
   src: "Poetsen-One.woff2",
@@ -55,7 +55,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }),"button-color", `${pattaya.className}`)}
+        className={cn(
+          buttonVariants({ variant, size, className }),
+          "button-color",
+          `${pattaya.className}`,
+        )}
         ref={ref}
         {...props}
       />

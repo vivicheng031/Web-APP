@@ -1,10 +1,10 @@
 import * as React from "react";
 
+import localFont from "next/font/local";
+
 import { cn } from "@/lib/utils/shadcn";
 
-import "./style.css"
-
-import localFont from "next/font/local";
+import "./style.css";
 
 const pattaya = localFont({
   src: "Poetsen-One.woff2",
@@ -27,7 +27,6 @@ const pattaya = localFont({
 // ));
 // Card.displayName = "Card";
 
-
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -35,14 +34,14 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex flex-col rounded-lg border bg-card text-card-foreground shadow-sm custom-card",
-      className, `${pattaya.className}`
+      "custom-card flex flex-col rounded-lg border bg-card text-card-foreground shadow-sm",
+      className,
+      `${pattaya.className}`,
     )}
     {...props}
   />
 ));
 Card.displayName = "Card";
-
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,
@@ -50,7 +49,11 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col p-4 text-8xl", className, `${pattaya.className}`)}
+    className={cn(
+      "flex flex-col p-4 text-8xl",
+      className,
+      `${pattaya.className}`,
+    )}
     {...props}
   />
 ));
@@ -97,7 +100,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-sm text-muted-foreground card-description", className)}
+    className={cn("card-description text-sm text-muted-foreground", className)}
     {...props}
   />
 ));
@@ -107,12 +110,13 @@ const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("text-sm text-muted-foreground card-content", className)} {...props} />
+  <div
+    ref={ref}
+    className={cn("card-content text-sm text-muted-foreground", className)}
+    {...props}
+  />
 ));
 CardContent.displayName = "CardContent";
-
-
-
 
 const CardFooter = React.forwardRef<
   HTMLDivElement,
