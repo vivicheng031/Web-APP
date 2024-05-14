@@ -1,0 +1,173 @@
+:root {
+  --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+    "Source Han Sans CN", sans-serif;
+}
+
+.main-container {
+  overflow: hidden;
+}
+
+.main-container,
+.main-container * {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  outline: 0;
+}
+
+.main-container {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  margin: 0 auto;
+  background: #ffffff;
+  overflow: hidden;
+}
+.dialog {
+  position: relative;
+  width: 913px;
+  height: 543px;
+  margin: 240px 0 0 264px;
+  font-size: 0px;
+  background: #fcefcd;
+  overflow: visible auto;
+  border-radius: 50px;
+}
+.add-task {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  width: 610px;
+  height: 120px;
+  margin: 26px 0 0 151px;
+  color: #d88253;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 100px;
+  font-weight: 400;
+  line-height: 120px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 13;
+}
+.rectangle {
+  position: relative;
+  width: 221px;
+  height: 67.647px;
+  margin: 294px 0 0 346px;
+  background: #f4c2a6;
+  border: 5px solid #a8440e;
+  z-index: 2;
+  border-radius: 20px;
+}
+.assign {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: absolute;
+  width: 143px;
+  height: 43.569px;
+  top: 0;
+  left: 34px;
+  color: #a8440e;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 43.569px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 3;
+}
+.user-name {
+  position: absolute;
+  width: 532px;
+  height: 65px;
+  top: 175px;
+  left: 317px;
+  background: #d1c1a1;
+  border: 6px solid #846425;
+  z-index: 11;
+  border-radius: 20px;
+}
+.topic {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: absolute;
+  width: 222px;
+  height: 48px;
+  top: 184px;
+  left: 75px;
+  color: #846425;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 12;
+}
+.user-name-1 {
+  position: absolute;
+  width: 532px;
+  height: 65px;
+  top: 262px;
+  left: 317px;
+  background: #d1c1a1;
+  border: 6px solid #846425;
+  z-index: 8;
+  border-radius: 20px;
+}
+.class {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: absolute;
+  width: 222px;
+  height: 48px;
+  top: 271px;
+  left: 75px;
+  color: #846425;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 9;
+}
+.user-name-2 {
+  position: absolute;
+  width: 532px;
+  height: 65px;
+  top: 346px;
+  left: 317px;
+  background: #d1c1a1;
+  border: 6px solid #846425;
+  z-index: 5;
+  border-radius: 20px;
+}
+.end-date {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: absolute;
+  width: 222px;
+  height: 48px;
+  top: 352px;
+  left: 75px;
+  color: #846425;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 6;
+}

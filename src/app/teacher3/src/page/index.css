@@ -1,0 +1,423 @@
+:root {
+  --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+    "Source Han Sans CN", sans-serif;
+}
+
+.main-container {
+  overflow: hidden;
+}
+
+.main-container,
+.main-container * {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  outline: 0;
+}
+
+.main-container {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  margin: 0 auto;
+  background: #fcefcd;
+  overflow: hidden;
+}
+.flex-row-df {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 1363px;
+  height: 123px;
+  margin: 23px 0 0 47px;
+  z-index: 35;
+}
+.logo {
+  flex-shrink: 0;
+  position: relative;
+  width: 124px;
+  height: 123px;
+  background: url(../assets/images/bd99b885-3870-41fe-ac54-41afdd86e076.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 35;
+}
+.teachers-name {
+  flex-shrink: 0;
+  position: relative;
+  height: 65px;
+  color: #8e6920;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 58px;
+  font-weight: 400;
+  line-height: 65px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 34;
+}
+.flex-row-e {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 1379px;
+  height: 833px;
+  margin: 14px 0 0 31px;
+  z-index: 20;
+}
+.rectangle {
+  flex-shrink: 0;
+  position: relative;
+  width: 306px;
+  height: 833px;
+  font-size: 0px;
+  background: #f6cea0;
+  z-index: 20;
+  border-radius: 20px;
+}
+.class-1 {
+  display: block;
+  position: relative;
+  height: 48px;
+  margin: 24px 0 0 24px;
+  color: #5b574d;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 21;
+}
+.student-1 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  width: 257px;
+  height: 91px;
+  top: 99px;
+  left: 23px;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  z-index: 25;
+}
+.delete {
+  position: absolute;
+  width: 9.8%;
+  height: 3.6%;
+  top: 12.85%;
+  left: 81.05%;
+  background: url(../assets/images/f0f118ab-12ac-46c1-b7a6-2b5def81a5ea.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 24;
+}
+.line {
+  position: absolute;
+  width: 258.012px;
+  height: 4.053px;
+  top: 158px;
+  left: 21.988px;
+  background: url(../assets/images/6c03f97a-321c-43d7-ad0e-29348bd3409f.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 23;
+}
+.student {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  width: 257px;
+  height: 91px;
+  top: 180px;
+  left: 23px;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  z-index: 29;
+}
+.delete-1 {
+  position: absolute;
+  width: 9.8%;
+  height: 3.6%;
+  top: 22.57%;
+  left: 81.05%;
+  background: url(../assets/images/a584129e-acf4-4cb5-ba3b-f2fbb7e2c646.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 28;
+}
+.line-2 {
+  position: absolute;
+  width: 258.012px;
+  height: 4.053px;
+  top: 239px;
+  left: 21.988px;
+  background: url(../assets/images/1a88f5e0-cb1c-4317-b8c6-e08779caf00d.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 27;
+}
+.student-3 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  width: 257px;
+  height: 91px;
+  top: 264px;
+  left: 23px;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  z-index: 33;
+}
+.delete-4 {
+  position: absolute;
+  width: 9.8%;
+  height: 3.6%;
+  top: 32.65%;
+  left: 81.05%;
+  background: url(../assets/images/7c3b1d68-925e-44bd-a6f4-b241ab2a0cbc.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 32;
+}
+.line-5 {
+  position: absolute;
+  width: 258.012px;
+  height: 4.053px;
+  top: 323px;
+  left: 21.988px;
+  background: url(../assets/images/91e831c6-58c5-465b-a7c7-93134c476b6a.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 31;
+}
+.rectangle-6 {
+  flex-shrink: 0;
+  position: relative;
+  width: 1043px;
+  height: 833px;
+  font-size: 0px;
+  background: #f6cea0;
+  z-index: 1;
+  border-radius: 20px;
+}
+.student-7 {
+  display: block;
+  position: relative;
+  height: 83px;
+  margin: 30px 0 0 38px;
+  color: #5b574d;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 72px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 2;
+}
+.flex-row-fb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 541px;
+  height: 297px;
+  margin: 7px 0 0 38px;
+  z-index: 12;
+}
+.rectangle-8 {
+  flex-shrink: 0;
+  position: relative;
+  width: 254px;
+  height: 297px;
+  background: #fff9f9;
+  z-index: 4;
+  border-radius: 20px;
+}
+.cover {
+  position: relative;
+  width: 202px;
+  height: 158px;
+  margin: 27px 0 0 26px;
+  background: #b4e3e3;
+  z-index: 5;
+}
+.topic-finish-date {
+  position: absolute;
+  width: 192px;
+  height: 88px;
+  top: 195px;
+  left: 25px;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: left;
+  z-index: 6;
+}
+.topic {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: left;
+}
+.finish-date {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 35px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: left;
+}
+.ellipse {
+  position: absolute;
+  width: 68px;
+  height: 67px;
+  top: 220px;
+  left: 170px;
+  background: url(../assets/images/6c194c13-0372-4da5-bf21-d4540c2ab3c5.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 8;
+}
+.vector {
+  position: relative;
+  width: 52.511px;
+  height: 44px;
+  margin: 12px 0 0 4px;
+  background: url(../assets/images/ef42a5b4-f00a-42a1-8a14-a6c155c4ab84.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 10;
+}
+.rectangle-9 {
+  flex-shrink: 0;
+  position: relative;
+  width: 254px;
+  height: 297px;
+  background: #fff9f9;
+  z-index: 12;
+  border-radius: 20px;
+}
+.cover-a {
+  position: relative;
+  width: 202px;
+  height: 158px;
+  margin: 27px 0 0 26px;
+  background: #b4e3e3;
+  z-index: 13;
+}
+.topic-finish-date-b {
+  position: absolute;
+  width: 192px;
+  height: 88px;
+  top: 195px;
+  left: 25px;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: left;
+  z-index: 14;
+}
+.topic-c {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: left;
+}
+.finish-date-d {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 35px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: left;
+}
+.ellipse-e {
+  position: absolute;
+  width: 68px;
+  height: 67px;
+  top: 216px;
+  left: 175px;
+  background: url(../assets/images/0b344f7e-bb07-492a-9b68-43a92b905e85.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 16;
+}
+.vector-f {
+  position: relative;
+  width: 49px;
+  height: 44.959px;
+  margin: 14px 0 0 10px;
+  background: url(../assets/images/20b78683-c62b-4ae1-ab6e-b71231c15c20.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 18;
+}
+.flex-row-da {
+  position: relative;
+  width: 180px;
+  height: 203px;
+  margin: 213px 0 0 827px;
+  z-index: 38;
+}
+.plus {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: 203px;
+  top: 0;
+  left: 44px;
+  color: #a8440e;
+  font-family: Rubik One, var(--default-font-family);
+  font-size: 160px;
+  font-weight: 400;
+  line-height: 198.08px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 38;
+}
+.ellipse-10 {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 4px;
+  left: 0;
+  background: url(../assets/images/00f9a6bd-fb78-47b6-b79b-f37ef748eb9a.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 37;
+  border-radius: 50%;
+}

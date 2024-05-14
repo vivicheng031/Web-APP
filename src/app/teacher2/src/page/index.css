@@ -1,0 +1,460 @@
+:root {
+  --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+    "Source Han Sans CN", sans-serif;
+}
+
+.main-container {
+  overflow: hidden;
+}
+
+.main-container,
+.main-container * {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  outline: 0;
+}
+
+.main-container {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  margin: 0 auto;
+  background: #fcefcd;
+  overflow: hidden;
+}
+.flex-row-d {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 1363px;
+  height: 123px;
+  margin: 23px 0 0 47px;
+  z-index: 26;
+}
+.logo {
+  flex-shrink: 0;
+  position: relative;
+  width: 124px;
+  height: 123px;
+  background: url(../assets/images/7d9a840b-7027-4eec-87fc-ba3387c481f3.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 26;
+}
+.teachers-name {
+  flex-shrink: 0;
+  position: relative;
+  height: 65px;
+  color: #8e6920;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 58px;
+  font-weight: 400;
+  line-height: 65px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 25;
+}
+.flex-row-f {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 1379px;
+  height: 833px;
+  margin: 14px 0 0 31px;
+  z-index: 16;
+}
+.rectangle {
+  flex-shrink: 0;
+  position: relative;
+  width: 306px;
+  height: 833px;
+  font-size: 0px;
+  background: #f6cea0;
+  z-index: 1;
+  border-radius: 20px;
+}
+.class-1 {
+  display: block;
+  position: relative;
+  height: 48px;
+  margin: 23px 0 0 29px;
+  color: #5b574d;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 2;
+}
+.student-1 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  width: 257px;
+  height: 91px;
+  top: 99px;
+  left: 23px;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  z-index: 6;
+}
+.delete {
+  position: absolute;
+  width: 9.8%;
+  height: 3.6%;
+  top: 12.85%;
+  left: 81.05%;
+  background: url(../assets/images/95fdc60d-b7ca-4756-90e7-bdcec38db620.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 5;
+}
+.line {
+  position: absolute;
+  width: 258.012px;
+  height: 4.053px;
+  top: 158px;
+  left: 21.988px;
+  background: url(../assets/images/52f168cf-44c5-4036-8d3c-0cc63897cd51.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 4;
+}
+.student {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  width: 257px;
+  height: 91px;
+  top: 180px;
+  left: 23px;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  z-index: 10;
+}
+.delete-1 {
+  position: absolute;
+  width: 9.8%;
+  height: 3.6%;
+  top: 22.57%;
+  left: 81.05%;
+  background: url(../assets/images/f7d6a7ce-78a5-45cf-9a47-d8f9b850140f.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 9;
+}
+.line-2 {
+  position: absolute;
+  width: 258.012px;
+  height: 4.053px;
+  top: 239px;
+  left: 21.988px;
+  background: url(../assets/images/370fe901-923d-4cb4-9c98-b5d4aa1cc6f5.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 8;
+}
+.student-3 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  width: 257px;
+  height: 91px;
+  top: 264px;
+  left: 23px;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  z-index: 14;
+}
+.delete-4 {
+  position: absolute;
+  width: 9.8%;
+  height: 3.6%;
+  top: 32.65%;
+  left: 81.05%;
+  background: url(../assets/images/3d3d313d-7b6a-410e-b268-37b1614248be.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 13;
+}
+.line-5 {
+  position: absolute;
+  width: 258.012px;
+  height: 4.053px;
+  top: 323px;
+  left: 21.988px;
+  background: url(../assets/images/8cb7588b-1783-4e95-a98f-eb88a5f52efe.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 12;
+}
+.rectangle-6 {
+  flex-shrink: 0;
+  position: relative;
+  width: 1043px;
+  height: 833px;
+  font-size: 0px;
+  background: #f6cea0;
+  z-index: 16;
+  border-radius: 20px;
+}
+.all-tasks {
+  display: block;
+  position: relative;
+  height: 83px;
+  margin: 32px 0 0 48px;
+  color: #5b574d;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 72px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 24;
+}
+.task-date {
+  position: relative;
+  width: 932px;
+  height: 61px;
+  margin: 5px 0 0 48px;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  text-overflow: initial;
+  white-space: nowrap;
+  z-index: 18;
+}
+.task-1 {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 54px;
+  text-align: left;
+}
+.task-date-7 {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+}
+.task-date-8 {
+  position: relative;
+  width: 932px;
+  height: 61px;
+  margin: 8px 0 0 48px;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  text-overflow: initial;
+  white-space: nowrap;
+  z-index: 19;
+}
+.task-2 {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 54px;
+  text-align: left;
+}
+.text-a {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+}
+.task-date-9 {
+  position: relative;
+  width: 932px;
+  height: 61px;
+  margin: 7px 0 0 48px;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  text-overflow: initial;
+  white-space: nowrap;
+  z-index: 20;
+}
+.task {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 54px;
+  text-align: left;
+}
+.task-date-a {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+}
+.task-date-b {
+  position: relative;
+  width: 932px;
+  height: 61px;
+  margin: 11px 0 0 48px;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  text-overflow: initial;
+  white-space: nowrap;
+  z-index: 21;
+}
+.task-c {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 54px;
+  text-align: left;
+}
+.task-date-d {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+}
+.task-date-e {
+  position: relative;
+  width: 932px;
+  height: 61px;
+  margin: 8px 0 0 48px;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  text-overflow: initial;
+  white-space: nowrap;
+  z-index: 22;
+}
+.task-f {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 54px;
+  text-align: left;
+}
+.task-date-10 {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+}
+.task-task-date {
+  position: relative;
+  width: 932px;
+  height: 61px;
+  margin: 7px 0 0 48px;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  text-overflow: initial;
+  white-space: nowrap;
+  z-index: 23;
+}
+.task-6 {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 54px;
+  text-align: left;
+}
+.task-date-11 {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+}
+.plus {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: 203px;
+  top: 630px;
+  left: 871px;
+  color: #a8440e;
+  font-family: Rubik One, var(--default-font-family);
+  font-size: 160px;
+  font-weight: 400;
+  line-height: 198.08px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 29;
+}
+.ellipse {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 634px;
+  left: 827px;
+  background: url(../assets/images/57888d0d-b2ed-4bd9-8859-ea37271f5c4f.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 28;
+  border-radius: 50%;
+}

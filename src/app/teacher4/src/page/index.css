@@ -1,0 +1,499 @@
+:root {
+  --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+    "Source Han Sans CN", sans-serif;
+}
+
+.main-container {
+  overflow: hidden;
+}
+
+.main-container,
+.main-container * {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  outline: 0;
+}
+
+.main-container {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  margin: 0 auto;
+  background: #fcefcd;
+  overflow: hidden;
+}
+.flex-row-d {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 1363px;
+  height: 123px;
+  margin: 23px 0 0 47px;
+  z-index: 35;
+}
+.logo {
+  flex-shrink: 0;
+  position: relative;
+  width: 124px;
+  height: 123px;
+  background: url(../assets/images/5699153a-c0a0-486b-8fa7-0f54c419753d.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 35;
+}
+.teachers-name {
+  flex-shrink: 0;
+  position: relative;
+  height: 65px;
+  color: #8e6920;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 58px;
+  font-weight: 400;
+  line-height: 65px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 34;
+}
+.flex-row-db {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 1379px;
+  height: 833px;
+  margin: 14px 0 0 31px;
+  z-index: 20;
+}
+.rectangle {
+  flex-shrink: 0;
+  position: relative;
+  width: 306px;
+  height: 833px;
+  font-size: 0px;
+  background: #f6cea0;
+  z-index: 20;
+  border-radius: 20px;
+}
+.class-1 {
+  display: block;
+  position: relative;
+  height: 48px;
+  margin: 24px 0 0 24px;
+  color: #5b574d;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 21;
+}
+.student-1 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  width: 257px;
+  height: 91px;
+  top: 99px;
+  left: 23px;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  z-index: 25;
+}
+.delete {
+  position: absolute;
+  width: 9.8%;
+  height: 3.6%;
+  top: 12.85%;
+  left: 81.05%;
+  background: url(../assets/images/988a7538-83b8-4955-8218-b887d58dee46.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 24;
+}
+.line {
+  position: absolute;
+  width: 258.012px;
+  height: 4.053px;
+  top: 158px;
+  left: 21.988px;
+  background: url(../assets/images/407cb606-395b-4985-a500-377bd7be35e1.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 23;
+}
+.student {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  width: 257px;
+  height: 91px;
+  top: 180px;
+  left: 23px;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  z-index: 29;
+}
+.delete-1 {
+  position: absolute;
+  width: 9.8%;
+  height: 3.6%;
+  top: 22.57%;
+  left: 81.05%;
+  background: url(../assets/images/072366ac-425f-42c1-a49a-6a1757858092.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 28;
+}
+.line-2 {
+  position: absolute;
+  width: 258.012px;
+  height: 4.053px;
+  top: 239px;
+  left: 21.988px;
+  background: url(../assets/images/1f286118-7b4b-4804-9580-aef67ae1e5ad.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 27;
+}
+.student-3 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  width: 257px;
+  height: 91px;
+  top: 264px;
+  left: 23px;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 45.6px;
+  text-align: left;
+  z-index: 33;
+}
+.delete-4 {
+  position: absolute;
+  width: 9.8%;
+  height: 3.6%;
+  top: 32.65%;
+  left: 81.05%;
+  background: url(../assets/images/d91eedc8-c432-4dcb-96b0-8a0c568d0d9f.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 32;
+}
+.line-5 {
+  position: absolute;
+  width: 258.012px;
+  height: 4.053px;
+  top: 323px;
+  left: 21.988px;
+  background: url(../assets/images/dcda5605-ac3a-41d5-a388-ca71e0e10089.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 31;
+}
+.rectangle-6 {
+  flex-shrink: 0;
+  position: relative;
+  width: 1043px;
+  height: 833px;
+  background: #f6cea0;
+  border-radius: 20px;
+}
+.flex-row-eb {
+  position: relative;
+  width: 961px;
+  height: 94px;
+  margin: 19px 0 0 38px;
+  z-index: 7;
+}
+.topic-finish-date {
+  position: absolute;
+  width: 192px;
+  height: 88px;
+  top: 0;
+  left: 320px;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: left;
+  z-index: 5;
+}
+.topic {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: left;
+}
+.finish-date {
+  position: relative;
+  color: #000000;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 35px;
+  font-weight: 400;
+  line-height: 48px;
+  text-align: left;
+}
+.ellipse {
+  position: absolute;
+  width: 87px;
+  height: 85.721px;
+  top: 2px;
+  left: 874px;
+  background: url(../assets/images/730b9f89-da66-45dc-b673-b13e3fa2b070.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 7;
+}
+.vector {
+  position: relative;
+  width: 66.065px;
+  height: 55.177px;
+  margin: 15.912px 0 0 5.676px;
+  background: url(../assets/images/d88d8ee8-2603-45a3-997a-87a8a7f48f9f.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 9;
+}
+.student-7 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: 83px;
+  top: 11px;
+  left: 0;
+  color: #5b574d;
+  font-family: PoetsenOne, var(--default-font-family);
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 72px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 1;
+}
+.flex-row-ef {
+  position: relative;
+  width: 1025px;
+  height: 676px;
+  margin: 7px 0 0 8px;
+  z-index: 16;
+}
+.rectangle-8 {
+  position: absolute;
+  width: 961px;
+  height: 676px;
+  top: 0;
+  left: 30px;
+  background: #fff9f9;
+  z-index: 3;
+  border-radius: 20px;
+}
+.flex-row-bf {
+  position: absolute;
+  width: 858px;
+  height: 617px;
+  top: 29px;
+  left: 55px;
+  z-index: 37;
+}
+.line-9 {
+  position: absolute;
+  width: 6px;
+  height: 617px;
+  top: 0;
+  left: 429px;
+  background: url(../assets/images/2418bcb6-e5a3-4719-b6fe-c3a1c0fc3706.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 10;
+}
+.picture {
+  position: absolute;
+  width: 379px;
+  height: 484px;
+  top: 26px;
+  left: 0;
+  background: #b4e3e3;
+  z-index: 4;
+}
+.picture-a {
+  position: absolute;
+  width: 379px;
+  height: 484px;
+  top: 26px;
+  left: 479px;
+  background: #b4e3e3;
+  z-index: 37;
+}
+.flex-row-cae {
+  position: absolute;
+  width: 878px;
+  height: 118px;
+  top: 558px;
+  left: 72px;
+  z-index: 40;
+}
+.description-date {
+  position: absolute;
+  width: 344px;
+  height: 118px;
+  top: 0;
+  left: 0;
+  font-family: Reem Kufi Fun, var(--default-font-family);
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 75px;
+  text-align: left;
+  z-index: 36;
+}
+.description {
+  position: relative;
+  color: #000000;
+  font-family: Reem Kufi Fun, var(--default-font-family);
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 75px;
+  text-align: left;
+}
+.date {
+  position: relative;
+  color: #000000;
+  font-family: Reem Kufi Fun, var(--default-font-family);
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 75px;
+  text-align: left;
+}
+.description-date-b {
+  position: absolute;
+  width: 344px;
+  height: 118px;
+  top: 0;
+  left: 479px;
+  font-family: Reem Kufi Fun, var(--default-font-family);
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 75px;
+  text-align: left;
+  z-index: 38;
+}
+.description-c {
+  position: relative;
+  color: #000000;
+  font-family: Reem Kufi Fun, var(--default-font-family);
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 75px;
+  text-align: left;
+}
+.date-d {
+  position: relative;
+  color: #000000;
+  font-family: Reem Kufi Fun, var(--default-font-family);
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 75px;
+  text-align: left;
+}
+.p2 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: 75px;
+  top: 32px;
+  left: 813px;
+  color: #000000;
+  font-family: Reem Kufi Fun, var(--default-font-family);
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 75px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 40;
+}
+.p1 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: 75px;
+  top: 35px;
+  left: 329px;
+  color: #000000;
+  font-family: Reem Kufi Fun, var(--default-font-family);
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 75px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 39;
+}
+.ellipse-e {
+  position: absolute;
+  width: 68px;
+  height: 67px;
+  top: 271px;
+  left: 0;
+  background: url(../assets/images/97e8a005-f175-4b6e-be89-f9d661e42462.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 16;
+}
+.vector-f {
+  position: relative;
+  width: 34px;
+  height: 42.771px;
+  margin: 13px 0 0 15px;
+  background: url(../assets/images/237f2cce-bb8a-4be3-9df8-2e3bb27609b6.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 18;
+}
+.ellipse-10 {
+  position: absolute;
+  width: 68px;
+  height: 67px;
+  top: 271px;
+  left: 957px;
+  background: url(../assets/images/00a48e1c-a203-4120-9b49-b5ae9673bbfd.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 12;
+}
+.vector-11 {
+  position: relative;
+  width: 34px;
+  height: 42.766px;
+  margin: 13px 0 0 20px;
+  background: url(../assets/images/6ceb2415-8063-46e8-8319-5cf3a497a108.png)
+    no-repeat center;
+  background-size: 100% 100%;
+  z-index: 14;
+}
