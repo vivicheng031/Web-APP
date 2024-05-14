@@ -1,0 +1,129 @@
+input[type="range"] {
+  width: 150px;
+  -webkit-appearance: none;
+  background-color: lightgray;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: 6px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 10px;
+  -webkit-appearance: none;
+  color: black;
+  border-radius: 10px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 20px;
+  -webkit-appearance: none;
+  height: 20px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 50%;
+  background: white;
+  margin-top: -3px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+#__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#main-element {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Range input styling */
+/* input[type="range"] {
+  width: 150px;
+  -webkit-appearance: none;
+  background-color: #CFCFCF;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: -5px;
+  padding: 0; 
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 10px;
+  -webkit-appearance: none;
+  color: black;
+  border-radius: 10px;
+  margin-top: -5px; 
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  -webkit-appearance: none;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 50%;
+  background: white;
+  margin-top: -3px; 
+}
+
+/* Mozilla-specific styling */
+/* input[type="range"]::-moz-range-track {
+  height: 10px;
+  background: #CFCFCF;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 50%;
+  background: white;
+} */
+
+/* IE-specific styling */
+/* input[type="range"]::-ms-track {
+  width: 100%;
+  height: 10px;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type="range"]::-ms-fill-lower {
+  background: #CFCFCF;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+input[type="range"]::-ms-fill-upper {
+  background: #CFCFCF;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+input[type="range"]::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 50%;
+  background: white;
+  margin-top: 0; 
+}
+
+input[type="range"]:focus {
+  outline: none; 
+} */
