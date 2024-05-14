@@ -2,6 +2,32 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils/shadcn";
 
+import "./style.css"
+
+import localFont from "next/font/local";
+
+const pattaya = localFont({
+  src: "Poetsen-One.woff2",
+  weight: "700",
+  style: "italic",
+});
+
+// const Card = React.forwardRef<
+//   HTMLDivElement,
+//   React.HTMLAttributes<HTMLDivElement>
+// >(({ className, ...props }, ref) => (
+//   <div
+//     ref={ref}
+//     className={cn(
+//       "rounded-lg border bg-card text-card-foreground shadow-sm custom-card",
+//       className,
+//     )}
+//     {...props}
+//   />
+// ));
+// Card.displayName = "Card";
+
+
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -9,13 +35,14 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
-      className,
+      "flex flex-col rounded-lg border bg-card text-card-foreground shadow-sm custom-card",
+      className, `${pattaya.className}`
     )}
     {...props}
   />
 ));
 Card.displayName = "Card";
+
 
 const CardHeader = React.forwardRef<
   HTMLDivElement,
@@ -23,7 +50,7 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-1.5 p-4", className)}
+    className={cn("flex flex-col p-4 text-8xl", className, `${pattaya.className}`)}
     {...props}
   />
 ));
@@ -36,7 +63,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "text-2xl font-semibold leading-none tracking-tight",
+      "text-8xl font-semibold leading-none tracking-tight",
       className,
     )}
     {...props}
@@ -44,13 +71,33 @@ const CardTitle = React.forwardRef<
 ));
 CardTitle.displayName = "CardTitle";
 
+// const CardDescription = React.forwardRef<
+//   HTMLParagraphElement,
+//   React.HTMLAttributes<HTMLParagraphElement>
+// >(({ className, ...props }, ref) => (
+//   <p
+//     ref={ref}
+//     className={cn("text-sm text-muted-foreground", className)}
+//     {...props}
+//   />
+// ));
+// CardDescription.displayName = "CardDescription";
+
+// const CardContent = React.forwardRef<
+//   HTMLDivElement,
+//   React.HTMLAttributes<HTMLDivElement>
+// >(({ className, ...props }, ref) => (
+//   <div ref={ref} className={cn("text-sm text-muted-foreground card-description-height", className)} {...props} />
+// ));
+// CardContent.displayName = "CardContent";
+
 const CardDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
+    className={cn("text-sm text-muted-foreground card-description", className)}
     {...props}
   />
 ));
@@ -60,9 +107,12 @@ const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+  <div ref={ref} className={cn("text-sm text-muted-foreground card-content", className)} {...props} />
 ));
 CardContent.displayName = "CardContent";
+
+
+
 
 const CardFooter = React.forwardRef<
   HTMLDivElement,

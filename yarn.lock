@@ -1768,6 +1768,13 @@ flatted@^3.2.9:
   resolved "https://registry.npmjs.org/flatted/-/flatted-3.2.9.tgz"
   integrity sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==
 
+font@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/font/-/font-0.0.4.tgz"
+  integrity sha512-vuM54uXU6Mavv/JPxgxMNVH8BysPpzUnwwuz3mTtYSn2G+2bintvVWXGDuEkvQ1WrMcZ2VTEe9e1Vz1yMdQZog==
+  dependencies:
+    reified "~0.2.4"
+
 for-each@^0.3.3:
   version "0.3.3"
   resolved "https://registry.npmjs.org/for-each/-/for-each-0.3.3.tgz"
@@ -3162,6 +3169,11 @@ regexp.prototype.flags@^1.5.0, regexp.prototype.flags@^1.5.1:
     call-bind "^1.0.2"
     define-properties "^1.2.0"
     set-function-name "^2.0.0"
+
+reified@~0.2.4:
+  version "0.2.4"
+  resolved "https://registry.npmjs.org/reified/-/reified-0.2.4.tgz"
+  integrity sha512-27GIO08DpCZZxPdYv5f3Xsxe1QW38Cd2O51rJK1Y84Gv6jGU7yXYZKkjmDxR/GY9/lpeZD4Jj/10eB46bcTJBw==
 
 resolve-from@^4.0.0:
   version "4.0.0"

@@ -380,5 +380,7 @@ export default function Painting() {
         </main>
       </main>
     </div>
+
+
   );
 }

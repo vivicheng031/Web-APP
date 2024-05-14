@@ -1,4 +1,13 @@
+import localFont from "next/font/local";
+import Image from "next/image";
 import Link from "next/link";
+
+const pattaya = localFont({
+  src: "./fonts/Poetsen-One.woff2",
+  weight: "700",
+  style: "italic",
+});
+
 
 export default function Home() {
   return (
@@ -6,7 +15,7 @@ export default function Home() {
       Hello world ! This is the home page
       <Link
         href="/painting"
-        className="border-bdr bg-btn text-txt hover:bg-description/80 m-2 rounded-2xl border-4 px-4 py-2 text-center text-3xl"
+        className={`${pattaya.className} mb-4 text-center text-5xl text-txt`}
       >
         Start Painting
       </Link>
