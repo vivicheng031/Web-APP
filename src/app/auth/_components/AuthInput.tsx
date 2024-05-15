@@ -4,7 +4,7 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import "./style.css"
+import "./style.css";
 
 type Props = {
   label: string;
@@ -69,7 +69,10 @@ function AuthInput({ label, type, value, error, setValue }: Props) {
           error !== "null" ? "mb-0" : "mb-2"
         } flex w-full flex-col items-center gap-4 text-center md:flex-row md:items-center`}
       >
-        <Label className="flex-1 text-center text-4xl text-description md:justify-center" style={{ flex: 4 }}>
+        <Label
+          className="text-description flex-1 text-center text-4xl md:justify-center"
+          style={{ flex: 4 }}
+        >
           {label}
         </Label>
         <Input
@@ -79,7 +82,9 @@ function AuthInput({ label, type, value, error, setValue }: Props) {
             setValue(e.target.value);
           }}
           className={`flex-1 border-4 ${
-            error !== "null" ? "border-rose-600" : "border-txt_4 border-brown slot-custom-background"
+            error !== "null"
+              ? "border-rose-600"
+              : "border-txt_4 border-brown slot-custom-background"
           } bg-btn_3 text-4xl`}
           style={{ flex: 6 }}
         />
@@ -111,4 +116,3 @@ function AuthInput({ label, type, value, error, setValue }: Props) {
 }
 
 export default AuthInput;
-
