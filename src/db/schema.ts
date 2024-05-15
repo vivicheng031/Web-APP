@@ -18,8 +18,16 @@ export const studentUserTable = pgTable(
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成學生DisplayID
     name: varchar("name", { length: 100 }).notNull(),
     email: varchar("email", { length: 100 }).notNull().unique(),
-    class_name: varchar("class_name", { length: 100 }).notNull(),
+    class: varchar("class_name", { length: 100 }).notNull(),
     password: varchar("password", { length: 100 }).notNull(),
+    date: timestamp("date")
+      .notNull()
+      .default(sql`now()`),
+    photo: varchar("photo")
+      .notNull()
+      .default(
+        "https://drive.google.com/file/d/1Gizl9jq8m8BYRCwzNOa3Qs82zr7Zkoty/preview",
+      ),
   },
   (table) => ({
     emailIndex: index("email_index").on(table.email),
@@ -34,8 +42,15 @@ export const teacherUserTable = pgTable(
     id: serial("id").primaryKey(), // 使用serial生成教師id
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成教師DisplayID
     name: varchar("name", { length: 100 }).notNull(),
-    email: varchar("email", { length: 100 }).notNull().unique(),
     password: varchar("password", { length: 100 }).notNull(),
+    email: varchar("email", { length: 100 }).notNull().unique(),
+    photo: varchar("photo")
+      .notNull()
+      .default(
+        "https://drive.google.com/file/d/1Gizl9jq8m8BYRCwzNOa3Qs82zr7Zkoty/preview",
+      ),
+
+
   },
   (table) => ({
     emailIndex: index("email_index").on(table.email),
@@ -71,15 +86,15 @@ export const pictureTable = pgTable(
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成圖片DisplayID
     image: varchar("image").notNull(),
     text: text("text").notNull(),
-    date: timestamp("date")
-      .notNull()
-      .default(sql`now()`),
-    userId: uuid("user_id")
+    studentId: uuid("student_id")
       .notNull()
       .references(() => studentUserTable.displayId, {
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
+    date: timestamp("date")
+      .notNull()
+      .default(sql`now()`),
   },
   (table) => ({
     displayIdIndex: index("display_id_index").on(table.displayId),
@@ -92,16 +107,15 @@ export const pictureBookTable = pgTable(
   {
     id: serial("id").primaryKey(), // 使用serial生成繪本id
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成繪本DisplayID
-    pictureId: uuid("picture_id")
+    studentId: uuid("student_id")
       .notNull()
-      .references(() => pictureTable.displayId, {
+      .references(() => studentUserTable.displayId, {
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
     sendEmail: boolean("send_email").notNull().default(false),
   },
-  (table) => ({
-    pictureIndex: index("picture_index").on(table.pictureId),
+  (table) => ({ // 建立索引 index 以加速查詢 
     displayIdIndex: index("display_id_index").on(table.displayId),
   }),
 );
@@ -110,11 +124,11 @@ export const pictureBookTable = pgTable(
 export const studentUserRelations = relations(studentUserTable, ({ one }) => ({
   pictureBooks: one(pictureBookTable, {
     fields: [studentUserTable.id],
-    references: [pictureBookTable.pictureId],
+    references: [pictureBookTable.displayId],
   }),
 }));
 
-// 老師使用者關聯
+// 老師與班級關聯
 export const teacherUserRelations = relations(teacherUserTable, ({ one }) => ({
   classes: one(classTable, {
     fields: [teacherUserTable.id],
@@ -122,10 +136,12 @@ export const teacherUserRelations = relations(teacherUserTable, ({ one }) => ({
   }),
 }));
 
+// 班級與學生關聯
+export const classRelations = relations(classTable, ({ many }) => ({
+  students: many(studentUserTable),
+}));
+
 // 繪本關聯
-export const pictureBookRelations = relations(pictureTable, ({ one }) => ({
-  book: one(pictureBookTable, {
-    fields: [pictureTable.id],
-    references: [pictureBookTable.pictureId],
-  }),
+export const pictureBookRelations = relations(pictureBookTable, ({ many }) => ({
+  pictures: many(pictureTable),
 }));
