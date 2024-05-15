@@ -1,0 +1,21 @@
+.border-brown {
+  border-color: #846425;
+  border-width: 6px;
+}
+
+.button-custom-border {
+  border-color: #a8450f; /* Your desired hex color for border */
+  border-width: 5px;
+}
+
+.button-custom-background {
+  background-color: #ecc4ab; /* Your desired hex color for background */
+}
+
+.slot-custom-background {
+  background-color: #cec2a5; /* Your desired hex color for background */
+}
+
+.custom-max-width {
+  max-width: 221px;
+}

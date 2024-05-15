@@ -24,9 +24,9 @@ import "../globals.css";
 //   AlertDialogTitle,
 // } from "@/components/ui/alert-dialog";
 import { useDraw } from "@/hooks/useDraw";
-
 // import { usePost } from "@/hooks/usePost";
-// import type { Draw } from "@/lib/types/shared_types";
+import type { Draw } from "@/lib/types/shared_types";
+
 import "./style.css";
 
 export default function Painting() {
@@ -218,8 +218,10 @@ export default function Painting() {
 
   function drawLine({ prevPoint, currentPoint, ctx }: Draw) {
     const { x: currX, y: currY } = currentPoint;
-    const lineColor = color;
-    const lineWidth = brushSize;
+    // const lineColor = color;
+    // const lineWidth = brushSize;
+    const lineColor = "black";
+    const lineWidth = 10;
 
     const startPoint = prevPoint ?? currentPoint;
     ctx.beginPath();
@@ -247,7 +249,7 @@ export default function Painting() {
   const rectColor = "#D9D9D9";
 
   return (
-    <div id="main-element" className="h-full w-full blur-lg">
+    <div id="main-element" className="h-full w-full">
       <main
         className={`bg-brand_2 flex flex-col items-center`}
         style={{ backgroundColor }}
