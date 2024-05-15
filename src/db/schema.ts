@@ -128,20 +128,34 @@ export const studentUserRelations = relations(studentUserTable, ({ one }) => ({
   }),
 }));
 
-// 老師與班級關聯
+// 老師使用者關聯
 export const teacherUserRelations = relations(teacherUserTable, ({ one }) => ({
   classes: one(classTable, {
-    fields: [teacherUserTable.id],
+    fields: [teacherUserTable.displayId],
     references: [classTable.teacherId],
   }),
 }));
 
-// 班級與學生關聯
-export const classRelations = relations(classTable, ({ many }) => ({
-  students: many(studentUserTable),
+// 班級關聯
+export const classRelations = relations(classTable, ({ one }) => ({
+  teacher: one(teacherUserTable, {
+    fields: [classTable.teacherId],
+    references: [teacherUserTable.displayId],
+  }),
 }));
 
-// 繪本關聯
-export const pictureBookRelations = relations(pictureBookTable, ({ many }) => ({
-  pictures: many(pictureTable),
+// 圖片資料表關聯
+export const pictureRelations = relations(pictureTable, ({ one }) => ({
+  student: one(studentUserTable, {
+    fields: [pictureTable.studentId],
+    references: [studentUserTable.displayId],
+  }),
+}));
+
+// 繪本資料表關聯
+export const pictureBookRelations = relations(pictureBookTable, ({ one }) => ({
+  student: one(studentUserTable, {
+    fields: [pictureBookTable.studentId],
+    references: [studentUserTable.displayId],
+  }),
 }));
