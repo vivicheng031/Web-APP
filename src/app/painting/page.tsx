@@ -24,9 +24,9 @@ import "../globals.css";
 //   AlertDialogTitle,
 // } from "@/components/ui/alert-dialog";
 import { useDraw } from "@/hooks/useDraw";
-
 // import { usePost } from "@/hooks/usePost";
 import type { Draw } from "@/lib/types/shared_types";
+
 import "./style.css";
 
 export default function Painting() {
