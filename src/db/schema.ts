@@ -49,8 +49,6 @@ export const teacherUserTable = pgTable(
       .default(
         "https://drive.google.com/file/d/1Gizl9jq8m8BYRCwzNOa3Qs82zr7Zkoty/preview",
       ),
-
-
   },
   (table) => ({
     emailIndex: index("email_index").on(table.email),
@@ -115,7 +113,8 @@ export const pictureBookTable = pgTable(
       }),
     sendEmail: boolean("send_email").notNull().default(false),
   },
-  (table) => ({ // 建立索引 index 以加速查詢 
+  (table) => ({
+    // 建立索引 index 以加速查詢
     displayIdIndex: index("display_id_index").on(table.displayId),
   }),
 );
