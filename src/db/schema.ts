@@ -18,8 +18,8 @@ export const studentUserTable = pgTable(
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成學生DisplayID
     name: varchar("name", { length: 100 }).notNull(),
     email: varchar("email", { length: 100 }).notNull().unique(),
-    class: varchar("class_name", { length: 100 }).notNull(),
-    parentEmail: varchar("parent_email", { length: 100 }).notNull(),
+    class_name: varchar("class_name", { length: 100 }).notNull(),
+    password: varchar("password", { length: 100 }).notNull(),
   },
   (table) => ({
     emailIndex: index("email_index").on(table.email),
@@ -35,6 +35,7 @@ export const teacherUserTable = pgTable(
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成教師DisplayID
     name: varchar("name", { length: 100 }).notNull(),
     email: varchar("email", { length: 100 }).notNull().unique(),
+    password: varchar("password", { length: 100 }).notNull(),
   },
   (table) => ({
     emailIndex: index("email_index").on(table.email),
@@ -51,7 +52,7 @@ export const classTable = pgTable(
     name: varchar("name", { length: 100 }).notNull(),
     teacherId: uuid("teacher_id")
       .notNull()
-      .references(() => teacherUserTable.id, {
+      .references(() => teacherUserTable.displayId, {
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
@@ -73,6 +74,12 @@ export const pictureTable = pgTable(
     date: timestamp("date")
       .notNull()
       .default(sql`now()`),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => studentUserTable.displayId, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
   },
   (table) => ({
     displayIdIndex: index("display_id_index").on(table.displayId),
@@ -87,7 +94,7 @@ export const pictureBookTable = pgTable(
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成繪本DisplayID
     pictureId: uuid("picture_id")
       .notNull()
-      .references(() => pictureTable.id, {
+      .references(() => pictureTable.displayId, {
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
