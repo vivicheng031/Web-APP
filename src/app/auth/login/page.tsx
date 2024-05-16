@@ -14,6 +14,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { publicEnv } from "@/lib/env/public";
 
 const backgroundColor = "#FCEFCD";
+const textColor = "#D88253";
+
 
 function Login() {
   const [email, setEmail] = useState<string>("");
@@ -66,8 +68,8 @@ function Login() {
                 />
               </div>
             </Link>
-            <div className="hidden items-center text-6xl md:flex">
-              <p className="text-description mr-2">Start Your Journey</p>
+            <div className="hidden items-center text-6xl md:flex " style={{color: textColor}}>
+              <p className="text-description mr-2" >Start Your Journey</p>
             </div>
           </CardTitle>
         </CardHeader>

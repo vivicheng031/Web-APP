@@ -12,21 +12,6 @@ const pattaya = localFont({
   style: "italic",
 });
 
-// const Card = React.forwardRef<
-//   HTMLDivElement,
-//   React.HTMLAttributes<HTMLDivElement>
-// >(({ className, ...props }, ref) => (
-//   <div
-//     ref={ref}
-//     className={cn(
-//       "rounded-lg border bg-card text-card-foreground shadow-sm custom-card",
-//       className,
-//     )}
-//     {...props}
-//   />
-// ));
-// Card.displayName = "Card";
-
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -74,26 +59,6 @@ const CardTitle = React.forwardRef<
 ));
 CardTitle.displayName = "CardTitle";
 
-// const CardDescription = React.forwardRef<
-//   HTMLParagraphElement,
-//   React.HTMLAttributes<HTMLParagraphElement>
-// >(({ className, ...props }, ref) => (
-//   <p
-//     ref={ref}
-//     className={cn("text-sm text-muted-foreground", className)}
-//     {...props}
-//   />
-// ));
-// CardDescription.displayName = "CardDescription";
-
-// const CardContent = React.forwardRef<
-//   HTMLDivElement,
-//   React.HTMLAttributes<HTMLDivElement>
-// >(({ className, ...props }, ref) => (
-//   <div ref={ref} className={cn("text-sm text-muted-foreground card-description-height", className)} {...props} />
-// ));
-// CardContent.displayName = "CardContent";
-
 const CardDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
@@ -112,7 +77,7 @@ const CardContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("card-content text-sm text-muted-foreground", className)}
+    className={cn("my-6 card-content text-sm text-muted-foreground", className)}
     {...props}
   />
 ));
