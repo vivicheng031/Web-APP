@@ -1,9 +1,5 @@
 import NextAuth from "next-auth";
-import GitHub from "next-auth/providers/github";
-import Google from "next-auth/providers/google";
-
 import { eq } from "drizzle-orm";
-
 import { db } from "@/db";
 import { usersTable } from "@/db/schema";
 
@@ -14,11 +10,6 @@ export const {
   auth,
 } = NextAuth({
   providers: [
-    GitHub,
-    Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
     CredentialsProvider,
   ],
   callbacks: {
@@ -31,47 +22,52 @@ export const {
           id: usersTable.displayId,
           username: usersTable.username,
           email: usersTable.email,
-          provider: usersTable.provider,
+          student_or_teacher: usersTable.studentOrTeacher,
         })
         .from(usersTable)
         .where(eq(usersTable.email, email.toLowerCase()))
         .execute();
-      return {
-        ...session,
-        user: {
+
+      if (user) {
+        session.user = {
+          ...session.user,
           id: user.id,
           username: user.username,
           email: user.email,
-          provider: user.provider,
-        },
-      };
+          role: user.student_or_teacher === "student" ? "student" : "teacher",
+          provider: "credentials",
+        };
+      }
+
+      return session;
     },
-    async jwt({ token, account }) {
-      // Sign in with social account, e.g. GitHub, Google, etc.
-      if (!account) return token;
-      const { name, email } = token;
-      const provider = account.provider;
-      if (!name || !email || !provider) return token;
+    async jwt({ token, user }) {
+      if (user) {
+        const email = user.email;
+        if (email) {
+          const [dbUser] = await db
+            .select({
+              id: usersTable.displayId,
+              student_or_teacher: usersTable.studentOrTeacher,
+            })
+            .from(usersTable)
+            .where(eq(usersTable.email, email.toLowerCase()))
+            .execute();
 
-      // Check if the email has been registered
-      const [existedUser] = await db
-        .select({
-          id: usersTable.displayId,
-        })
-        .from(usersTable)
-        .where(eq(usersTable.username, name))
-        .execute();
-      if (existedUser) return token;
-      if (provider !== "github" && provider !== "google") return token;
-
-      // Sign up
-      await db.insert(usersTable).values({
-        username: name,
-        email: email.toLowerCase(),
-        provider,
-        photo: "",
-      });
+          if (dbUser) {
+            token.id = dbUser.id;
+            token.role = dbUser.student_or_teacher === "student" ? "student" : "teacher"; 
+          }
+        }
+      }
       return token;
+    },
+    async redirect({ url, baseUrl }) {
+      // Redirect based on user role
+      if (url === "/personal") {
+        return baseUrl;
+      }
+      return baseUrl;
     },
   },
   pages: {

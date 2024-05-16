@@ -1,8 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-
 import bcrypt from "bcryptjs";
 import { eq } from "drizzle-orm";
-
 import { db } from "@/db";
 import { usersTable } from "@/db/schema";
 import { authSchema } from "@/validators/auth";
@@ -13,6 +11,7 @@ export default CredentialsProvider({
     email: { label: "Email", type: "text" },
     username: { label: "Username", type: "text", optional: true },
     password: { label: "Password", type: "password" },
+    student_or_teacher: { label: "Student or Teacher", type: "text" },
   },
   async authorize(credentials) {
     let validatedCredentials: {
@@ -34,45 +33,15 @@ export default CredentialsProvider({
         id: usersTable.displayId,
         username: usersTable.username,
         email: usersTable.email,
-        provider: usersTable.provider,
+        student_or_teacher: usersTable.studentOrTeacher,
         hashedPassword: usersTable.hashedPassword,
       })
       .from(usersTable)
       .where(eq(usersTable.email, validatedCredentials.email.toLowerCase()))
       .execute();
 
-    if (!existedUser) {
-      // Sign up
-      if (!username) {
-        console.log("Name is required.");
-        return null;
-      }
-
-      const hashedPassword = await bcrypt.hash(password, 10);
-
-      const [createdUser] = await db
-        .insert(usersTable)
-        .values({
-          username,
-          email: email.toLowerCase(),
-          hashedPassword,
-          provider: "credentials",
-        })
-        .returning();
-      return {
-        email: createdUser.email,
-        name: createdUser.username,
-        id: createdUser.displayId,
-      };
-    }
-
-    // Sign in
-    if (existedUser.provider !== "credentials") {
-      console.log(`The email has registered with ${existedUser.provider}.`);
-      return null;
-    }
     if (!existedUser.hashedPassword) {
-      console.log("The email has registered with social account.");
+      console.log("The email has already registered.");
       return null;
     }
 
@@ -81,10 +50,12 @@ export default CredentialsProvider({
       console.log("Wrong password. Try again.");
       return null;
     }
+
     return {
       email: existedUser.email,
       name: existedUser.username,
       id: existedUser.id,
+      student_or_teacher: existedUser.student_or_teacher,
     };
   },
 });

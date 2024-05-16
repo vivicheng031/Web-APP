@@ -9,6 +9,27 @@ import {
   boolean,
   timestamp,
 } from "drizzle-orm/pg-core";
+// 所有使用者列表 (Column: id, displayId, email, student_or_teacher, name)
+export const usersTable = pgTable(
+  "users",
+  {
+    id: serial("id").primaryKey(),
+    displayId: uuid("display_id").defaultRandom().notNull().unique(),
+    username: varchar("username", { length: 100 }).notNull(),
+    email: varchar("email", { length: 100 }).notNull().unique(),
+    hashedPassword: varchar("hashed_password", { length: 100 }),  // 使用者密碼 
+    studentOrTeacher: varchar("student_or_teacher", { length: 100 }).notNull(),
+    photo: varchar("photo")
+      .notNull()
+      .default(
+        "https://drive.google.com/file/d/1Gizl9jq8m8BYRCwzNOa3Qs82zr7Zkoty/preview",
+      ),
+  },
+  (table) => ({
+    emailIndex: index("email_index").on(table.email),
+    displayIdIndex: index("display_id_index").on(table.displayId),
+  }),
+);
 
 // 學生使用者資料表
 export const studentUserTable = pgTable(
@@ -19,7 +40,11 @@ export const studentUserTable = pgTable(
     name: varchar("name", { length: 100 }).notNull(),
     email: varchar("email", { length: 100 }).notNull().unique(),
     class: varchar("class_name", { length: 100 }).notNull(),
-    parentEmail: varchar("parent_email", { length: 100 }).notNull(),
+    // password: varchar("password", { length: 100 }).notNull(),
+    date: timestamp("date")
+      .notNull()
+      .default(sql`now()`),
+    
   },
   (table) => ({
     emailIndex: index("email_index").on(table.email),
@@ -34,7 +59,9 @@ export const teacherUserTable = pgTable(
     id: serial("id").primaryKey(), // 使用serial生成教師id
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成教師DisplayID
     name: varchar("name", { length: 100 }).notNull(),
+    // password: varchar("password", { length: 100 }).notNull(),
     email: varchar("email", { length: 100 }).notNull().unique(),
+    
   },
   (table) => ({
     emailIndex: index("email_index").on(table.email),
@@ -51,7 +78,7 @@ export const classTable = pgTable(
     name: varchar("name", { length: 100 }).notNull(),
     teacherId: uuid("teacher_id")
       .notNull()
-      .references(() => teacherUserTable.id, {
+      .references(() => teacherUserTable.displayId, {
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
@@ -70,6 +97,12 @@ export const pictureTable = pgTable(
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成圖片DisplayID
     image: varchar("image").notNull(),
     text: text("text").notNull(),
+    studentId: uuid("student_id")
+      .notNull()
+      .references(() => studentUserTable.displayId, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
     date: timestamp("date")
       .notNull()
       .default(sql`now()`),
@@ -85,16 +118,16 @@ export const pictureBookTable = pgTable(
   {
     id: serial("id").primaryKey(), // 使用serial生成繪本id
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成繪本DisplayID
-    pictureId: uuid("picture_id")
+    studentId: uuid("student_id")
       .notNull()
-      .references(() => pictureTable.id, {
+      .references(() => studentUserTable.displayId, {
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
     sendEmail: boolean("send_email").notNull().default(false),
   },
   (table) => ({
-    pictureIndex: index("picture_index").on(table.pictureId),
+    // 建立索引 index 以加速查詢
     displayIdIndex: index("display_id_index").on(table.displayId),
   }),
 );
@@ -103,22 +136,38 @@ export const pictureBookTable = pgTable(
 export const studentUserRelations = relations(studentUserTable, ({ one }) => ({
   pictureBooks: one(pictureBookTable, {
     fields: [studentUserTable.id],
-    references: [pictureBookTable.pictureId],
+    references: [pictureBookTable.displayId],
   }),
 }));
 
 // 老師使用者關聯
 export const teacherUserRelations = relations(teacherUserTable, ({ one }) => ({
   classes: one(classTable, {
-    fields: [teacherUserTable.id],
+    fields: [teacherUserTable.displayId],
     references: [classTable.teacherId],
   }),
 }));
 
-// 繪本關聯
-export const pictureBookRelations = relations(pictureTable, ({ one }) => ({
-  book: one(pictureBookTable, {
-    fields: [pictureTable.id],
-    references: [pictureBookTable.pictureId],
+// 班級關聯
+export const classRelations = relations(classTable, ({ one }) => ({
+  teacher: one(teacherUserTable, {
+    fields: [classTable.teacherId],
+    references: [teacherUserTable.displayId],
+  }),
+}));
+
+// 圖片資料表關聯
+export const pictureRelations = relations(pictureTable, ({ one }) => ({
+  student: one(studentUserTable, {
+    fields: [pictureTable.studentId],
+    references: [studentUserTable.displayId],
+  }),
+}));
+
+// 繪本資料表關聯
+export const pictureBookRelations = relations(pictureBookTable, ({ one }) => ({
+  student: one(studentUserTable, {
+    fields: [pictureBookTable.studentId],
+    references: [studentUserTable.displayId],
   }),
 }));
