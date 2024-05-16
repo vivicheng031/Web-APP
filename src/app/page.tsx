@@ -5,11 +5,11 @@ import Link from "next/link";
 
 // import Image from "next/image";
 
-const pattaya = localFont({
-  src: "./fonts/Poetsen-One.woff2",
-  weight: "700",
-  style: "italic",
-});
+// const pattaya = localFont({
+//   src: "./fonts/Poetsen-One.woff2",
+//   weight: "700",
+//   style: "italic",
+// });
 
 const roadrage = localFont({
   src: "./fonts/RoadRage-Regular.ttf",
@@ -39,25 +39,27 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   imageAlt,
   buttonLink,
 }) => {
-
-
-
   return (
     <section className="flex items-center justify-center px-20 py-20 max-md:px-5">
       <div className="mt-20 w-full max-md:mt-20 max-md:max-w-full">
         <div className="flex gap-5 max-md:flex-col max-md:gap-0">
           <div className="flex w-6/12 flex-col max-md:ml-0 max-md:w-full">
             <div className="my-auto flex flex-col self-stretch text-center max-md:max-w-full">
-              <h1 className={`${roadrage.className} text-9xl text-txt mb-4 text-center`} style={{color: textColor}}>
+              <h1
+                className={`${roadrage.className} text-txt mb-4 text-center text-9xl`}
+                style={{ color: textColor }}
+              >
                 {title1}
                 <br />
                 {title2}
                 <br />
                 <div className="text-8xl">{subtitle}</div>
               </h1>
-              <Link href={buttonLink}
-                className={`${roadrage.className} mt-16 justify-center self-center whitespace-nowrap rounded-3xl border-[5px] border-solid border-amber-900 bg-orange-200 px-16 py-5 text-7xl text-amber-900 max-md:mt-10 max-md:pl-6 max-md:pr-6 max-md:text-4xl`}>
-                  {buttonText}
+              <Link
+                href={buttonLink}
+                className={`${roadrage.className} mt-16 justify-center self-center whitespace-nowrap rounded-3xl border-[5px] border-solid border-amber-900 bg-orange-200 px-16 py-5 text-7xl text-amber-900 max-md:mt-10 max-md:pl-6 max-md:pr-6 max-md:text-4xl`}
+              >
+                {buttonText}
               </Link>
             </div>
           </div>
@@ -76,7 +78,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 };
 function App() {
   return (
-    <main className="flex h-full w-full flex-col" style={{backgroundColor}}>
+    <main className="flex h-full w-full flex-col" style={{ backgroundColor }}>
       <HeroSection
         title1="Welcome to"
         title2="the Whole New World"
@@ -91,4 +93,3 @@ function App() {
 }
 
 export default App;
-
