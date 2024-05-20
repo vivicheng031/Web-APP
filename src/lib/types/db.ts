@@ -2,7 +2,8 @@ export type User = {
   id: string;
   username: string;
   email: string;
-  provider: "github" | "google" | "credentials";
+  provider: "credentials";
+  role: "student" | "teacher";
 };
 
 export type Post = {
