@@ -1,6 +1,8 @@
 import CredentialsProvider from "next-auth/providers/credentials";
+
 import bcrypt from "bcryptjs";
 import { eq } from "drizzle-orm";
+
 import { db } from "@/db";
 import { usersTable } from "@/db/schema";
 import { authSchema } from "@/validators/auth";
@@ -26,7 +28,7 @@ export default CredentialsProvider({
       console.log("Wrong credentials. Try again.");
       return null;
     }
-    const { email, username, password } = validatedCredentials;
+    // const { email, username, password } = validatedCredentials;
 
     const [existedUser] = await db
       .select({
@@ -45,7 +47,7 @@ export default CredentialsProvider({
       return null;
     }
 
-    const isValid = await bcrypt.compare(password, existedUser.hashedPassword);
+    const isValid = await bcrypt.compare(validatedCredentials.password, existedUser.hashedPassword);
     if (!isValid) {
       console.log("Wrong password. Try again.");
       return null;

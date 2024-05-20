@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
+
 import { eq } from "drizzle-orm";
+
 import { db } from "@/db";
 import { usersTable } from "@/db/schema";
 
@@ -9,9 +11,7 @@ export const {
   handlers: { GET, POST },
   auth,
 } = NextAuth({
-  providers: [
-    CredentialsProvider,
-  ],
+  providers: [CredentialsProvider],
   callbacks: {
     async session({ session, token }) {
       const email = token.email || session?.user?.email;
@@ -56,7 +56,8 @@ export const {
 
           if (dbUser) {
             token.id = dbUser.id;
-            token.role = dbUser.student_or_teacher === "student" ? "student" : "teacher"; 
+            token.role =
+              dbUser.student_or_teacher === "student" ? "student" : "teacher";
           }
         }
       }

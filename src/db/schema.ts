@@ -9,6 +9,7 @@ import {
   boolean,
   timestamp,
 } from "drizzle-orm/pg-core";
+
 // 所有使用者列表 (Column: id, displayId, email, student_or_teacher, name)
 export const usersTable = pgTable(
   "users",
@@ -17,7 +18,7 @@ export const usersTable = pgTable(
     displayId: uuid("display_id").defaultRandom().notNull().unique(),
     username: varchar("username", { length: 100 }).notNull(),
     email: varchar("email", { length: 100 }).notNull().unique(),
-    hashedPassword: varchar("hashed_password", { length: 100 }),  // 使用者密碼 
+    hashedPassword: varchar("hashed_password", { length: 100 }), // 使用者密碼
     studentOrTeacher: varchar("student_or_teacher", { length: 100 }).notNull(),
     photo: varchar("photo")
       .notNull()
@@ -44,7 +45,6 @@ export const studentUserTable = pgTable(
     date: timestamp("date")
       .notNull()
       .default(sql`now()`),
-    
   },
   (table) => ({
     emailIndex: index("email_index").on(table.email),
@@ -61,7 +61,6 @@ export const teacherUserTable = pgTable(
     name: varchar("name", { length: 100 }).notNull(),
     // password: varchar("password", { length: 100 }).notNull(),
     email: varchar("email", { length: 100 }).notNull().unique(),
-    
   },
   (table) => ({
     emailIndex: index("email_index").on(table.email),
