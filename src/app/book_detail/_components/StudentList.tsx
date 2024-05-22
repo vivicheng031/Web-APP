@@ -1,8 +1,6 @@
 // import { redirect } from "next/navigation";
-
 // import { auth } from "@/lib/auth";
 // import { publicEnv } from "@/lib/env/public";
-
 import Student from "./Student";
 
 // import { getAddedFriends } from "./action";

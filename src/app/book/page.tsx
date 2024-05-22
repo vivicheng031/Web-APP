@@ -16,7 +16,7 @@ import { IoLogoSnapchat } from "react-icons/io";
 // : {
 //   searchParams?: { [key: string]: string | string[] | undefined };
 // }) {
-async function ClassPage(){
+async function ClassPage() {
   // const session = await auth();
   // if (!session || !session?.user?.id) {
   //   redirect(publicEnv.NEXT_PUBLIC_BASE_URL);
