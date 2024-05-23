@@ -12,9 +12,8 @@ const poetsenOne = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Souly",
-  description:
-    "A painting app for the soul. Paint with your heart, create with your soul.",
+  title: "New Word",
+  description: "A new world to create your own picture book.",
 };
 
 export default function RootLayout({
@@ -26,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poetsenOne.className}`}>
         <SessionProvider>
-          <div className="h-full w-full">{children}</div>
+          <div className="h-full">{children}</div>
         </SessionProvider>
       </body>
     </html>

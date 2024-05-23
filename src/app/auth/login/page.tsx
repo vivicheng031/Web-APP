@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { signIn } from "next-auth/react";
+import localFont from "next/font/local";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,8 +14,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { publicEnv } from "@/lib/env/public";
 
-const backgroundColor = "#FCEFCD";
-const textColor = "#D88253";
+const roadrage = localFont({
+  src: "../../fonts/RoadRage-Regular.ttf",
+  weight: "700",
+  style: "italic",
+});
 
 function Login() {
   const [email, setEmail] = useState<string>("");
@@ -37,7 +41,7 @@ function Login() {
         await signIn("credentials", {
           email,
           password,
-          callbackUrl: `${publicEnv.NEXT_PUBLIC_BASE_URL}/personal`,
+          callbackUrl: `${publicEnv.NEXT_PUBLIC_BASE_URL}/painting`,
         });
       } catch (e) {
         setEmailError("wrong");
@@ -49,36 +53,39 @@ function Login() {
   };
 
   return (
-    <div className="bg-brand relative z-50 flex min-h-screen items-center justify-center">
-      <Card
-        className="bg-brand flex h-full w-4/5 flex-col rounded-xl md:w-[600px] lg:w-[800px]"
-        style={{ backgroundColor }}
-      >
+    <div className="relative z-50 flex min-h-screen items-center justify-center">
+      <Card className="h-auto w-4/5 bg-[#FCEFCD] md:w-[600px] lg:w-[800px]">
         <CardHeader>
-          <CardTitle className="flex items-center justify-between text-4xl">
+          <CardTitle
+            className={`${roadrage.className} flex items-center justify-around text-4xl`}
+          >
             <Link href="/" className="mr-4 flex items-center">
-              <div className="h-193 w-193">
+              <div className="h-185 w-185">
                 <Image
                   src="/logo.png"
                   alt="Souly Logo"
-                  className="mr-2 w-full"
-                  width={190}
-                  height={190}
+                  className="mr-2"
+                  width={185}
+                  height={185}
                 />
               </div>
             </Link>
-            <div
-              className="hidden items-center text-6xl md:flex "
-              style={{ color: textColor }}
-            >
+            <div className="hidden items-center text-9xl text-[#D88253] md:flex">
               <p className="text-description mr-2">Start Your Journey</p>
+            </div>
+            <div className="flex-col items-center justify-center text-8xl text-[#D88253] md:hidden">
+              <p className="text-description mr-2">Start</p>
+              <p className="text-description mr-2">Your</p>
+              <p className="text-description mr-2">Journey</p>
             </div>
           </CardTitle>
         </CardHeader>
-        <CardContent className="flex h-full flex-grow flex-col">
+        <CardContent
+          className={`${roadrage.className} flex flex-col items-center`}
+        >
           <form
             onSubmit={handleSubmit}
-            className="mr-8 flex flex-col gap-4 max-md:text-4xl"
+            className="flex flex-col items-center gap-4"
           >
             <AuthInput
               label="Email"
@@ -94,15 +101,12 @@ function Login() {
               setValue={setPassword}
               error={passwordError}
             />
-
-            <div className="flex justify-center">
-              <Button
-                type="submit"
-                className="custom-max-width border-bdr bg-btn_2 text-txt button-custom-border button-custom-background w-full rounded-2xl border-4 text-center text-4xl"
-              >
-                Sign In
-              </Button>
-            </div>
+            <Button
+              type="submit"
+              className={`${roadrage.className} flex w-1/4 rounded-xl border-[5px] border-[#a8450f] bg-orange-200 p-8 text-center text-6xl`}
+            >
+              Sign In
+            </Button>
           </form>
         </CardContent>
       </Card>
