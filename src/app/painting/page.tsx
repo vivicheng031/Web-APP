@@ -232,7 +232,7 @@ export default function Painting() {
 
   return (
     <div id="main-element" className="h-full">
-      <main className="h-min-full flex w-full flex-col bg-[#CFCFCF] xl:h-full">
+      <main className="h-min-full flex w-full flex-col bg-[#D1C3B9] xl:h-full">
         <div className="mx-24 my-4 flex flex-col items-center gap-2 text-yellow-600 xl:flex-row">
           <p className="text-6xl">{currentTopic}</p>
           <div className="grow"></div>
