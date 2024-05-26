@@ -37,10 +37,11 @@ export default async function Book({
         href={`/book_detail/${displayId}`}
       >
         <div className="relative aspect-[3/2] bg-purple-200"></div>
+        {/* first page of a book is the cover */}
         <p className="col-span-3 m-2 flex self-center text-6xl font-semibold text-black">
           {topic}
         </p>
-        <p className="col-span-2 m-2 flex self-center whitespace-normal break-words text-2xl text-black">
+        <p className="col-span-2 m-2 flex self-center whitespace-normal break-words text-2xl text-gray-500">
           {finishDate}
         </p>
         {email_status ? (

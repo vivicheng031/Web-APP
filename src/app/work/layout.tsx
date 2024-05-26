@@ -6,11 +6,13 @@ import Link from "next/link";
 
 import SignOutButton from "@/components/_components/SignOutButton";
 
+import BookList from "./_components/BookList";
+
 type Props = {
   children: React.ReactNode;
 };
 
-async function Painting({ children }: Props) {
+async function Work({ children }: Props) {
   // const session = await auth();
   // if (!session) {
   //   redirect(publicEnv.NEXT_PUBLIC_BASE_URL);
@@ -54,9 +56,12 @@ async function Painting({ children }: Props) {
         </div>
       </div>
 
-      <div className="flex-rows bg-[#D1C3B9] h-5/6 w-full md:flex">
+      <div className="flex-rows h-5/6 w-full bg-[#D1C3B9] xl:flex">
+        <nav className="bg-nav h-[280px] min-w-min flex-col justify-start overflow-y-auto border-r xl:my-0 xl:h-full xl:w-1/4">
+          <BookList />
+        </nav>
         {/* overflow-y-scroll for child to show scrollbar */}
-        <div className="md:mt-30 w-full overflow-y-auto lg:mt-0">
+        <div className="md:mt-30 w-full overflow-y-auto xl:mt-0 xl:w-3/4">
           {children}
         </div>
       </div>
@@ -64,4 +69,4 @@ async function Painting({ children }: Props) {
   );
 }
 
-export default Painting;
+export default Work;

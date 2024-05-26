@@ -31,12 +31,12 @@ async function Book({ children }: Props) {
         <div className="grow"></div>
         <SignOutButton />
       </div>
-      <div className="flex-rows h-5/6 lg:flex">
-        <nav className="bg-nav h-[280px] min-w-min flex-col justify-start overflow-y-auto border-r lg:my-0 lg:h-full lg:w-1/4">
+      <div className="flex-rows h-5/6 xl:flex">
+        <nav className="bg-nav h-[280px] min-w-min flex-col justify-start overflow-y-auto border-r xl:my-0 xl:h-full xl:w-1/4">
           <StudentList cls={class_name} />
         </nav>
         {/* overflow-y-scroll for child to show scrollbar */}
-        <div className="overflow-y-auto lg:w-3/4">{children}</div>
+        <div className="overflow-y-auto xl:w-3/4">{children}</div>
       </div>
     </main>
   );
