@@ -34,7 +34,7 @@ export default function Painting() {
 
   const [color, setColor] = useState<string>("#000000");
   const [displayColor, setDisplayColor] = useState<string>("#000000");
-  const [showPicker, setShowPicker] = useState(false);
+  // const [showPicker, setShowPicker] = useState(false);
   const { canvasRef, onMouseDown, onTouchStart, clear } = useDraw(drawLine);
   console.log(clear);
   // const elementRef = useRef<HTMLDivElement>(null);
@@ -54,7 +54,7 @@ export default function Painting() {
   // const [isPostDialog, setIsPostDialog] = useState<boolean>(false);
   // const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
 
-  const [isExpanded, setIsExpanded] = useState(false);
+  // const [isExpanded, setIsExpanded] = useState(false);
   const [brushSize, setBrushSize] = useState(5);
 
   const [brush, setBrush] = useState(false);
@@ -132,13 +132,11 @@ export default function Painting() {
   //   return <div></div>;
   // }
 
-
   const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newSize = parseInt(event.target.value, 10);
     setBrushSize(newSize);
     console.log(brushSize);
   };
-
 
   // const handlePostClick = async () => {
   //   if (elementRef.current) {
@@ -232,7 +230,6 @@ export default function Painting() {
   const currentTopic = "Current Topic";
   const deadline = "2024/01/09(Mon.)";
 
- 
   return (
     <div id="main-element" className="h-full">
       <main className="h-min-full flex w-full flex-col bg-[#CFCFCF] xl:h-full">
@@ -301,114 +298,110 @@ export default function Painting() {
           </div>
 
           <div className="flex flex-col gap-4">
-<div className="flex flex-row gap-6">
-  <div className="flex flex-row gap-6">
+            <div className="flex flex-row gap-6">
+              <div className="flex flex-row gap-6">
+                <div className="justify-center item-center">
+                  <div className="flex flex-row gap-10 justify-center item-center">
+                    <PiPaintBrushDuotone
+                      className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
+                        brush && "bg-slate-100/50"
+                      }`}
+                      onClick={() => {
+                        setEraser(false);
+                        setBrush(true);
+                        setColor(displayColor);
+                      }}
+                    />
 
-  <div className="justify-center item-center">
-      <div className="flex flex-row gap-10 justify-center item-center">
+                    <BsEraser
+                      className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
+                        eraser && "bg-slate-100/50"
+                      }`}
+                      onClick={() => {
+                        setColor("#fff");
+                        setEraser(true);
+                        setBrush(false);
+                      }}
+                    />
+                  </div>
+                  <div className="flex flex-row gap-6">
+                    <div
+                      className={
+                        "mt-2 h-full w-4/5 cursor-pointer self-center p-1"
+                      }
+                    >
+                      <input
+                        type="range"
+                        min="1"
+                        max="30"
+                        value={brushSize}
+                        onChange={handleSizeChange}
+                      />
+                    </div>
 
-        <PiPaintBrushDuotone
-          className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
-            brush && "bg-slate-100/50"
-          }`}
-          onClick={() => {
-            setEraser(false);
-            setBrush(true);
-            setColor(displayColor);
-          }}
-        />
+                    <div
+                      className={`cursor-pointer self-center rounded-full bg-black item-center justify-center w-full`}
+                      style={{
+                        height: `${brushSize}px`,
+                        width: `${brushSize}px`,
+                        borderRadius: "50%",
+                      }}
+                    ></div>
+                  </div>
+                </div>
 
-        <BsEraser
-          className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
-            eraser && "bg-slate-100/50"
-          }`}
-          onClick={() => {
-            setColor("#fff");
-            setEraser(true);
-            setBrush(false);
-          }}
-        />
+                <button
+                  type="button"
+                  className="border-4 border-black rounded-2xl justify-center text-3xl w-[200px] flex items-center rounded-lg border-2 border-black px-2 my-14 text-black hover:bg-description/80"
+                  onClick={clear}
+                >
+                  Clear
+                </button>
 
-      </div>
-      <div className="flex flex-row gap-6">
+                <div className="h-full cursor-pointer self-center p-1">
+                  <ChromePicker
+                    className="z-3 border-4 border-black rounded-2xl"
+                    color={displayColor}
+                    onChange={(e: ColorResult) => {
+                      setColor(e.hex);
+                      setDisplayColor(e.hex);
+                    }}
+                  />
+                </div>
 
-        <div className={"mt-2 h-full w-4/5 cursor-pointer self-center p-1"}>
-            <input
-              type="range"
-              min="1"
-              max="30"
-              value={brushSize}
-              onChange={handleSizeChange}
-              />
+                <div>
+                  <textarea
+                    // onChange={(e) => setDescription(e.target.value)}
+                    className="w-4/5 h-full resize-none items-start rounded-2xl border-4 border-[#8B8B8B] bg-[#FBEFDF] px-4 py-2 text-4xl"
+                    placeholder="Type something..."
+                    maxLength={50}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="mx-4 mb-4 grid grid-flow-col justify-stretch gap-6 text-5xl text-amber-700">
+              <button
+                disabled={loading}
+                // onClick={handleConfirmDialog}
+                className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+              >
+                Next
+              </button>
+              <button
+                disabled={loading}
+                // onClick={handleConfirmDialog}
+                className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+              >
+                Done
+              </button>
+            </div>
+          </div>
         </div>
-
-        <div
-          className={`cursor-pointer self-center rounded-full bg-black item-center justify-center w-full`}
-          style={{ height: `${brushSize}px`, width: `${brushSize}px`, borderRadius: "50%" }}
-        ></div>
-      </div>
+      </main>
     </div>
-
-
-    <button
-      type="button"
-      className="border-4 border-black rounded-2xl justify-center text-3xl w-[200px] flex items-center rounded-lg border-2 border-black px-2 my-14 text-black hover:bg-description/80"
-      onClick={clear}
-      >
-      Clear
-    </button>
-
-    <div className="h-full cursor-pointer self-center p-1">
-      <ChromePicker
-        className="z-3 border-4 border-black rounded-2xl"
-        color={displayColor}
-        onChange={(e: ColorResult) => {
-          setColor(e.hex);
-          setDisplayColor(e.hex);
-        }}
-      />
-    </div>
-
-  
-
-  <div>
-    <textarea
-      // onChange={(e) => setDescription(e.target.value)}
-      className="w-4/5 h-full resize-none items-start rounded-2xl border-4 border-[#8B8B8B] bg-[#FBEFDF] px-4 py-2 text-4xl"
-      placeholder="Type something..."
-      maxLength={50}
-      />
-  </div>
-
-</div>
-</div>
-
-<div className="mx-4 mb-4 grid grid-flow-col justify-stretch gap-6 text-5xl text-amber-700">
-<button
-  disabled={loading}
-  // onClick={handleConfirmDialog}
-  className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
->
-  Next
-</button>
-<button
-  disabled={loading}
-  // onClick={handleConfirmDialog}
-  className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
->
-  Done
-</button>
-</div>
-</div>
-</div>
-</main>
-</div>
-
-          
-        
   );
 }
-
 
 {
   /* <AlertDialogContent>
@@ -452,9 +445,8 @@ export default function Painting() {
         </AlertDialog> */
 }
 
-
-
-{/* <div className="flex flex-col gap-4">
+{
+  /* <div className="flex flex-col gap-4">
 <div className="flex flex-row gap-6">
   <div className="flex flex-row gap-6">
 
@@ -556,17 +548,11 @@ export default function Painting() {
 </div>
 </div>
 </main>
-</div> */}
+</div> */
+}
 
-
-
-
-
-
-
-
-
-  {/* <div className="flex flex-row gap-4">
+{
+  /* <div className="flex flex-row gap-4">
             <div className="flex flex-row gap-4">
               <div className="relative aspect-[2/3] w-1/5 rounded-3xl">
 
@@ -660,4 +646,5 @@ export default function Painting() {
             </div>
           </div>
       </main>
-    </div> */}
+    </div> */
+}

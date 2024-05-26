@@ -203,9 +203,8 @@ body {
 
 .chrome-picker .flexbox-fix:last-child,
 .chrome-picker .flexbox-fix:nth-child(3) {
-    display: none !important;
+  display: none !important;
 }
-
 
 /* 
 .chrome-picker .flexbox-fix:first-child {
