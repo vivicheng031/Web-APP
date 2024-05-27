@@ -21,14 +21,14 @@ async function Painting({ children }: Props) {
       <div className="h-1/6 w-full bg-[#FCEFCD]">
         <div className="flex h-full items-center gap-0 px-5 text-[#F9A100] sm:gap-2">
           <div className="flex h-full items-center md:h-45 h-40 aspect-[1/1]">
-              <Image
-                src="/logo.png"
-                alt="Logo"
-                className="h-full w-full"
-                width={100}
-                height={100}
-              />
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              className="h-full w-full"
+              width={100}
+              height={100}
+            />
+          </div>
           <div className="grow"></div>
           <div className="flex flex-col md:flex-row">
             <Link

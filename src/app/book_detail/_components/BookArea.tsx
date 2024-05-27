@@ -63,7 +63,9 @@ export default function BookArea({ book }: BookProps) {
               {book[page].description}
             </p>
             <div className="flex w-full flex-row justify-between">
-              <p className="text-xl lg:text-2xl text-gray-500">{book[page].finishDate}</p>
+              <p className="text-xl text-gray-500 lg:text-2xl">
+                {book[page].finishDate}
+              </p>
               <p className="text-xl lg:text-2xl">page {page}</p>
             </div>
           </div>
@@ -80,7 +82,7 @@ export default function BookArea({ book }: BookProps) {
                   {book[page + 1].description}
                 </p>
                 <div className="flex w-full flex-row justify-between">
-                  <p className="text-xl lg:text-2xl text-gray-500">
+                  <p className="text-xl text-gray-500 lg:text-2xl">
                     {book[page + 1].finishDate}
                   </p>
                   <p className="text-xl lg:text-2xl">page {page + 1}</p>

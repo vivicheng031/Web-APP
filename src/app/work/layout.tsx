@@ -22,7 +22,7 @@ async function Work({ children }: Props) {
     <main className="flex h-screen w-full flex-col justify-center overflow-y-scroll md:overflow-hidden">
       <div className="h-1/6 w-full bg-[#FCEFCD]">
         <div className="flex h-full items-center gap-0 px-5 text-[#F9A100] sm:gap-2">
-          <div className="flex h-full items-center md:h-45 h-40 aspect-[1/1]">
+          <div className="md:h-45 flex aspect-[1/1] h-40 h-full items-center">
             <Image
               src="/logo.png"
               alt="Logo"
