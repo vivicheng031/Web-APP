@@ -190,7 +190,7 @@ body {
 
 .button {
   justify-content: center;
-  border-radius: 3xl;
+  border-radius: 5xl;
   border: 5px solid #ffcc80;
   background-color: #ffcc80;
   padding: 3.5px 14px;
