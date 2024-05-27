@@ -59,12 +59,14 @@ export default function BookArea({ book }: BookProps) {
             <div className="aspect-[3/2] w-full bg-purple-200 lg:h-full"></div>
           </div>
           <div className="flex h-1/3 flex-col justify-between">
-            <p className="whitespace-pre-line break-words text-3xl">
+            <p className="whitespace-pre-line break-words text-2xl lg:text-3xl">
               {book[page].description}
             </p>
             <div className="flex w-full flex-row justify-between">
-              <p className="text-2xl text-gray-500">{book[page].finishDate}</p>
-              <p className="text-2xl">page {page}</p>
+              <p className="text-xl text-gray-500 lg:text-2xl">
+                {book[page].finishDate}
+              </p>
+              <p className="text-xl lg:text-2xl">page {page}</p>
             </div>
           </div>
         </div>
@@ -76,14 +78,14 @@ export default function BookArea({ book }: BookProps) {
                 <div className="aspect-[3/2] w-full bg-purple-200 lg:h-full"></div>
               </div>
               <div className="flex h-1/3 flex-col justify-between">
-                <p className="whitespace-pre-line break-words text-3xl">
+                <p className="whitespace-pre-line break-words text-2xl lg:text-3xl">
                   {book[page + 1].description}
                 </p>
                 <div className="flex w-full flex-row justify-between">
-                  <p className="text-2xl text-gray-500">
+                  <p className="text-xl text-gray-500 lg:text-2xl">
                     {book[page + 1].finishDate}
                   </p>
-                  <p className="text-2xl">page {page + 1}</p>
+                  <p className="text-xl lg:text-2xl">page {page + 1}</p>
                 </div>
               </div>
             </>

@@ -40,7 +40,7 @@ async function BookPage(props: Props) {
   const book_detail = {
     topic: "test",
     finishDate: "2024/04/01(Mon.)",
-    status: true,
+    status: false,
     student: "web-app",
   };
 
@@ -55,7 +55,7 @@ async function BookPage(props: Props) {
       id: 2,
       display_id: "fgbnxgfnfx",
       description:
-        "page 1 vdlmiguncz bhlmzo g dghnz,lvme hgik sn mknumci grnuemrs.log ligm jvlo.tim.lorn ugilry yfd.o nugoi uj.oti.r rofysji mgyrs",
+        "ghivnr gjrngibne vkfoibe vjhfignt vjvifn vhfuvng vjbnfnv ggjbnmnfi jfhjf gvjgng gjvj vhfn vjfnru n",
       finishDate: "2024/04/01(Mon.)",
     },
     {
@@ -129,9 +129,9 @@ async function BookPage(props: Props) {
             </div>
           ) : (
             // unsend
-            <div className="flex aspect-[1/1] h-2/3 items-center justify-center rounded-full bg-[#D9D9D9] text-[#373737]">
+            <button className="flex aspect-[1/1] h-2/3 items-center justify-center rounded-full bg-[#D9D9D9] text-[#373737]">
               <FaRegPaperPlane className="text-[32px] 2xl:text-[60px]" />
-            </div>
+            </button>
           )}
         </div>
 
