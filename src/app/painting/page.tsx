@@ -259,8 +259,8 @@ export default function Painting() {
               <textarea
                 // onChange={(e) => setDescription(e.target.value)}
                 className="w-4/5 resize-none items-start rounded-2xl border-4 border-[#8B8B8B] bg-[#FBEFDF] px-4 py-2 text-4xl"
-                placeholder="Type something..."
-                maxLength={50}
+                placeholder="Type description for your story..."
+                maxLength={100}
               />
             </div>
             <div className="mx-4 grid grid-flow-col justify-stretch gap-6 text-5xl text-amber-700">
@@ -372,9 +372,9 @@ export default function Painting() {
                 <div>
                   <textarea
                     // onChange={(e) => setDescription(e.target.value)}
-                    className="w-4/5 h-full resize-none items-start rounded-2xl border-4 border-[#8B8B8B] bg-[#FBEFDF] px-4 py-2 text-4xl"
-                    placeholder="Type something..."
-                    maxLength={50}
+                    className="w-4/5 h-full resize-none items-start rounded-2xl border-4 border-[#8B8B8B] bg-[#FBEFDF] px-4 py-2 text-2xl"
+                    placeholder="Type description for your story..."
+                    maxLength={100}
                   />
                 </div>
               </div>

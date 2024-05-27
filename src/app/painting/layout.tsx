@@ -20,17 +20,15 @@ async function Painting({ children }: Props) {
     <main className="flex h-screen w-full flex-col justify-center overflow-y-scroll md:overflow-hidden">
       <div className="h-1/6 w-full bg-[#FCEFCD]">
         <div className="flex h-full items-center gap-0 px-5 text-[#F9A100] sm:gap-2">
-          <Link href="/painting" className="flex h-full items-center">
-            <div className="md:h-45 md:w-45 h-40 w-40">
+          <div className="flex h-full items-center md:h-45 h-40 aspect-[1/1]">
               <Image
                 src="/logo.png"
                 alt="Logo"
-                className="mr-20 h-full w-full"
+                className="h-full w-full"
                 width={100}
                 height={100}
               />
             </div>
-          </Link>
           <div className="grow"></div>
           <div className="flex flex-col md:flex-row">
             <Link
