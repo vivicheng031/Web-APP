@@ -8,7 +8,6 @@ import { db } from "@/db";
 import { classTable, teacherUserTable } from "@/db/schema";
 
 // 引入 drizzle-orm 的方法
-
 export async function GET(request: NextRequest) {
   const teacherId = request.nextUrl.pathname.split("/").pop() ?? "";
 
