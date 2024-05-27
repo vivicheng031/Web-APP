@@ -44,12 +44,12 @@ export async function POST(
     await db
       .insert(pictureTable)
       .values({
-        studentId: params.userId,  // 確認字段名稱與schema一致
-        description: validatedReqBody.description,  // 確認字段名稱與schema一致
+        studentId: params.userId, // 確認字段名稱與schema一致
+        description: validatedReqBody.description, // 確認字段名稱與schema一致
         image: validatedReqBody.image,
         taskId: validatedReqBody.topic,
       })
-        .execute();
+      .execute();
 
     return NextResponse.json({ status: 200 });
   } catch (error) {
