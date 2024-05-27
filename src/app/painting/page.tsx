@@ -4,12 +4,10 @@
 import { useState } from "react";
 import * as React from "react";
 
-import "../globals.css";
-
-// import { ChromePicker } from "react-color";
-// import type { ColorResult } from "react-color";
-// import { BsEraser } from "react-icons/bs";
-// import { PiPaintBrushDuotone } from "react-icons/pi";
+import { ChromePicker } from "react-color";
+import type { ColorResult } from "react-color";
+import { BsEraser } from "react-icons/bs";
+import { PiPaintBrushDuotone } from "react-icons/pi";
 // import { toPng } from "html-to-image";
 // import { useSession } from "next-auth/react";
 // import { useRouter } from "next/navigation";
@@ -30,12 +28,12 @@ import type { Draw } from "@/lib/types/shared_types";
 import "./style.css";
 
 export default function Painting() {
-  //   const { data: session, status } = useSession();
+  // const { data: session, status } = useSession();
   // const router = useRouter();
   // router.push("/painting");
 
-  // const [color, setColor] = useState<string>("#000000");
-  // const [displayColor, setDisplayColor] = useState<string>("#000000");
+  const [color, setColor] = useState<string>("#000000");
+  const [displayColor, setDisplayColor] = useState<string>("#000000");
   // const [showPicker, setShowPicker] = useState(false);
   const { canvasRef, onMouseDown, onTouchStart, clear } = useDraw(drawLine);
   console.log(clear);
@@ -57,10 +55,10 @@ export default function Painting() {
   // const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
 
   // const [isExpanded, setIsExpanded] = useState(false);
-  // const [brushSize, setBrushSize] = useState(5);
+  const [brushSize, setBrushSize] = useState(5);
 
-  // const [brush, setBrush] = useState(false);
-  // const [eraser, setEraser] = useState(false);
+  const [brush, setBrush] = useState(false);
+  const [eraser, setEraser] = useState(false);
 
   // const userId = session?.user?.id ?? "";
   // const userId = "berlin";
@@ -134,21 +132,11 @@ export default function Painting() {
   //   return <div></div>;
   // }
 
-  // const handleColorIconClick = () => {
-  //   setShowPicker(!showPicker);
-  //   isExpanded && setIsExpanded(!isExpanded);
-  // };
-
-  // const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const newSize = parseInt(event.target.value, 10);
-  //   setBrushSize(newSize);
-  //   console.log(brushSize);
-  // };
-
-  // const toggleExpansion = () => {
-  //   setIsExpanded(!isExpanded);
-  //   showPicker && setShowPicker(!showPicker);
-  // };
+  const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newSize = parseInt(event.target.value, 10);
+    setBrushSize(newSize);
+    console.log(brushSize);
+  };
 
   // const handlePostClick = async () => {
   //   if (elementRef.current) {
@@ -218,14 +206,11 @@ export default function Painting() {
 
   function drawLine({ prevPoint, currentPoint, ctx }: Draw) {
     const { x: currX, y: currY } = currentPoint;
-    // const lineColor = color;
-    // const lineWidth = brushSize;
-    const lineColor = "black";
-    const lineWidth = 10;
+    const lineColor = color;
 
     const startPoint = prevPoint ?? currentPoint;
     ctx.beginPath();
-    ctx.lineWidth = lineWidth;
+    ctx.lineWidth = brushSize;
     ctx.strokeStyle = lineColor;
     ctx.moveTo(startPoint.x, startPoint.y);
     ctx.lineTo(currX, currY);
@@ -241,35 +226,185 @@ export default function Painting() {
   //     router.push("/auth/login");
   //   } else {
 
-  const studentName = "Student's name";
+  // const studentName = "Student's name";
   const currentTopic = "Current Topic";
   const deadline = "2024/01/09(Mon.)";
 
-  const backgroundColor = "#CFCFCF";
-  const rectColor = "#D9D9D9";
-
   return (
-    <div id="main-element" className="h-full w-full">
-      <main
-        className={`bg-brand_2 flex flex-col items-center`}
-        style={{ backgroundColor }}
-      >
-        {/* <AlertDialog open={isPostDialog}>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle className="text-2xl">
-                You have already posted today !
-              </AlertDialogTitle>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogAction onClick={handleClosePostDialog}>
-                OK
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
-        <AlertDialog open={isConfirmed}>
-          <AlertDialogContent>
+    <div id="main-element" className="h-full">
+      <main className="h-min-full flex w-full flex-col bg-[#D1C3B9] xl:h-full">
+        <div className="mx-24 my-4 flex flex-col items-center gap-2 text-yellow-600 xl:flex-row">
+          <p className="text-6xl">{currentTopic}</p>
+          <div className="grow"></div>
+          <p className="text-4xl">deadline: {deadline}</p>
+        </div>
+
+        <div className="mx-24 hidden gap-5 xl:flex">
+          <div className="relative aspect-[3/2] w-3/5 rounded-2xl border-4 border-[#E6B555] md:w-1/2">
+            <div
+              // ref={elementRef}
+              className="flex h-full w-full justify-center rounded-2xl bg-white"
+            >
+              <canvas
+                ref={canvasRef}
+                onMouseDown={onMouseDown}
+                onTouchMove={onTouchStart}
+                className="h-full w-full rounded-2xl"
+              />
+            </div>
+          </div>
+          <div className="flex w-2/5 flex-col gap-4 md:w-1/2">
+            <div className="flex flex-row gap-4">
+              <div className="relative aspect-[1/3] w-1/5 rounded-3xl bg-[#D9D9D9]"></div>
+              <textarea
+                // onChange={(e) => setDescription(e.target.value)}
+                className="w-4/5 resize-none items-start rounded-2xl border-4 border-[#8B8B8B] bg-[#FBEFDF] px-4 py-2 text-4xl"
+                placeholder="Type something..."
+                maxLength={50}
+              />
+            </div>
+            <div className="mx-4 grid grid-flow-col justify-stretch gap-6 text-5xl text-amber-700">
+              <button
+                disabled={loading}
+                // onClick={handleConfirmDialog}
+                className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+              >
+                Next
+              </button>
+              <button
+                disabled={loading}
+                // onClick={handleConfirmDialog}
+                className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="mx-24 flex flex-col gap-5 xl:hidden">
+          <div className="relative aspect-[3/2] rounded-2xl border-4 border-[#E6B555]">
+            <div
+              // ref={elementRef}
+              className="flex h-full w-full justify-center rounded-2xl bg-white"
+            >
+              <canvas
+                ref={canvasRef}
+                onMouseDown={onMouseDown}
+                onTouchMove={onTouchStart}
+                className="h-full w-full rounded-2xl"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-row gap-6">
+              <div className="flex flex-row gap-6">
+                <div className="justify-center item-center">
+                  <div className="flex flex-row gap-10 justify-center item-center">
+                    <PiPaintBrushDuotone
+                      className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
+                        brush && "bg-slate-100/50"
+                      }`}
+                      onClick={() => {
+                        setEraser(false);
+                        setBrush(true);
+                        setColor(displayColor);
+                      }}
+                    />
+
+                    <BsEraser
+                      className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
+                        eraser && "bg-slate-100/50"
+                      }`}
+                      onClick={() => {
+                        setColor("#fff");
+                        setEraser(true);
+                        setBrush(false);
+                      }}
+                    />
+                  </div>
+                  <div className="flex flex-row gap-6">
+                    <div
+                      className={
+                        "mt-2 h-full w-4/5 cursor-pointer self-center p-1"
+                      }
+                    >
+                      <input
+                        type="range"
+                        min="1"
+                        max="30"
+                        value={brushSize}
+                        onChange={handleSizeChange}
+                      />
+                    </div>
+
+                    <div
+                      className={`cursor-pointer self-center rounded-full bg-black item-center justify-center w-full`}
+                      style={{
+                        height: `${brushSize}px`,
+                        width: `${brushSize}px`,
+                        borderRadius: "50%",
+                      }}
+                    ></div>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  className="border-4 border-black rounded-2xl justify-center text-3xl w-[200px] flex items-center rounded-lg border-2 border-black px-2 my-14 text-black hover:bg-description/80"
+                  onClick={clear}
+                >
+                  Clear
+                </button>
+
+                <div className="h-full cursor-pointer self-center p-1">
+                  <ChromePicker
+                    className="z-3 border-4 border-black rounded-2xl"
+                    color={displayColor}
+                    onChange={(e: ColorResult) => {
+                      setColor(e.hex);
+                      setDisplayColor(e.hex);
+                    }}
+                  />
+                </div>
+
+                <div>
+                  <textarea
+                    // onChange={(e) => setDescription(e.target.value)}
+                    className="w-4/5 h-full resize-none items-start rounded-2xl border-4 border-[#8B8B8B] bg-[#FBEFDF] px-4 py-2 text-4xl"
+                    placeholder="Type something..."
+                    maxLength={50}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="mx-4 mb-4 grid grid-flow-col justify-stretch gap-6 text-5xl text-amber-700">
+              <button
+                disabled={loading}
+                // onClick={handleConfirmDialog}
+                className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+              >
+                Next
+              </button>
+              <button
+                disabled={loading}
+                // onClick={handleConfirmDialog}
+                className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+{
+  /* <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle className="text-2xl">
                 Are you sure you want to post?
@@ -307,80 +442,209 @@ export default function Painting() {
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
-        </AlertDialog> */}
+        </AlertDialog> */
+}
 
-        <div className="flex w-full flex-col justify-center overflow-y-auto px-0 lg:mt-0 lg:px-0">
-          <header className="flex w-full justify-between gap-5 self-stretch bg-amber-100 px-0 py-3.5 max-md:flex-wrap">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/f1d95e80fabf868206df9b29bdd52e13fef2d1bad797e7bb291ba9fe670824e4?apiKey=1661ea4d66254cafac7fd5965b2f5a8a&"
-              alt="Logo"
-              className="aspect-[1.01] w-[124px] max-w-full shrink-0"
-            />
-            <div className="my-auto flex gap-5 max-md:max-w-full max-md:flex-wrap">
-              <div className="flex flex-auto gap-5 whitespace-nowrap text-center text-5xl">
-                <div className="justify-center rounded-3xl bg-orange-200 px-6 py-3 text-amber-500 max-md:px-5">
-                  Paint
-                </div>
-                <div className="my-auto flex-auto text-amber-500">Works</div>
-              </div>
-              <div className="my-auto flex-auto text-6xl text-yellow-700 max-md:text-4xl">
-                {studentName}
-              </div>
-            </div>
-          </header>
+{
+  /* <div className="flex flex-col gap-4">
+<div className="flex flex-row gap-6">
+  <div className="flex flex-row gap-6">
+
+  <div className="w-1/5">
+      <div className="flex flex-row gap-10 justify-center item-center">
+
+        <PiPaintBrushDuotone
+          className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
+            brush && "bg-slate-100/50"
+          }`}
+          onClick={() => {
+            setEraser(false);
+            setBrush(true);
+            setColor(displayColor);
+          }}
+        />
+
+        <BsEraser
+          className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
+            eraser && "bg-slate-100/50"
+          }`}
+          onClick={() => {
+            setColor("#fff");
+            setEraser(true);
+            setBrush(false);
+          }}
+        />
+
+      </div>
+      <div className="flex flex-row gap-6">
+
+        <div className={"mt-2 h-full w-4/5 cursor-pointer self-center p-1"}>
+            <input
+              type="range"
+              min="1"
+              max="30"
+              value={brushSize}
+              onChange={handleSizeChange}
+              />
         </div>
 
-        <div className="mt-9 text-5xl text-yellow-600 max-md:max-w-full max-md:text-4xl">
-          {currentTopic} <span className="text-4xl">deadline: {deadline}</span>
-        </div>
+        <div
+          className={`cursor-pointer self-center rounded-full bg-black item-center justify-center w-full`}
+          style={{ height: `${brushSize}px`, width: `${brushSize}px`, borderRadius: "50%" }}
+        ></div>
+      </div>
+    </div>
 
-        <main className="mt-3.5 flex h-screen w-full max-w-[1350px] flex-col justify-between max-md:max-w-full">
-          <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-            <div className="flex w-[83%] flex-col max-md:ml-0 max-md:w-full">
-              <div className="flex grow flex-col max-md:mt-2 max-md:max-w-full">
-                <div className="flex h-full flex-grow flex-col items-end justify-between rounded-3xl border-[5px] border-solid border-amber-300 bg-white px-16 pb-4 text-3xl text-amber-300 max-md:px-5 max-md:pt-10">
-                  <canvas
-                    ref={canvasRef}
-                    onMouseDown={onMouseDown}
-                    onTouchMove={onTouchStart}
-                  />
-                </div>
-                <div className="mt-4 items-start rounded-3xl bg-orange-100 px-2.5 pb-10 pt-6 text-4xl text-zinc-500 max-md:max-w-full max-md:pr-5">
-                  Type anything...
-                </div>
-              </div>
-            </div>
 
-            <aside className="ml-5 flex w-[17%] flex-col max-md:ml-0 max-md:w-full">
-              <div className="flex grow flex-col whitespace-nowrap text-center text-5xl text-amber-700 max-md:mt-2 max-md:text-4xl">
-                <div
-                  className={`shrink-0 rounded-3xl bg-zinc-300`}
-                  style={{ rectColor, maxWidth: "222px", minHeight: "541px" }}
+    <button
+      type="button"
+      className="border-4 border-black rounded-2xl justify-center text-3xl w-[200px] flex items-center rounded-lg border-2 border-black px-2 my-14 text-black hover:bg-description/80"
+      onClick={clear}
+      >
+      Clear
+    </button>
+
+    <div className="h-full cursor-pointer self-center p-1">
+      <ChromePicker
+        className="z-3 border-4 border-black rounded-2xl"
+        color={displayColor}
+        onChange={(e: ColorResult) => {
+          setColor(e.hex);
+          setDisplayColor(e.hex);
+        }}
+      />
+    </div>
+
+  
+
+  <div>
+    <textarea
+      // onChange={(e) => setDescription(e.target.value)}
+      className="w-4/5 h-full resize-none items-start rounded-2xl border-4 border-[#8B8B8B] bg-[#FBEFDF] px-4 py-2 text-4xl"
+      placeholder="Type something..."
+      maxLength={50}
+      />
+  </div>
+
+</div>
+</div>
+
+<div className="mx-4 mb-4 grid grid-flow-col justify-stretch gap-6 text-5xl text-amber-700">
+<button
+  disabled={loading}
+  // onClick={handleConfirmDialog}
+  className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+>
+  Next
+</button>
+<button
+  disabled={loading}
+  // onClick={handleConfirmDialog}
+  className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+>
+  Done
+</button>
+</div>
+</div>
+</div>
+</main>
+</div> */
+}
+
+{
+  /* <div className="flex flex-row gap-4">
+            <div className="flex flex-row gap-4">
+              <div className="relative aspect-[2/3] w-1/5 rounded-3xl">
+
+              <div className="flex flex-row gap-10 justify-center item-center">
+
+                <PiPaintBrushDuotone
+                  className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
+                    brush && "bg-slate-100/50"
+                  }`}
+                  onClick={() => {
+                    setEraser(false);
+                    setBrush(true);
+                    setColor(displayColor);
+                  }}
                 />
 
-                <div className="mt-20 flex flex-col pl-4 max-md:mt-10 max-md:text-4xl">
-                  <button
-                    disabled={loading}
-                    // onClick={handleConfirmDialog}
-                    className="justify-center rounded-3xl border-[5px] border-solid border-amber-700 bg-orange-300 px-14 py-3.5 max-md:px-5 max-md:text-4xl"
-                  >
-                    Next
-                  </button>
-                  <div className="mt-6">
-                    <button
-                      disabled={loading}
-                      // onClick={handleConfirmDialog}
-                      className="justify-center rounded-3xl border-[5px] border-solid border-amber-700 bg-orange-300 px-14 py-3.5 max-md:px-5 max-md:text-4xl"
-                    >
-                      Done
-                    </button>
-                  </div>
+                <BsEraser
+                  className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
+                    eraser && "bg-slate-100/50"
+                  }`}
+                  onClick={() => {
+                    setColor("#fff");
+                    setEraser(true);
+                    setBrush(false);
+                  }}
+                />
+
                 </div>
+                <div className="flex flex-row gap-6">
+
+                <div className={"mt-2 h-full w-4/5 cursor-pointer self-center p-1"}>
+                    <input
+                      type="range"
+                      min="1"
+                      max="30"
+                      value={brushSize}
+                      onChange={handleSizeChange}
+                      />
+                </div>
+
+                <div
+                  className={`cursor-pointer self-center rounded-full bg-black item-center justify-center w-full`}
+                  style={{ height: `${brushSize}px`, width: `${brushSize}px`, borderRadius: "50%" }}
+                ></div>
+                </div>
+                </div>
+
+
+                <button
+                type="button"
+                className="border-4 border-black rounded-2xl justify-center text-3xl w-[200px] flex items-center rounded-lg border-2 border-black px-2 my-14 text-black hover:bg-description/80"
+                onClick={clear}
+                >
+                Clear
+                </button>
+
+                <div className="h-full cursor-pointer self-center p-1">
+                <ChromePicker
+                className="z-3 border-4 border-black rounded-2xl"
+                color={displayColor}
+                onChange={(e: ColorResult) => {
+                  setColor(e.hex);
+                  setDisplayColor(e.hex);
+                }}
+                />
+                </div>
+                
               </div>
-            </aside>
+              <textarea
+                // onChange={(e) => setDescription(e.target.value)}
+                className="w-4/5 resize-none items-start rounded-2xl border-4 border-[#8B8B8B] bg-[#FBEFDF] px-4 py-2 text-4xl"
+                placeholder="Type something..."
+                maxLength={50}
+              />
+            </div>
+            <div className="mx-4 mb-4 grid grid-flow-col justify-stretch gap-6 text-5xl text-amber-700">
+              <button
+                disabled={loading}
+                // onClick={handleConfirmDialog}
+                className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+              >
+                Next
+              </button>
+              <button
+                disabled={loading}
+                // onClick={handleConfirmDialog}
+                className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+              >
+                Done
+              </button>
+            </div>
           </div>
-        </main>
       </main>
-    </div>
-  );
+    </div> */
 }

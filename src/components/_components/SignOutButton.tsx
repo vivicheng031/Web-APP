@@ -1,5 +1,7 @@
 "use client";
 
+import { FaSignOutAlt } from "react-icons/fa";
+
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -19,10 +21,10 @@ export default function SignOutButton() {
   return (
     <button
       data-testid="sign-out-button"
-      className="bg-brand_4 text-txt_8 flex items-center p-1 text-2xl hover:bg-yellow-700/20"
+      className="flex items-center rounded-full px-4 py-2 text-5xl transition-colors hover:bg-[#FFDB99] xl:text-6xl"
       onClick={SignOut}
     >
-      Sign Out
+      <FaSignOutAlt />
     </button>
   );
 }
