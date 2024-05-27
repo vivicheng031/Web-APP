@@ -1,4 +1,5 @@
 import CredentialsProvider from "next-auth/providers/credentials";
+
 import bcrypt from "bcryptjs";
 import { eq } from "drizzle-orm";
 
@@ -21,12 +22,12 @@ export default CredentialsProvider({
     };
     try {
       validatedCredentials = authSchema.parse(credentials);
-      console.log('Validated:', validatedCredentials);
+      console.log("Validated:", validatedCredentials);
     } catch (error) {
       console.log("Wrong credentials. Try again.");
       return null;
     }
-    const { email, username, password } = validatedCredentials;
+    const { email, password } = validatedCredentials;
 
     // Attempt to authenticate as a teacher first
     const [teacher] = await db
@@ -37,17 +38,20 @@ export default CredentialsProvider({
         username: teacherUserTable.name,
       })
       .from(teacherUserTable)
-      .where(eq(teacherUserTable.email, validatedCredentials.email.toLowerCase()))
+      .where(
+        eq(teacherUserTable.email, validatedCredentials.email.toLowerCase()),
+      )
       .execute();
-      
 
     if (teacher) {
       if (!teacher.password) {
         console.log("User has no password. Please sign up.");
         return null;
-      }
-      else {
-        const isTeacherPasswordValid = await bcrypt.compare(password, teacher.password);
+      } else {
+        const isTeacherPasswordValid = await bcrypt.compare(
+          password,
+          teacher.password,
+        );
         if (isTeacherPasswordValid) {
           return {
             id: teacher.id.toString(),
@@ -67,7 +71,7 @@ export default CredentialsProvider({
         email: studentUserTable.email,
         password: studentUserTable.password,
         name: studentUserTable.name,
-        // role: { value: 'teacher', as: 'userType' } 
+        // role: { value: 'teacher', as: 'userType' }
       })
       .from(studentUserTable)
       .where(eq(studentUserTable.email, email.toLowerCase()))
@@ -77,20 +81,22 @@ export default CredentialsProvider({
       if (!student.password) {
         console.log("User has no password. Please sign up.");
         return null;
-      }
-      else {
-        const isStudentPasswordValid = await bcrypt.compare(password, student.password);
+      } else {
+        const isStudentPasswordValid = await bcrypt.compare(
+          password,
+          student.password,
+        );
         if (isStudentPasswordValid) {
           return {
             id: student.id.toString(),
             email: student.email,
-            userType: 'student',
+            userType: "student",
             name: student.name,
           };
         } else {
           console.log("Wrong password. Try again.");
           return null;
-        } 
+        }
       }
     }
 
