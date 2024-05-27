@@ -36,7 +36,7 @@ export default function Painting() {
   const [displayColor, setDisplayColor] = useState<string>("#000000");
   // const [showPicker, setShowPicker] = useState(false);
   const { canvasRef, onMouseDown, onTouchStart, clear } = useDraw(drawLine);
-  console.log(clear);
+  // console.log(clear);
   // const elementRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   console.log(setLoading);
@@ -64,6 +64,7 @@ export default function Painting() {
   // const userId = "berlin";
 
   console.log("painting...");
+  console.log(color);
 
   // useEffect(() => {
   //   const checkPost = async () => {
@@ -239,6 +240,7 @@ export default function Painting() {
           <p className="text-4xl">deadline: {deadline}</p>
         </div>
 
+        {/* XL */}
         <div className="mx-24 hidden gap-5 xl:flex">
           <div className="relative aspect-[3/2] w-3/5 rounded-2xl border-4 border-[#E6B555] md:w-1/2">
             <div
@@ -255,7 +257,66 @@ export default function Painting() {
           </div>
           <div className="flex w-2/5 flex-col gap-4 md:w-1/2">
             <div className="flex flex-row gap-4">
-              <div className="relative aspect-[1/3] w-1/5 rounded-3xl bg-[#D9D9D9]"></div>
+              <div className="relative aspect-[1/3] w-1/4 rounded-3xl bg-[#D9D9D9] justify-center items-center">
+                <div className="my-16 flex flex-col gap-10 justify-center item-center h-full">
+                  <div className="flex flex-row gap-2 mx-2 justify-center item-center">
+                      <PiPaintBrushDuotone
+                        className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
+                          brush && "bg-slate-100/50"
+                        }`}
+                        onClick={() => {
+                          setEraser(false);
+                          setBrush(true);
+                          setColor(displayColor);
+                        }}
+                      />
+
+                      <BsEraser
+                        className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
+                          eraser && "bg-slate-100/50"
+                        }`}
+                        onClick={() => {
+                          setColor("#fff");
+                          setEraser(true);
+                          setBrush(false);
+                        }}
+                      />
+                  </div>
+
+                  <div className="flex mx-4 cursor-pointer self-center p-1 justify-center items-center">
+                    <input
+                      type="range"
+                      min="1"
+                      max="30"
+                      value={brushSize}
+                      onChange={handleSizeChange}
+                    />
+                  </div>
+
+                  <div className="flex w-full mx-4 cursor-pointer self-center p-1 justify-center items-center">
+                    <ChromePicker
+                      className="z-3 border-4 border-black rounded-2xl"
+                      color={displayColor}
+                      onChange={(e: ColorResult) => {
+                        setColor(e.hex);
+                        setDisplayColor(e.hex);
+                      }}
+                    />
+                  </div>
+
+                  <div className="flex w-full justify-center items-center">
+                    <button
+                      type="button"
+                      className="h-[80px] mx-4 flex border-4 border-black rounded-2xl justify-center text-3xl flex items-center rounded-lg border-2 border-black px-2 my-4 text-black hover:bg-description/80"
+                      onClick={clear}
+                    >
+                      Clear
+                    </button>
+                  </div>
+
+                </div>
+
+              </div>
               <textarea
                 // onChange={(e) => setDescription(e.target.value)}
                 className="w-4/5 resize-none items-start rounded-2xl border-4 border-[#8B8B8B] bg-[#FBEFDF] px-4 py-2 text-4xl"
@@ -282,6 +343,8 @@ export default function Painting() {
           </div>
         </div>
 
+
+        {/* smaller than XL */}
         <div className="mx-24 flex flex-col gap-5 xl:hidden">
           <div className="relative aspect-[3/2] rounded-2xl border-4 border-[#E6B555]">
             <div
@@ -300,7 +363,7 @@ export default function Painting() {
           <div className="flex flex-col gap-4">
             <div className="flex flex-row gap-6">
               <div className="flex flex-row gap-6">
-                <div className="justify-center item-center">
+                <div className="flex flex-col justify-center item-center">
                   <div className="flex flex-row gap-10 justify-center item-center">
                     <PiPaintBrushDuotone
                       className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
@@ -327,7 +390,7 @@ export default function Painting() {
                   <div className="flex flex-row gap-6">
                     <div
                       className={
-                        "mt-2 h-full w-4/5 cursor-pointer self-center p-1"
+                        "mt-2 h-full cursor-pointer self-center p-3"
                       }
                     >
                       <input
