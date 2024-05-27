@@ -1,30 +1,12 @@
 // import { NextResponse, type NextRequest } from "next/server";
 
-// // import { and, eq, desc } from "drizzle-orm";
+// import { and, eq, desc } from "drizzle-orm";
 
-// // import { db } from "@/db";
-// // import { postsTable } from "@/db/schema";
+// import { db } from "@/db";
+// import { pictureTable } from "@/db/schema";
 // import { auth } from "@/lib/auth";
 // import type { Post } from "@/lib/types/db";
 // import { postSchema } from "@/validators/post";
-
-// // Example
-// const postsTable = [
-//   {
-//     id: 1,
-//     userId: 'berlin',
-//     topic: 'First post',
-//     description: 'This is the first post.',
-//     createdAt: new Date('2024-05-12T12:00:00Z'),
-//   },
-//   {
-//     id: 2,
-//     userId: 'user2',
-//     topic: 'Second post',
-//     description: 'This is the second post.',
-//     createdAt: new Date('2024-05-11T12:00:00Z'),
-//   },
-// ];
 
 // // POST /api/paint/:userId
 // export async function POST(
@@ -34,7 +16,6 @@
 //   }: {
 //     params: {
 //       userId: string;
-//       topic: string;
 //       description: string;
 //       image: string;
 //     };
@@ -51,7 +32,7 @@
 //     const reqBody = await req.json();
 //     let validatedReqBody: Pick<
 //       Post,
-//       "userId" | "topic" | "description" | "image"
+//       "userId" | "description" | "image" | "topic"
 //     >;
 //     try {
 //       validatedReqBody = postSchema.parse(reqBody);
@@ -60,15 +41,15 @@
 //     }
 
 //     // Post message
-//     // await db
-//     //   .insert(postsTable)
-//     //   .values({
-//     //     userId: params.userId,
-//     //     topic: validatedReqBody.topic,
-//     //     description: validatedReqBody.description,
-//     //     image: validatedReqBody.image,
-//     //   })
-//     //   .execute();
+//     await db
+//       .insert(pictureTable)
+//       .values({
+//         studentId: params.userId,  // 確認字段名稱與schema一致
+//         description: validatedReqBody.description,  // 確認字段名稱與schema一致
+//         image: validatedReqBody.image,
+//         taskId: validatedReqBody.topic,
+//       })
+//         .execute();
 
 //     return NextResponse.json({ status: 200 });
 //   } catch (error) {
@@ -99,12 +80,10 @@
 //     }
 
 //     // Get the post, if any
-//     // const post = await db.query.postsTable.findFirst({
-//     //   where: and(eq(postsTable.userId, params.userId)),
-//     //   orderBy: [desc(postsTable.createdAt)],
-//     // });
-
-//     const post = postsTable.find(post => post.userId === params.userId);
+//     const post = await db.query.pictureTable.findFirst({
+//       where: and(eq(pictureTable.studentId, params.userId)),
+//       orderBy: [desc(pictureTable.date)],
+//     });
 
 //     if (!post) {
 //       return NextResponse.json(
@@ -116,7 +95,7 @@
 //       );
 //     }
 
-//     if (Date.now() - post?.createdAt.getTime() > 24 * 60 * 60 * 1000) {
+//     if (Date.now() - post?.date.getTime() > 24 * 60 * 60 * 1000) {
 //       return NextResponse.json(
 //         {
 //           posted: false,

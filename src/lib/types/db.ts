@@ -9,16 +9,17 @@ export type User = {
 export type Post = {
   id: string;
   userId: string;
-  topic: string;
   created_at: string;
   description: string;
   image: string;
+  topic: string;
 };
 
-export type Settings = {
-  userId: string;
-  subject: string;
-  lastingDays: number;
-  isNotified: boolean;
-  paintingTime: string;
-};
+// export type Book = {
+//   id: string;
+//   displayId: string;
+//   topic: string;
+//   description: string;
+//   teacherId: string;
+//   date: string;
+// };
