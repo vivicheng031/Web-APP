@@ -62,7 +62,7 @@ export const studentUserTable = pgTable(
       .references(() => classTable.displayId, {
         onDelete: "cascade",
         onUpdate: "cascade",
-      }), 
+      }),
   },
   (table) => ({
     displayIdIndex: index("display_id_index").on(table.displayId),
@@ -84,12 +84,14 @@ export const taskTable = pgTable(
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
-    startDate: timestamp("start_date").notNull().default(sql`now()`),
+    startDate: timestamp("start_date")
+      .notNull()
+      .default(sql`now()`),
     endDate: timestamp("end_date").notNull(),
   },
   (table) => ({
     displayIdIndex: index("display_id_index").on(table.displayId),
-    endDateIndex: index("end_date_index").on(table.endDate)
+    endDateIndex: index("end_date_index").on(table.endDate),
   }),
 );
 
@@ -107,7 +109,9 @@ export const pictureTable = pgTable(
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
-    finishDate: timestamp("date").notNull().default(sql`now()`),
+    finishDate: timestamp("date")
+      .notNull()
+      .default(sql`now()`),
     taskId: uuid("task_id")
       .notNull()
       .references(() => taskTable.displayId, {
@@ -136,7 +140,9 @@ export const pictureBookTable = pgTable(
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
-    finishDate: timestamp("date").notNull().default(sql`now()`),
+    finishDate: timestamp("date")
+      .notNull()
+      .default(sql`now()`),
     sendEmail: boolean("send_email").notNull().default(false),
   },
   (table) => ({
@@ -186,14 +192,17 @@ export const classRelations = relations(classTable, ({ one, many }) => ({
   tasks: many(taskTable),
 }));
 
-export const studentUserRelations = relations(studentUserTable, ({ one, many }) => ({
-  class: one(classTable, {
-    fields: [studentUserTable.classId],
-    references: [classTable.displayId],
+export const studentUserRelations = relations(
+  studentUserTable,
+  ({ one, many }) => ({
+    class: one(classTable, {
+      fields: [studentUserTable.classId],
+      references: [classTable.displayId],
+    }),
+    pictures: many(pictureTable),
+    pictureBooks: many(pictureBookTable),
   }),
-  pictures: many(pictureTable),
-  pictureBooks: many(pictureBookTable),
-}));
+);
 
 export const taskRelations = relations(taskTable, ({ one, many }) => ({
   class: one(classTable, {
@@ -215,21 +224,27 @@ export const pictureRelations = relations(pictureTable, ({ one, many }) => ({
   picturesToBookTable: many(picturesToBookTable),
 }));
 
-export const pictureBookRelations = relations(pictureBookTable, ({ one, many }) => ({
-  student: one(studentUserTable, {
-    fields: [pictureBookTable.studentId],
-    references: [studentUserTable.displayId],
+export const pictureBookRelations = relations(
+  pictureBookTable,
+  ({ one, many }) => ({
+    student: one(studentUserTable, {
+      fields: [pictureBookTable.studentId],
+      references: [studentUserTable.displayId],
+    }),
+    picturesToBookTable: many(picturesToBookTable),
   }),
-  picturesToBookTable: many(picturesToBookTable),
-}));
+);
 
-export const picturesToBookRelations = relations(picturesToBookTable, ({ one }) => ({
-  pictureBook: one(pictureBookTable, {
-    fields: [picturesToBookTable.pictureBookId],
-    references: [pictureBookTable.displayId],
+export const picturesToBookRelations = relations(
+  picturesToBookTable,
+  ({ one }) => ({
+    pictureBook: one(pictureBookTable, {
+      fields: [picturesToBookTable.pictureBookId],
+      references: [pictureBookTable.displayId],
+    }),
+    picture: one(pictureTable, {
+      fields: [picturesToBookTable.pictureId],
+      references: [pictureTable.displayId],
+    }),
   }),
-  picture: one(pictureTable, {
-    fields: [picturesToBookTable.pictureId],
-    references: [pictureTable.displayId],
-  }),
-}));
+);
