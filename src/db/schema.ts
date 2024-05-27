@@ -99,7 +99,7 @@ export const pictureTable = pgTable(
     id: serial("id").primaryKey(), // 使用serial生成圖片id
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成圖片DisplayID
     image: varchar("image").notNull(),
-    text: text("text").notNull(),
+    description: text("description").notNull(),
     studentId: uuid("student_id")
       .notNull()
       .references(() => studentUserTable.displayId, {
