@@ -36,7 +36,7 @@ function Login() {
         await signIn("credentials", {
           email,
           password,
-          callbackUrl: `${publicEnv.NEXT_PUBLIC_BASE_URL}/personal`,
+          callbackUrl: `${publicEnv.NEXT_PUBLIC_BASE_URL}/painting`,
         });
       } catch (e) {
         setEmailError("wrong");

@@ -3,7 +3,7 @@ export type User = {
   username: string;
   email: string;
   provider: "credentials";
-  role: "student" | "teacher";
+  userType: "student" | "teacher";
 };
 
 export type Post = {
