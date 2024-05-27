@@ -54,12 +54,12 @@
 //     } else {
 //       // Customize topics by using OpenAI
 //       const prompt = `
-//       You're now tasked with inspiring creative artwork for our platform. 
-//       Craft prompts that ignite imagination while adhering to user themes. 
-//       Keep it simple, yet stimulating. 
-//       Each prompt should comprise a verb, adjective, adverb, and noun, leading with "A/An...". 
-//       For example, "A bird singing softly in a garden". 
-//       Ensure the prompts resonate with users and foster artistic exploration. 
+//       You're now tasked with inspiring creative artwork for our platform.
+//       Craft prompts that ignite imagination while adhering to user themes.
+//       Keep it simple, yet stimulating.
+//       Each prompt should comprise a verb, adjective, adverb, and noun, leading with "A/An...".
+//       For example, "A bird singing softly in a garden".
+//       Ensure the prompts resonate with users and foster artistic exploration.
 //       Create ${validatedReqBody.lastingDays} topics for: ${validatedReqBody.subject}.
 //       Remember to use JSON format, separate prompts with commas and enclose each prompt in double quotation marks.
 //       Please ensure the generated format looks like this: ["An eerie, pulsating form in shadows.","A mysterious, glowing figure in solitude." ......].
@@ -238,12 +238,12 @@
 //     } else {
 //       // Customize topics by using OpenAI
 //       const prompt = `
-//       You're now tasked with inspiring creative artwork for our platform. 
-//       Craft prompts that ignite imagination while adhering to user themes. 
-//       Keep it simple, yet stimulating. 
-//       Each prompt should comprise a verb, adjective, adverb, and noun, leading with "A/An...". 
-//       For example, "A bird singing softly in a garden". 
-//       Ensure the prompts resonate with users and foster artistic exploration. 
+//       You're now tasked with inspiring creative artwork for our platform.
+//       Craft prompts that ignite imagination while adhering to user themes.
+//       Keep it simple, yet stimulating.
+//       Each prompt should comprise a verb, adjective, adverb, and noun, leading with "A/An...".
+//       For example, "A bird singing softly in a garden".
+//       Ensure the prompts resonate with users and foster artistic exploration.
 //       Create ${validatedReqBody.lastingDays} topics for: ${validatedReqBody.subject}.
 //       Remember to use JSON format, separate prompts with commas and enclose each prompt in double quotation marks.
 //       Please ensure the generated format looks like this: ["An eerie, pulsating form in shadows.","A mysterious, glowing figure in solitude." ......].

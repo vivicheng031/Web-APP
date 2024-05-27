@@ -15,11 +15,11 @@ export type Post = {
   topic: string;
 };
 
-export type Book = {
-  id: string;
-  displayId: string;
-  topic: string;
-  description: string;
-  teacherId: string;
-  date: string;
-};
+// export type Book = {
+//   id: string;
+//   displayId: string;
+//   topic: string;
+//   description: string;
+//   teacherId: string;
+//   date: string;
+// };

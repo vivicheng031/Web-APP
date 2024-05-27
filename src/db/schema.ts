@@ -47,7 +47,7 @@ export const studentUserTable = pgTable(
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
-    hashedPassword: varchar("hashed_password", { length: 100 }), // 使用者密碼    
+    hashedPassword: varchar("hashed_password", { length: 100 }), // 使用者密碼
   },
   (table) => ({
     emailIndex: index("email_index").on(table.email),
@@ -259,5 +259,3 @@ export const pageRelations = relations(pageTable, ({ one }) => ({
     references: [pictureTable.displayId],
   }),
 }));
-
-
