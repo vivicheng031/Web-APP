@@ -26,7 +26,7 @@ function Home() {
               <div className="text-8xl">for you and me</div>
             </h1>
             <Link
-              href="/auth/login"
+              href="/painting"
               className={`${roadrage.className} mt-16 justify-center self-center whitespace-nowrap rounded-3xl border-[5px] border-solid border-amber-900 bg-orange-200 px-16 py-5 text-7xl text-amber-900 max-md:mt-10 max-md:pl-6 max-md:pr-6 max-md:text-4xl`}
             >
               START

@@ -12,86 +12,98 @@ import {
 } from "drizzle-orm/pg-core";
 
 // 老師使用者資料表
-export const teacherUserTable = pgTable(
-  "teacher_users",
-  {
-    id: serial("id").primaryKey(), // Serial generates teacher id
-    displayId: uuid("display_id").defaultRandom().notNull().unique(), // UUID generates unique teacher DisplayID
-    name: varchar("name", { length: 100 }).notNull(),
-    email: varchar("email", { length: 100 }).notNull().unique(),
-    password: varchar("password", { length: 100 }), // 使用者密碼
-  },
-  (table) => ({
-    displayIdIndex: index("display_id_index").on(table.displayId),
-    emailIndex: index("email_index").on(table.email),
-  }),
-);
+// export const teacherUserTable = pgTable(
+//   "teacher_users",
+//   {
+//     id: serial("id").primaryKey(), // Serial generates teacher id
+//     displayId: uuid("display_id").defaultRandom().notNull().unique(), // UUID generates unique teacher DisplayID
+//     name: varchar("name", { length: 100 }).notNull(),
+//     email: varchar("email", { length: 100 }).notNull().unique(),
+//     password: varchar("password", { length: 100 }), // 使用者密碼
+//   },
+//   (table) => ({
+//     displayIdIndex: index("display_id_index").on(table.displayId),
+//     emailIndex: index("email_index").on(table.email),
+//   }),
+// );
 
 // 班級資料表
-export const classTable = pgTable(
-  "classes",
-  {
-    id: serial("id").primaryKey(), // 使用serial生成班級id
-    displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成班級DisplayID
-    name: varchar("name", { length: 100 }).notNull(),
-    teacherId: uuid("teacher_id")
-      .notNull()
-      .references(() => teacherUserTable.displayId, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-  },
-  (table) => ({
-    displayIdIndex: index("display_id_index").on(table.displayId),
-    nameIndex: index("name_index").on(table.name),
-  }),
-);
+// export const classTable = pgTable(
+//   "classes",
+//   {
+//     id: serial("id").primaryKey(), // 使用serial生成班級id
+//     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成班級DisplayID
+//     name: varchar("name", { length: 100 }).notNull(),
+//     teacherId: uuid("teacher_id")
+//       .notNull()
+//       .references(() => teacherUserTable.displayId, {
+//         onDelete: "cascade",
+//         onUpdate: "cascade",
+//       }),
+//   },
+//   (table) => ({
+//     displayIdIndex: index("display_id_index").on(table.displayId),
+//     nameIndex: index("name_index").on(table.name),
+//   }),
+// );
 
 // 學生使用者資料表
-export const studentUserTable = pgTable(
-  "student_users",
-  {
-    id: serial("id").primaryKey(), // Serial generates student id
-    displayId: uuid("display_id").defaultRandom().notNull().unique(), // UUID generates unique student DisplayID
-    name: varchar("name", { length: 100 }).notNull(),
-    email: varchar("email", { length: 100 }).notNull().unique(),
-    password: varchar("password", { length: 100 }), // 使用者密碼
-    parentEmail: varchar("parent_email", { length: 100 }).notNull(),
-    classId: uuid("class_id")
-      .notNull()
-      .references(() => classTable.displayId, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-  },
-  (table) => ({
-    displayIdIndex: index("display_id_index").on(table.displayId),
-    emailIndex: index("email_index").on(table.email),
-    nameIndex: index("name_index").on(table.name),
-  }),
-);
+// export const studentUserTable = pgTable(
+//   "student_users",
+//   {
+//     id: serial("id").primaryKey(), // Serial generates student id
+//     displayId: uuid("display_id").defaultRandom().notNull().unique(), // UUID generates unique student DisplayID
+//     name: varchar("name", { length: 100 }).notNull(),
+//     email: varchar("email", { length: 100 }).notNull().unique(),
+//     password: varchar("password", { length: 100 }), // 使用者密碼
+//     parentEmail: varchar("parent_email", { length: 100 }).notNull(),
+//     classId: uuid("class_id")
+//       .notNull()
+//       .references(() => classTable.displayId, {
+//         onDelete: "cascade",
+//         onUpdate: "cascade",
+//       }),
+//   },
+//   (table) => ({
+//     displayIdIndex: index("display_id_index").on(table.displayId),
+//     emailIndex: index("email_index").on(table.email),
+//     nameIndex: index("name_index").on(table.name),
+//   }),
+// );
 
 // 繪本主題資料表
-export const taskTable = pgTable(
-  "tasks",
+// export const taskTable = pgTable(
+//   "tasks",
+//   {
+//     id: serial("id").primaryKey(), // 使用serial生成主題id
+//     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成主題DisplayID
+//     task: varchar("task", { length: 100 }).notNull(),
+//     classId: uuid("class_id")
+//       .notNull()
+//       .references(() => classTable.displayId, {
+//         onDelete: "cascade",
+//         onUpdate: "cascade",
+//       }),
+//     startDate: timestamp("start_date")
+//       .notNull()
+//       .default(sql`now()`),
+//     endDate: timestamp("end_date").notNull(),
+//   },
+//   (table) => ({
+//     displayIdIndex: index("display_id_index").on(table.displayId),
+//     endDateIndex: index("end_date_index").on(table.endDate),
+//   }),
+// );
+
+export const topicTable = pgTable(
+  "topics",
   {
     id: serial("id").primaryKey(), // 使用serial生成主題id
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成主題DisplayID
-    task: varchar("task", { length: 100 }).notNull(),
-    classId: uuid("class_id")
-      .notNull()
-      .references(() => classTable.displayId, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    startDate: timestamp("start_date")
-      .notNull()
-      .default(sql`now()`),
-    endDate: timestamp("end_date").notNull(),
+    topic: varchar("topic", { length: 100 }).notNull(),
   },
   (table) => ({
     displayIdIndex: index("display_id_index").on(table.displayId),
-    endDateIndex: index("end_date_index").on(table.endDate),
   }),
 );
 
@@ -103,26 +115,32 @@ export const pictureTable = pgTable(
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成圖片DisplayID
     image: varchar("image").notNull().default(""),
     description: text("description").notNull().default(""),
-    studentId: uuid("student_id")
-      .notNull()
-      .references(() => studentUserTable.displayId, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
+    // studentId: uuid("student_id")
+    //   .notNull()
+    //   .references(() => studentUserTable.displayId, {
+    //     onDelete: "cascade",
+    //     onUpdate: "cascade",
+    //   }),
     finishDate: timestamp("date")
       .notNull()
       .default(sql`now()`),
-    taskId: uuid("task_id")
+    // taskId: uuid("task_id")
+    //   .notNull()
+    //   .references(() => taskTable.displayId, {
+    //     onDelete: "cascade",
+    //     onUpdate: "cascade",
+    //   }),
+    topicId: uuid("topic_id")
       .notNull()
-      .references(() => taskTable.displayId, {
+      .references(() => topicTable.displayId, {
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
   },
   (table) => ({
     displayIdIndex: index("display_id_index").on(table.displayId),
-    studentIdIndex: index("student_id_index").on(table.studentId),
-    taskIdIndex: index("task_id_index").on(table.taskId),
+    // studentIdIndex: index("student_id_index").on(table.studentId),
+    // taskIdIndex: index("task_id_index").on(table.taskId),
     finishDateIndex: index("finish_date_index").on(table.finishDate),
   }),
 );
@@ -134,12 +152,12 @@ export const pictureBookTable = pgTable(
     id: serial("id").primaryKey(), // 使用serial生成繪本id
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成繪本DisplayID
     topic: varchar("topic", { length: 100 }).notNull(),
-    studentId: uuid("student_id")
-      .notNull()
-      .references(() => studentUserTable.displayId, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
+    // studentId: uuid("student_id")
+    //   .notNull()
+    //   .references(() => studentUserTable.displayId, {
+    //     onDelete: "cascade",
+    //     onUpdate: "cascade",
+    //   }),
     finishDate: timestamp("date")
       .notNull()
       .default(sql`now()`),
@@ -147,7 +165,7 @@ export const pictureBookTable = pgTable(
   },
   (table) => ({
     displayIdIndex: index("display_id_index").on(table.displayId),
-    studentIdIndex: index("student_id_index").on(table.studentId),
+    // studentIdIndex: index("student_id_index").on(table.studentId),
     finishDateIndex: index("finish_date_index").on(table.finishDate),
   }),
 );
@@ -179,61 +197,62 @@ export const picturesToBookTable = pgTable(
   }),
 );
 
-export const teacherUserRelations = relations(teacherUserTable, ({ many }) => ({
-  classes: many(classTable),
-}));
+// export const teacherUserRelations = relations(teacherUserTable, ({ many }) => ({
+//   classes: many(classTable),
+// }));
 
-export const classRelations = relations(classTable, ({ one, many }) => ({
-  teacher: one(teacherUserTable, {
-    fields: [classTable.teacherId],
-    references: [teacherUserTable.displayId],
-  }),
-  students: many(studentUserTable),
-  tasks: many(taskTable),
-}));
+// export const classRelations = relations(classTable, ({ one, many }) => ({
+//   teacher: one(teacherUserTable, {
+//     fields: [classTable.teacherId],
+//     references: [teacherUserTable.displayId],
+//   }),
+//   students: many(studentUserTable),
+//   tasks: many(taskTable),
+// }));
 
-export const studentUserRelations = relations(
-  studentUserTable,
-  ({ one, many }) => ({
-    class: one(classTable, {
-      fields: [studentUserTable.classId],
-      references: [classTable.displayId],
-    }),
-    pictures: many(pictureTable),
-    pictureBooks: many(pictureBookTable),
-  }),
-);
+// export const studentUserRelations = relations(
+//   studentUserTable,
+//   ({ one, many }) => ({
+//     class: one(classTable, {
+//       fields: [studentUserTable.classId],
+//       references: [classTable.displayId],
+//     }),
+//     pictures: many(pictureTable),
+//     pictureBooks: many(pictureBookTable),
+//   }),
+// );
 
-export const taskRelations = relations(taskTable, ({ one, many }) => ({
-  class: one(classTable, {
-    fields: [taskTable.classId],
-    references: [classTable.displayId],
-  }),
+// export const taskRelations = relations(taskTable, ({ one, many }) => ({
+//   class: one(classTable, {
+//     fields: [taskTable.classId],
+//     references: [classTable.displayId],
+//   }),
+//   pictures: many(pictureTable),
+// }));
+
+export const topicRelations = relations(topicTable, ({ many }) => ({
   pictures: many(pictureTable),
 }));
 
 export const pictureRelations = relations(pictureTable, ({ one, many }) => ({
-  student: one(studentUserTable, {
-    fields: [pictureTable.studentId],
-    references: [studentUserTable.displayId],
-  }),
-  task: one(taskTable, {
-    fields: [pictureTable.taskId],
-    references: [taskTable.displayId],
+  // student: one(studentUserTable, {
+  //   fields: [pictureTable.studentId],
+  //   references: [studentUserTable.displayId],
+  // }),
+  topic: one(topicTable, {
+    fields: [pictureTable.topicId],
+    references: [topicTable.displayId],
   }),
   picturesToBookTable: many(picturesToBookTable),
 }));
 
-export const pictureBookRelations = relations(
-  pictureBookTable,
-  ({ one, many }) => ({
-    student: one(studentUserTable, {
-      fields: [pictureBookTable.studentId],
-      references: [studentUserTable.displayId],
-    }),
-    picturesToBookTable: many(picturesToBookTable),
-  }),
-);
+export const pictureBookRelations = relations(pictureBookTable, ({ many }) => ({
+  // student: one(studentUserTable, {
+  //   fields: [pictureBookTable.studentId],
+  //   references: [studentUserTable.displayId],
+  // }),
+  picturesToBookTable: many(picturesToBookTable),
+}));
 
 export const picturesToBookRelations = relations(
   picturesToBookTable,

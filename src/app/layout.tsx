@@ -12,7 +12,7 @@ const poetsenOne = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "New Word",
+  title: "New World",
   description: "A new world to create your own picture book.",
 };
 
