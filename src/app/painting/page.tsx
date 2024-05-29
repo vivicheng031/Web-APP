@@ -36,10 +36,10 @@ export default function Painting() {
   const [displayColor, setDisplayColor] = useState<string>("#000000");
   // const [showPicker, setShowPicker] = useState(false);
   const { canvasRef, onMouseDown, onTouchStart, clear } = useDraw(drawLine);
-  console.log(clear);
+  // console.log(clear);
   // const elementRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  console.log(setLoading);
+  // console.log(setLoading);
 
   // const [isPost, setIsPost] = useState<boolean>(false);
   // const [isFirstPost, setIsFirstPost] = useState<boolean>(false);
@@ -63,7 +63,7 @@ export default function Painting() {
   // const userId = session?.user?.id ?? "";
   // const userId = "berlin";
 
-  console.log("painting...");
+  // console.log("painting...");
 
   // useEffect(() => {
   //   const checkPost = async () => {
@@ -228,20 +228,18 @@ export default function Painting() {
 
   // const studentName = "Student's name";
   const currentTopic = "Current Topic";
-  const deadline = "2024/01/09(Mon.)";
 
   return (
     <div id="main-element" className="h-full">
-      <main className="h-min-full flex w-full flex-col bg-[#CFCFCF] xl:h-full">
-        <div className="mx-24 my-4 flex flex-col items-center gap-2 text-yellow-600 xl:flex-row">
+      <main className="h-min-full flex w-full flex-col">
+        <div className="mx-24 my-4 flex flex-col justify-center items-center gap-2 text-yellow-600 xl:flex-row">
           <p className="text-6xl">{currentTopic}</p>
-          <div className="grow"></div>
-          <p className="text-4xl">deadline: {deadline}</p>
+          {/* <div className="grow"></div>
+          <p className="text-4xl">deadline: {deadline}</p> */}
         </div>
 
-        {/* XL */}
-        <div className="mx-24 hidden gap-5 xl:flex">
-          <div className="relative aspect-[3/2] w-3/5 rounded-2xl border-4 border-[#E6B555] md:w-1/2">
+        {/* <div className="mx-24 mb-12 gap-5 flex flex-col xl:flex-row">
+          <div className="relative aspect-[3/2] w-full xl:w-3/5 rounded-2xl border-[5px] border-[#E6B555]">
             <div
               // ref={elementRef}
               className="flex h-full w-full justify-center rounded-2xl bg-white"
@@ -254,10 +252,10 @@ export default function Painting() {
               />
             </div>
           </div>
-          <div className="flex w-2/5 flex-col gap-4 md:w-1/2">
+          <div className="flex w-full xl:w-2/5 flex-col gap-4 xl:justify-around">
             <div className="flex flex-row gap-4">
-              <div className="relative aspect-[1/3] w-1/4 rounded-3xl bg-[#D9D9D9] justify-center items-center">
-                <div className="my-16 flex flex-col gap-10 justify-center item-center h-full">
+              <div className="relative aspect-[1/2] xl:aspect-[1/3] w-1/4 rounded-3xl bg-[#D9D9D9] justify-center items-center">
+                <div className="flex flex-col gap-5 xl:gap-10 justify-center item-center h-full">
                   <div className="flex flex-row gap-2 mx-2 justify-center item-center">
                     <PiPaintBrushDuotone
                       className={`h-full w-2/5 cursor-pointer self-center rounded-full p-1 ${
@@ -326,24 +324,23 @@ export default function Painting() {
               <button
                 disabled={loading}
                 // onClick={handleConfirmDialog}
-                className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+                className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2 xl:py-4"
               >
                 Next
               </button>
               <button
                 disabled={loading}
                 // onClick={handleConfirmDialog}
-                className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+                className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2 xl:py-4"
               >
                 Done
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        {/* smaller than XL */}
-        <div className="mx-24 flex flex-col gap-5 xl:hidden">
-          <div className="relative aspect-[3/2] rounded-2xl border-4 border-[#E6B555]">
+        <div className="mx-24 flex flex-col gap-5 flex flex-col xl:flex-row">
+          <div className="relative aspect-[3/2] xl:w-3/5 xl:mb-12 rounded-2xl border-4 border-[#E6B555]">
             <div
               // ref={elementRef}
               className="flex h-full w-full justify-center rounded-2xl bg-white"
@@ -357,13 +354,14 @@ export default function Painting() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-row w-7/8 gap-4 justify-center item-center mx-4">
-              <div className="flex flex-row w-1/2 justify-around">
-                <div className="gap-1 flex flex-col justify-center item-center">
-                  <div className="flex flex-row gap-2 justify-center item-center">
+          <div className="flex flex-col gap-4 xl:w-2/5 xl:mb-12">
+            <div className="flex flex-row xl:flex-col w-7/8 gap-4 justify-center item-center mx-4 xl:mx-0 xl:my-2">
+              <div className="flex flex-row w-1/2 xl:w-full justify-around xl:rounded-3xl xl:bg-[#D9D9D9] xl:p-6 xl:justify-evenly">
+                <div className="gap-1 xl:gap-6 flex flex-col xl:flex-row justify-center item-center">
+                  <div className="xl:flex xl:flex-col xl:justify-between">
+                  <div className="flex flex-row gap-2 justify-center item-center xl:justify-evenly xl:h-1/2">
                     <PiPaintBrushDuotone
-                      className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
+                      className={`h-[60px] w-[60px] xl:h-full cursor-pointer self-center rounded-full p-1 ${
                         brush && "bg-slate-100/50"
                       }`}
                       onClick={() => {
@@ -374,7 +372,7 @@ export default function Painting() {
                     />
 
                     <BsEraser
-                      className={`h-[60px] w-[60px] cursor-pointer self-center rounded-full p-1 ${
+                      className={`h-[60px] w-[60px] xl:h-full cursor-pointer self-center rounded-full p-1 ${
                         eraser && "bg-slate-100/50"
                       }`}
                       onClick={() => {
@@ -386,9 +384,10 @@ export default function Painting() {
                   </div>
                   <div className="flex flex-row gap-6">
                     <div
-                      className={"my-1 h-full cursor-pointer self-center p-3"}
+                      className={"my-1 h-full xl:w-full cursor-pointer self-center p-3"}
                     >
                       <input
+                        className="w-full"
                         type="range"
                         min="1"
                         max="30"
@@ -396,27 +395,17 @@ export default function Painting() {
                         onChange={handleSizeChange}
                       />
                     </div>
-
-                    {/* <div
-                      className={`cursor-pointer self-center rounded-full bg-black item-center justify-center w-full`}
-                      style={{
-                        height: `${brushSize}px`,
-                        width: `${brushSize}px`,
-                        borderRadius: "50%",
-                      }}
-                    ></div> */}
                   </div>
-
+                  </div>
                   <button
                     type="button"
-                    className="border-4 border-black rounded-2xl justify-center text-3xl flex items-center rounded-lg border-2 border-black px-2 mx-6 text-black hover:bg-description/80"
+                    className="border-4 border-black rounded-2xl justify-center text-3xl flex items-center rounded-lg border-2 border-black px-2 mx-6 xl:my-3 xl:py-2 xl:px-4 text-black hover:bg-description/80"
                     onClick={clear}
                   >
                     Clear
                   </button>
                 </div>
-
-                <div className="h-full cursor-pointer self-center p-1">
+                <div className="h-full cursor-pointer self-center justify-center item-center p-1">
                   <ChromePicker
                     className="z-3 border-4 border-black rounded-2xl"
                     color={displayColor}
@@ -427,7 +416,7 @@ export default function Painting() {
                   />
                 </div>
               </div>
-              <div className="w-1/2">
+              <div className="w-1/2 xl:w-full xl:aspect-[2/1]">
                 <textarea
                   // onChange={(e) => setDescription(e.target.value)}
                   className="w-full h-full resize-none items-start rounded-2xl border-4 border-[#8B8B8B] bg-[#FBEFDF] px-4 py-2 text-3xl"
@@ -454,7 +443,7 @@ export default function Painting() {
               </button>
             </div>
           </div>
-        </div>
+        </div> 
       </main>
     </div>
   );

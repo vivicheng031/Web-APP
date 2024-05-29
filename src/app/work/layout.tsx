@@ -4,7 +4,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import SignOutButton from "@/components/_components/SignOutButton";
+// import SignOutButton from "@/components/_components/SignOutButton";
 
 import BookList from "./_components/BookList";
 
@@ -22,7 +22,8 @@ async function Work({ children }: Props) {
     <main className="flex h-screen w-full flex-col justify-center overflow-y-scroll md:overflow-hidden">
       <div className="h-1/6 w-full bg-[#FCEFCD]">
         <div className="flex h-full items-center gap-0 px-5 text-[#F9A100] sm:gap-2">
-          <div className="md:h-45 flex aspect-[1/1] h-40 h-full items-center">
+        <Link href="/" className="flex h-full items-center">
+          <div className="md:h-45 flex aspect-[1/1] h-40 items-center">
             <Image
               src="/logo.png"
               alt="Logo"
@@ -31,6 +32,7 @@ async function Work({ children }: Props) {
               height={100}
             />
           </div>
+        </Link>
           <div className="grow"></div>
           <div className="flex flex-col md:flex-row">
             <Link
@@ -50,7 +52,6 @@ async function Work({ children }: Props) {
               Works
             </Link>
           </div>
-          <SignOutButton />
         </div>
       </div>
 

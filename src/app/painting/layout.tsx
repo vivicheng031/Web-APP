@@ -4,7 +4,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import SignOutButton from "@/components/_components/SignOutButton";
+// import SignOutButton from "@/components/_components/SignOutButton";
 
 type Props = {
   children: React.ReactNode;
@@ -20,7 +20,8 @@ async function Painting({ children }: Props) {
     <main className="flex h-screen w-full flex-col justify-center overflow-y-scroll md:overflow-hidden">
       <div className="h-1/6 w-full bg-[#FCEFCD]">
         <div className="flex h-full items-center gap-0 px-5 text-[#F9A100] sm:gap-2">
-          <div className="flex h-full items-center md:h-45 h-40 aspect-[1/1]">
+        <Link href="/" className="flex h-full items-center">
+          <div className="flex items-center md:h-45 h-40 aspect-[1/1]">
             <Image
               src="/logo.png"
               alt="Logo"
@@ -29,6 +30,7 @@ async function Painting({ children }: Props) {
               height={100}
             />
           </div>
+        </Link>
           <div className="grow"></div>
           <div className="flex flex-col md:flex-row">
             <Link
@@ -48,7 +50,6 @@ async function Painting({ children }: Props) {
               Works
             </Link>
           </div>
-          <SignOutButton />
         </div>
       </div>
 
