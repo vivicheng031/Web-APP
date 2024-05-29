@@ -1,3 +1,5 @@
+import { FaRegPaperPlane } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa6";
 import BookArea from "../_components/BookArea";
 
 // import { redirect } from "next/navigation";
@@ -37,7 +39,7 @@ async function BookPage(props: Props) {
   const book_detail = {
     topic: "test",
     finishDate: "2024/04/01(Mon.)",
-    status: true,
+    status: false,
     student: "web-app",
   };
 
@@ -108,7 +110,7 @@ async function BookPage(props: Props) {
   return (
     <div className="flex h-full w-full items-center justify-center p-4">
       <div className="flex h-full w-full flex-col overflow-y-auto rounded-2xl bg-[#F7CFA0] p-4">
-        <div className="flex h-1/6 w-full flex-col items-center justify-center pr-4 lg:justify-between xl:flex-row">
+        <div className="flex h-1/6 w-full items-center justify-center pr-4 lg:justify-between flex-row">
           <p className="p-2 text-5xl text-[#3A3731] xl:text-6xl">
             {props.params.bookId}
           </p>
@@ -116,6 +118,17 @@ async function BookPage(props: Props) {
           <p className="p-2 text-3xl text-[#5C574D] xl:text-4xl">
             {book_detail.finishDate}
           </p>
+          {book_detail.status ? (
+            // sent
+            <div className="flex aspect-[1/1] h-[60px] md:h-[75px] 2xl:h-[90px] items-center justify-center rounded-full bg-[#B7E3AC] text-[#3B6341]">
+              <FaCheck className="text-[30px] md:text-[45px] 2xl:text-[60px]" />
+            </div>
+          ) : (
+            // unsend
+            <button className="flex aspect-[1/1] h-[60px] md:h-[75px] 2xl:h-[90px] items-center justify-center rounded-full bg-[#D9D9D9] text-[#373737]">
+              <FaRegPaperPlane className="text-[30px] md:text-[45px] 2xl:text-[60px]" />
+            </button>
+          )}
         </div>
 
         <div className="book h-full w-full pt-2">
