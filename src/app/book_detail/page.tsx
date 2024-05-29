@@ -1,8 +1,6 @@
 // import { FaUserClock, FaUserTimes } from "react-icons/fa";
+import React from "react";
 import { IoLogoSnapchat } from "react-icons/io";
-import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-
 
 // import { redirect } from "next/navigation";
 
@@ -19,7 +17,6 @@ import emailjs from '@emailjs/browser';
 // : {
 //   searchParams?: { [key: string]: string | string[] | undefined };
 // }) {
-
 
 async function BookDetailPage() {
   // const session = await auth();
@@ -43,8 +40,6 @@ async function BookDetailPage() {
   //   redirect("/preference");
   // }
 
-  
-
   return (
     <div className="flex h-full w-full items-center justify-center p-4">
       <div className="flex flex-col items-center justify-center">
@@ -57,6 +52,3 @@ async function BookDetailPage() {
   );
 }
 export default BookDetailPage;
-
-
-

@@ -1,12 +1,13 @@
 "use client";
 
+import React from "react";
+import { useState } from "react";
 import { FaRegPaperPlane } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
-import React from 'react';
 
-import { useState } from "react";
 import BookArea from "../_components/BookArea";
-import {sendCustomEmail } from "./email";
+
+import { sendCustomEmail } from "./email";
 
 // import { redirect } from "next/navigation";
 // import { eq } from "drizzle-orm";
@@ -122,14 +123,13 @@ async function BookPage(props: Props) {
     parent_name: parent_name,
     child_name: child_name,
     to_email: email_address,
-    file: book_file
-  })
+    file: book_file,
+  });
 
   const handleSendEmail = () => {
+    console.log(setDetails);
     sendCustomEmail(details);
-  }
-
-
+  };
 
   return (
     <div className="flex h-full w-full items-center justify-center p-4">
@@ -152,8 +152,11 @@ async function BookPage(props: Props) {
             </div>
           ) : (
             // unsend
-            <button className={"flex aspect-[1/1] h-2/3 items-center justify-center rounded-full bg-[#D9D9D9] text-[#373737]"}
-                    onClick={() => handleSendEmail()}
+            <button
+              className={
+                "flex aspect-[1/1] h-2/3 items-center justify-center rounded-full bg-[#D9D9D9] text-[#373737]"
+              }
+              onClick={() => handleSendEmail()}
             >
               <FaRegPaperPlane className="text-[32px] 2xl:text-[60px]" />
             </button>
