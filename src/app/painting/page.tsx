@@ -230,7 +230,6 @@ export default function Painting() {
   const currentTopic = "Current Topic";
   const deadline = "2024/01/09(Mon.)";
 
-
   return (
     <div id="main-element" className="h-full">
       <main className="h-min-full flex w-full flex-col bg-[#CFCFCF] xl:h-full">
@@ -428,14 +427,14 @@ export default function Painting() {
                   />
                 </div>
               </div>
-                <div className="w-1/2">
-                  <textarea
-                    // onChange={(e) => setDescription(e.target.value)}
-                    className="w-full h-full resize-none items-start rounded-2xl border-4 border-[#8B8B8B] bg-[#FBEFDF] px-4 py-2 text-3xl"
-                    placeholder="Type description for your story..."
-                    maxLength={100}
-                  />
-                </div>
+              <div className="w-1/2">
+                <textarea
+                  // onChange={(e) => setDescription(e.target.value)}
+                  className="w-full h-full resize-none items-start rounded-2xl border-4 border-[#8B8B8B] bg-[#FBEFDF] px-4 py-2 text-3xl"
+                  placeholder="Type description for your story..."
+                  maxLength={100}
+                />
+              </div>
             </div>
 
             <div className="mx-4 mb-4 grid grid-flow-col justify-stretch gap-6 text-5xl text-amber-700">
@@ -460,8 +459,6 @@ export default function Painting() {
     </div>
   );
 }
-
-
 
 {
   /* <div className="flex flex-col gap-4">
