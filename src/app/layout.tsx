@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SessionProvider } from "next-auth/react";
+// import { SessionProvider } from "next-auth/react";
 import localFont from "next/font/local";
 
 // import Header from "@/components/Header";
@@ -24,9 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poetsenOne.className}`}>
-        <SessionProvider>
-          <div className="h-full">{children}</div>
-        </SessionProvider>
+        <div className="h-full">{children}</div>
       </body>
     </html>
   );
