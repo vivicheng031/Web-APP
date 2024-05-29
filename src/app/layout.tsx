@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poetsenOne.className}`}>
-          <div className="h-full">{children}</div>
+        <div className="h-full">{children}</div>
       </body>
     </html>
   );

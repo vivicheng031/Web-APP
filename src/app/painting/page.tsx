@@ -38,7 +38,7 @@ export default function Painting() {
   const { canvasRef, onMouseDown, onTouchStart, clear } = useDraw(drawLine);
   // console.log(clear);
   // const elementRef = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  // const [loading, setLoading] = useState<boolean>(false);
   // console.log(setLoading);
 
   // const [isPost, setIsPost] = useState<boolean>(false);
@@ -359,43 +359,45 @@ export default function Painting() {
               <div className="flex flex-row w-1/2 xl:w-full justify-around xl:rounded-3xl xl:bg-[#D9D9D9] xl:p-6 xl:justify-evenly">
                 <div className="gap-1 xl:gap-6 flex flex-col xl:flex-row justify-center item-center">
                   <div className="xl:flex xl:flex-col xl:justify-between">
-                  <div className="flex flex-row gap-2 justify-center item-center xl:justify-evenly xl:h-1/2">
-                    <PiPaintBrushDuotone
-                      className={`h-[60px] w-[60px] xl:h-full cursor-pointer self-center rounded-full p-1 ${
-                        brush && "bg-slate-100/50"
-                      }`}
-                      onClick={() => {
-                        setEraser(false);
-                        setBrush(true);
-                        setColor(displayColor);
-                      }}
-                    />
+                    <div className="flex flex-row gap-2 justify-center item-center xl:justify-evenly xl:h-1/2">
+                      <PiPaintBrushDuotone
+                        className={`h-[60px] w-[60px] xl:h-full cursor-pointer self-center rounded-full p-1 ${
+                          brush && "bg-slate-100/50"
+                        }`}
+                        onClick={() => {
+                          setEraser(false);
+                          setBrush(true);
+                          setColor(displayColor);
+                        }}
+                      />
 
-                    <BsEraser
-                      className={`h-[60px] w-[60px] xl:h-full cursor-pointer self-center rounded-full p-1 ${
-                        eraser && "bg-slate-100/50"
-                      }`}
-                      onClick={() => {
-                        setColor("#fff");
-                        setEraser(true);
-                        setBrush(false);
-                      }}
-                    />
-                  </div>
-                  <div className="flex flex-row gap-6">
-                    <div
-                      className={"my-1 h-full xl:w-full cursor-pointer self-center p-3"}
-                    >
-                      <input
-                        className="w-full"
-                        type="range"
-                        min="1"
-                        max="30"
-                        value={brushSize}
-                        onChange={handleSizeChange}
+                      <BsEraser
+                        className={`h-[60px] w-[60px] xl:h-full cursor-pointer self-center rounded-full p-1 ${
+                          eraser && "bg-slate-100/50"
+                        }`}
+                        onClick={() => {
+                          setColor("#fff");
+                          setEraser(true);
+                          setBrush(false);
+                        }}
                       />
                     </div>
-                  </div>
+                    <div className="flex flex-row gap-6">
+                      <div
+                        className={
+                          "my-1 h-full xl:w-full cursor-pointer self-center p-3"
+                        }
+                      >
+                        <input
+                          className="w-full"
+                          type="range"
+                          min="1"
+                          max="30"
+                          value={brushSize}
+                          onChange={handleSizeChange}
+                        />
+                      </div>
+                    </div>
                   </div>
                   <button
                     type="button"
@@ -428,14 +430,14 @@ export default function Painting() {
 
             <div className="mx-4 mb-4 grid grid-flow-col justify-stretch gap-6 text-5xl text-amber-700">
               <button
-                disabled={loading}
+                // disabled={loading}
                 // onClick={handleConfirmDialog}
                 className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
               >
                 Next
               </button>
               <button
-                disabled={loading}
+                // disabled={loading}
                 // onClick={handleConfirmDialog}
                 className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
               >
@@ -443,7 +445,7 @@ export default function Painting() {
               </button>
             </div>
           </div>
-        </div> 
+        </div>
       </main>
     </div>
   );
