@@ -3,7 +3,7 @@
 // import { and, eq, desc } from "drizzle-orm";
 
 // import { db } from "@/db";
-// import { studentUserTable, tasksTable } from "@/db/schema";
+// import { studentUserTable, taskTable } from "@/db/schema";
 // import { auth } from "@/lib/auth";
 
 // // GET /api/paint/topic/:userId
@@ -25,9 +25,9 @@
 //     }
 
 //     // Get the topic
-//     const subject = await db.query.tasksTable.findFirst({
-//       where: and(eq(tasksTable.studentId, params.studentId)),
-//       orderBy: [desc(tasksTable.startDate)],
+//     const subject = await db.query.taskTable.findFirst({
+//       where: and(eq(taskTable.classId, params.studentId)),
+//       orderBy: [desc(taskTable.startDate)],
 //     });
 //     const user = await db.query.studentUserTable.findFirst({
 //       where: and(eq(studentUserTable.displayId, params.studentId)),

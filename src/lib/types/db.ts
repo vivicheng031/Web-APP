@@ -23,3 +23,10 @@ export type Post = {
 //   teacherId: string;
 //   date: string;
 // };
+
+// export type Picture ={
+//   displayId: string;
+//   image: string;
+//   description: string;
+//   topic: string;
+// }

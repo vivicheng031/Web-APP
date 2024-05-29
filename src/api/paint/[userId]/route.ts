@@ -82,7 +82,7 @@
 //     // Get the post, if any
 //     const post = await db.query.pictureTable.findFirst({
 //       where: and(eq(pictureTable.studentId, params.userId)),
-//       orderBy: [desc(pictureTable.date)],
+//       orderBy: [desc(pictureTable.finishDate)],
 //     });
 
 //     if (!post) {
@@ -95,7 +95,7 @@
 //       );
 //     }
 
-//     if (Date.now() - post?.date.getTime() > 24 * 60 * 60 * 1000) {
+//     if (Date.now() - post?.finishDate.getTime() > 24 * 60 * 60 * 1000) {
 //       return NextResponse.json(
 //         {
 //           posted: false,

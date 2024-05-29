@@ -1,59 +1,38 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { and, eq, inArray } from "drizzle-orm";
 import { db } from "@/db";
-import { pictureTable, pictureBookTable, picturesToBookTable } from "@/db/schema";
+import { pictureTable, picturesToBookTable } from "@/db/schema";
+import { eq, inArray } from "drizzle-orm";
 
-// POST /api/pictureBook/
-export async function POST(req: NextRequest) {
+// POST api/paint/pic_to_book/:pictureBookId
+export async function POST(
+  req: NextRequest,
+  { params }: { params: { pictureBookId: string } }
+) {
   try {
     // Parse the request body
     const reqBody = await req.json();
-    const { topicId, taskId } = reqBody;
+    const { pictureIds } = reqBody;
 
-    // Find all pictures for the task
-    const pictures = await db.query.pictureTable.findMany({
-      where: and(
-        eq(pictureTable.topicId, topicId),
-        eq(pictureTable.topicId, taskId)
-      ),
-    });
-
-    if (pictures.length === 0) {
-      console.log("No pictures found.");
-      return NextResponse.json({ error: "No pictures found" }, { status: 404 });
+    if (!pictureIds || !Array.isArray(pictureIds) || pictureIds.length === 0) {
+      return NextResponse.json({ error: "Invalid picture IDs" }, { status: 400 });
     }
 
-    // Create a new picture book
-    const pictureBook = await db
-      .insert(pictureBookTable)
-      .values({
-        displayId: topicId,
-        topic: taskId, // 使用taskId作為topic
-        finishDate: new Date(),
-        sendEmail: false,
-      })
-      .returning({ displayId: pictureBookTable.displayId });
-
-    const pictureBookId = pictureBook[0].displayId;
-    console.log(`Created picture book with ID: ${pictureBookId}`);
-
     // Create entries in picturesToBookTable
-    const picturesToBookEntries = pictures.map((picture) => ({
-      pictureBookId: pictureBookId,
-      pictureId: picture.displayId,
+    const picturesToBookEntries = pictureIds.map((pictureId: string) => ({
+      pictureBookId: params.pictureBookId,
+      pictureId,
     }));
 
     await db.insert(picturesToBookTable).values(picturesToBookEntries).execute();
-    console.log(`Inserted ${picturesToBookEntries.length} entries in picturesToBookTable`);
 
-    return NextResponse.json({ status: 200, pictureBookId });
+    return NextResponse.json({ status: 200, message: 'Pictures successfully added to the book' });
   } catch (error) {
-    console.log("Error occurred while creating picture book:", error);
+    console.log(error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
 
-// GET /api/pictureBook/:pictureBookId
+// GET api/paint/pic_to_book/:pictureBookId
 export async function GET(
   req: NextRequest,
   { params }: { params: { pictureBookId: string } }

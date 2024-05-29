@@ -1,17 +1,16 @@
 "use client";
 
-// import { useRef, useEffect, useState } from "react";
-import { useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import * as React from "react";
 
 import { ChromePicker } from "react-color";
 import type { ColorResult } from "react-color";
 import { BsEraser } from "react-icons/bs";
 import { PiPaintBrushDuotone } from "react-icons/pi";
-// import { toPng } from "html-to-image";
-// import { useSession } from "next-auth/react";
+import { toPng } from "html-to-image";
+import { useSession } from "next-auth/react";
 // import { useRouter } from "next/navigation";
-// import {
+// import {npm install --save-dev @types/react-color
 //   AlertDialog,
 //   AlertDialogAction,
 //   AlertDialogCancel,
@@ -22,13 +21,14 @@ import { PiPaintBrushDuotone } from "react-icons/pi";
 //   AlertDialogTitle,
 // } from "@/components/ui/alert-dialog";
 import { useDraw } from "@/hooks/useDraw";
-// import { usePost } from "@/hooks/usePost";
+import { usePost } from "@/hooks/usePost";
 import type { Draw } from "@/lib/types/shared_types";
 
 import "./style.css";
 
 export default function Painting() {
   // const { data: session, status } = useSession();
+  const { data: session } = useSession();
   // const router = useRouter();
   // router.push("/painting");
 
@@ -37,15 +37,15 @@ export default function Painting() {
   // const [showPicker, setShowPicker] = useState(false);
   const { canvasRef, onMouseDown, onTouchStart, clear } = useDraw(drawLine);
   console.log(clear);
-  // const elementRef = useRef<HTMLDivElement>(null);
+  const elementRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   console.log(setLoading);
 
   // const [isPost, setIsPost] = useState<boolean>(false);
   // const [isFirstPost, setIsFirstPost] = useState<boolean>(false);
-  // const [description, setDescription] = useState<string>("");
-  // const [topic, setTopic] = useState<string>("");
-  // const { fetchTopic, postPaint, posted, firstPost } = usePost();
+  const [description, setDescription] = useState<string>("");
+  const [topic, setTopic] = useState<string>("");
+  const { fetchTopic, postPaint, posted, firstPost } = usePost();
 
   // const [welcomeDialog, setWelcomeDialog] = useState<boolean>(false);
   // const [personalDialog, setPersonalDialog] = useState<boolean>(false);
@@ -60,8 +60,7 @@ export default function Painting() {
   const [brush, setBrush] = useState(false);
   const [eraser, setEraser] = useState(false);
 
-  // const userId = session?.user?.id ?? "";
-  // const userId = "berlin";
+  const userId = session?.user?.id ?? "";
 
   console.log("painting...");
 
@@ -138,39 +137,154 @@ export default function Painting() {
     console.log(brushSize);
   };
 
-  // const handlePostClick = async () => {
-  //   if (elementRef.current) {
-  //     try {
-  //       setLoading(true);
-  //       // const dataUrl = await toPng(elementRef.current, { cacheBust: false });
-
-  //       // const dataUrl = canvasRef.current?.toDataURL("image/png");
-  //       // if (!dataUrl) return;
-  //       // const base64Img = dataUrl.replace(/^data:.+base64,/, "");
-
-  //       // const result = await fetch("/api/paint/image", {
-  //       //   method: "POST",
-  //       //   headers: {
-  //       //     "Content-Type": "application/json",
-  //       //   },
-  //       //   body: JSON.stringify({ image: base64Img }),
-  //       // });
-  //       // const response = await result.json(); // response.data is an object containing the image URL
-
-  //       // await postPaint({
-  //       //   userId: userId,
-  //       //   topic: topic,
-  //       //   description: description,
-  //       //   image: response.image.data.link,
-  //       // });
-  //     } catch (error) {
-  //       console.error("Error exporting canvas:", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-  // };
-
+  const handleNextClick = async () => {
+    if (elementRef.current) {
+      try {
+        setLoading(true);
+        // 將 element 轉換為 PNG 格式的 Data URL
+        const dataUrl = await toPng(elementRef.current, { cacheBust: false });
+  
+        // 獲取 base64 格式的圖片數據
+        const base64Img = dataUrl.replace(/^data:image\/png;base64,/, "");
+  
+        // 向 API 發送請求上傳圖片
+        const result = await fetch("/api/paint/image", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ image: base64Img }),
+        });
+  
+        const response = await result.json(); // 取得回應，包含圖片 URL 和其他數據
+  
+        if (!response.image || !response.image.data) {
+          throw new Error("Invalid response from image upload");
+        }
+  
+        const { link, id } = response.image.data; // 假設 response.image.data 包含 link 和 id
+  
+        // 將上傳的圖片資訊儲存到 pictureTable
+        const savePictureResponse = await fetch("/api/paint/picture", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            displayId: id, // 圖片的唯一標識符
+            image: link,   // 圖片的 URL
+            description: description, // 圖片的描述
+            topicId: topic, // 相關的主題 ID
+          }),
+        });
+  
+        if (!savePictureResponse.ok) {
+          throw new Error("Failed to save picture information to pictureTable");
+        }
+  
+        // 如果需要，進行下一步操作
+        await postPaint({
+          userId: userId,
+          topic: topic,
+          description: description,
+          image: link,
+        });
+      } catch (error) {
+        console.error("Error exporting canvas:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+  
+  
+  
+  const handleDoneClick = async () => {
+    if (elementRef.current) {
+      try {
+        setLoading(true);
+        // 將 element 轉換為 PNG 格式的 Data URL
+        const dataUrl = await toPng(elementRef.current, { cacheBust: false });
+  
+        // 獲取 base64 格式的圖片數據
+        const base64Img = dataUrl.replace(/^data:image\/png;base64,/, "");
+  
+        // 向 API 發送請求上傳圖片
+        const uploadResult = await fetch("/api/paint/image", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ image: base64Img }),
+        });
+  
+        const uploadResponse = await uploadResult.json(); // 取得回應，包含圖片 URL 和其他數據
+  
+        if (!uploadResponse.image || !uploadResponse.image.data) {
+          throw new Error("Invalid response from image upload");
+        }
+  
+        const { link, id } = uploadResponse.image.data; // 假設 response.image.data 包含 link 和 id
+  
+        // 將上傳的圖片資訊儲存到 pictureTable
+        const savePictureResponse = await fetch("/api/paint/picture", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            displayId: id, // 圖片的唯一標識符
+            image: link,   // 圖片的 URL
+            description: description, // 圖片的描述
+            topic: topic, // 相關的主題
+          }),
+        });
+  
+        if (!savePictureResponse.ok) {
+          throw new Error("Failed to save picture information to pictureTable");
+        }
+  
+        // 獲取同一個 topic 下的所有圖片
+        const picturesResponse = await fetch(`/api/paint/pictures?topic=${topic}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+  
+        const pictures = await picturesResponse.json();
+        if (!pictures || pictures.length === 0) {
+          throw new Error("No pictures found for this topic");
+        }
+  
+        // 創建新的圖片書並將圖片儲存到 pictureBookTable
+        const pictureBookResponse = await fetch("/api/paint/pictureBook", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            topic: topic,
+            pictures: pictures.map((picture: any) => ({
+              pictureId: picture.displayId,
+            })),
+          }),
+        });
+  
+        if (!pictureBookResponse.ok) {
+          throw new Error("Failed to save pictures to pictureBookTable");
+        }
+  
+        console.log("Pictures successfully saved to pictureBookTable");
+  
+      } catch (error) {
+        console.error("Error during the process:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+  
   // const handleFirstDialog = () => {
   //   setWelcomeDialog(true);
   //   setPersonalDialog(false);
@@ -266,7 +380,7 @@ export default function Painting() {
             <div className="mx-4 grid grid-flow-col justify-stretch gap-6 text-5xl text-amber-700">
               <button
                 disabled={loading}
-                // onClick={handleConfirmDialog}
+                // onClick={handlePostClick}
                 className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
               >
                 Next
@@ -383,14 +497,14 @@ export default function Painting() {
             <div className="mx-4 mb-4 grid grid-flow-col justify-stretch gap-6 text-5xl text-amber-700">
               <button
                 disabled={loading}
-                // onClick={handleConfirmDialog}
+                onClick={handleNextClick}
                 className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
               >
                 Next
               </button>
               <button
                 disabled={loading}
-                // onClick={handleConfirmDialog}
+                onClick={handleDoneClick}
                 className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
               >
                 Done
