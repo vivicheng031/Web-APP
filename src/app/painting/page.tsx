@@ -9,7 +9,7 @@ import type { ColorResult } from "react-color";
 import { BsEraser } from "react-icons/bs";
 import { PiPaintBrushDuotone } from "react-icons/pi";
 import { POST } from "@/api/settings/route";
-import { NextResponse} from "next/server";
+import { NextResponse } from "next/server";
 import { db } from "@/db";
 // import { toPng } from "html-to-image";
 // import { useSession } from "next-auth/react";
