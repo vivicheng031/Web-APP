@@ -1,7 +1,13 @@
 import { NextResponse, type NextRequest } from "next/server";
+
 import { and, eq, inArray } from "drizzle-orm";
+
 import { db } from "@/db";
-import { pictureTable, pictureBookTable, picturesToBookTable } from "@/db/schema";
+import {
+  pictureTable,
+  pictureBookTable,
+  picturesToBookTable,
+} from "@/db/schema";
 
 // POST /api/pictureBook/
 export async function POST(req: NextRequest) {
@@ -14,7 +20,7 @@ export async function POST(req: NextRequest) {
     const pictures = await db.query.pictureTable.findMany({
       where: and(
         eq(pictureTable.topicId, topicId),
-        eq(pictureTable.topicId, taskId)
+        eq(pictureTable.topicId, taskId),
       ),
     });
 
@@ -43,20 +49,28 @@ export async function POST(req: NextRequest) {
       pictureId: picture.displayId,
     }));
 
-    await db.insert(picturesToBookTable).values(picturesToBookEntries).execute();
-    console.log(`Inserted ${picturesToBookEntries.length} entries in picturesToBookTable`);
+    await db
+      .insert(picturesToBookTable)
+      .values(picturesToBookEntries)
+      .execute();
+    console.log(
+      `Inserted ${picturesToBookEntries.length} entries in picturesToBookTable`,
+    );
 
     return NextResponse.json({ status: 200, pictureBookId });
   } catch (error) {
     console.log("Error occurred while creating picture book:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 }
 
 // GET /api/pictureBook/:pictureBookId
 export async function GET(
   req: NextRequest,
-  { params }: { params: { pictureBookId: string } }
+  { params }: { params: { pictureBookId: string } },
 ) {
   try {
     const { pictureBookId } = params;
@@ -67,11 +81,16 @@ export async function GET(
       where: eq(picturesToBookTable.pictureBookId, pictureBookId),
     });
 
-    console.log(`Found ${pictureBookEntries.length} entries in picturesToBookTable.`);
+    console.log(
+      `Found ${pictureBookEntries.length} entries in picturesToBookTable.`,
+    );
 
     if (pictureBookEntries.length === 0) {
       console.log("No pictures found for this picture book.");
-      return NextResponse.json({ error: "No pictures found for this picture book" }, { status: 404 });
+      return NextResponse.json(
+        { error: "No pictures found for this picture book" },
+        { status: 404 },
+      );
     }
 
     const pictureIds = pictureBookEntries.map((entry) => entry.pictureId);
@@ -85,6 +104,9 @@ export async function GET(
     return NextResponse.json(pictures, { status: 200 });
   } catch (error) {
     console.log("Error occurred while fetching pictures:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 },
+    );
   }
 }

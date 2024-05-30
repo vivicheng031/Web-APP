@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import * as React from "react";
 
 import { ChromePicker } from "react-color";
@@ -43,9 +43,9 @@ export default function Painting() {
 
   // const [isPost, setIsPost] = useState<boolean>(false);
   // const [isFirstPost, setIsFirstPost] = useState<boolean>(false);
-  const [description, setDescription] = useState<string>("");
-  const [topic, setTopic] = useState<string>("");
-  const { fetchTopic, postPaint, posted, firstPost } = usePost();
+  const [description] = useState<string>("");
+  const [topic] = useState<string>("");
+  const { postPaint } = usePost();
 
   // const [welcomeDialog, setWelcomeDialog] = useState<boolean>(false);
   // const [personalDialog, setPersonalDialog] = useState<boolean>(false);
@@ -143,10 +143,10 @@ export default function Painting() {
         setLoading(true);
         // 將 element 轉換為 PNG 格式的 Data URL
         const dataUrl = await toPng(elementRef.current, { cacheBust: false });
-  
+
         // 獲取 base64 格式的圖片數據
         const base64Img = dataUrl.replace(/^data:image\/png;base64,/, "");
-  
+
         // 向 API 發送請求上傳圖片
         const result = await fetch("/api/paint/image", {
           method: "POST",
@@ -155,15 +155,15 @@ export default function Painting() {
           },
           body: JSON.stringify({ image: base64Img }),
         });
-  
+
         const response = await result.json(); // 取得回應，包含圖片 URL 和其他數據
-  
+
         if (!response.image || !response.image.data) {
           throw new Error("Invalid response from image upload");
         }
-  
+
         const { link, id } = response.image.data; // 假設 response.image.data 包含 link 和 id
-  
+
         // 將上傳的圖片資訊儲存到 pictureTable
         const savePictureResponse = await fetch("/api/paint/picture", {
           method: "POST",
@@ -172,16 +172,16 @@ export default function Painting() {
           },
           body: JSON.stringify({
             displayId: id, // 圖片的唯一標識符
-            image: link,   // 圖片的 URL
+            image: link, // 圖片的 URL
             description: description, // 圖片的描述
             topicId: topic, // 相關的主題 ID
           }),
         });
-  
+
         if (!savePictureResponse.ok) {
           throw new Error("Failed to save picture information to pictureTable");
         }
-  
+
         // 如果需要，進行下一步操作
         await postPaint({
           userId: userId,
@@ -196,19 +196,17 @@ export default function Painting() {
       }
     }
   };
-  
-  
-  
+
   const handleDoneClick = async () => {
     if (elementRef.current) {
       try {
         setLoading(true);
         // 將 element 轉換為 PNG 格式的 Data URL
         const dataUrl = await toPng(elementRef.current, { cacheBust: false });
-  
+
         // 獲取 base64 格式的圖片數據
         const base64Img = dataUrl.replace(/^data:image\/png;base64,/, "");
-  
+
         // 向 API 發送請求上傳圖片
         const uploadResult = await fetch("/api/paint/image", {
           method: "POST",
@@ -217,15 +215,15 @@ export default function Painting() {
           },
           body: JSON.stringify({ image: base64Img }),
         });
-  
+
         const uploadResponse = await uploadResult.json(); // 取得回應，包含圖片 URL 和其他數據
-  
+
         if (!uploadResponse.image || !uploadResponse.image.data) {
           throw new Error("Invalid response from image upload");
         }
-  
+
         const { link, id } = uploadResponse.image.data; // 假設 response.image.data 包含 link 和 id
-  
+
         // 將上傳的圖片資訊儲存到 pictureTable
         const savePictureResponse = await fetch("/api/paint/picture", {
           method: "POST",
@@ -234,29 +232,32 @@ export default function Painting() {
           },
           body: JSON.stringify({
             displayId: id, // 圖片的唯一標識符
-            image: link,   // 圖片的 URL
+            image: link, // 圖片的 URL
             description: description, // 圖片的描述
             topic: topic, // 相關的主題
           }),
         });
-  
+
         if (!savePictureResponse.ok) {
           throw new Error("Failed to save picture information to pictureTable");
         }
-  
+
         // 獲取同一個 topic 下的所有圖片
-        const picturesResponse = await fetch(`/api/paint/pictures?topic=${topic}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
+        const picturesResponse = await fetch(
+          `/api/paint/pictures?topic=${topic}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        });
-  
+        );
+
         const pictures = await picturesResponse.json();
         if (!pictures || pictures.length === 0) {
           throw new Error("No pictures found for this topic");
         }
-  
+
         // 創建新的圖片書並將圖片儲存到 pictureBookTable
         const pictureBookResponse = await fetch("/api/paint/pictureBook", {
           method: "POST",
@@ -270,13 +271,12 @@ export default function Painting() {
             })),
           }),
         });
-  
+
         if (!pictureBookResponse.ok) {
           throw new Error("Failed to save pictures to pictureBookTable");
         }
-  
+
         console.log("Pictures successfully saved to pictureBookTable");
-  
       } catch (error) {
         console.error("Error during the process:", error);
       } finally {
@@ -284,7 +284,7 @@ export default function Painting() {
       }
     }
   };
-  
+
   // const handleFirstDialog = () => {
   //   setWelcomeDialog(true);
   //   setPersonalDialog(false);

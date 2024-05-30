@@ -247,13 +247,12 @@ export const pictureRelations = relations(pictureTable, ({ one, many }) => ({
 }));
 
 export const pictureBookRelations = relations(pictureBookTable, ({ many }) => ({
-    // student: one(studentUserTable, {
-    //   fields: [pictureBookTable.studentId],
-    //   references: [studentUserTable.displayId],
-    // }),
-    picturesToBookTable: many(picturesToBookTable),
-  }),
-);
+  // student: one(studentUserTable, {
+  //   fields: [pictureBookTable.studentId],
+  //   references: [studentUserTable.displayId],
+  // }),
+  picturesToBookTable: many(picturesToBookTable),
+}));
 
 export const picturesToBookRelations = relations(
   picturesToBookTable,
