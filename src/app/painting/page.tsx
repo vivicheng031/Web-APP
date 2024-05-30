@@ -8,6 +8,9 @@ import { ChromePicker } from "react-color";
 import type { ColorResult } from "react-color";
 import { BsEraser } from "react-icons/bs";
 import { PiPaintBrushDuotone } from "react-icons/pi";
+import { POST } from "@/api/settings/route";
+import { NextResponse} from "next/server";
+import { db } from "@/db";
 // import { toPng } from "html-to-image";
 // import { useSession } from "next-auth/react";
 // import { useRouter } from "next/navigation";
@@ -26,6 +29,7 @@ import { useDraw } from "@/hooks/useDraw";
 import type { Draw } from "@/lib/types/shared_types";
 
 import "./style.css";
+import { topicTable } from "@/db/schema";
 
 export default function Painting() {
   // const { data: session, status } = useSession();
@@ -59,6 +63,9 @@ export default function Painting() {
 
   const [brush, setBrush] = useState(false);
   const [eraser, setEraser] = useState(false);
+  const [currentTopic, setCurrentTopic] = useState<string>(
+    "A Whole New World of Imagination",
+  );
 
   // const userId = session?.user?.id ?? "";
   // const userId = "berlin";
@@ -136,6 +143,22 @@ export default function Painting() {
     const newSize = parseInt(event.target.value, 10);
     setBrushSize(newSize);
     console.log(brushSize);
+  };
+
+  const handleDoneClick = async () => {
+    if (canvasRef.current) {
+      try {
+        db.update(topicTable).set({ done: true });
+        setLoading(true);
+        const resp: NextResponse = await POST();
+        const topic = (await resp.json()).topic; // Await the resp.json() promise and access the topic property
+        setCurrentTopic(topic);
+      } catch (error) {
+        console.error("Error exporting canvas:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
   };
 
   // const handlePostClick = async () => {
@@ -227,7 +250,7 @@ export default function Painting() {
   //   } else {
 
   // const studentName = "Student's name";
-  const currentTopic = "Current Topic";
+
   const deadline = "2024/01/09(Mon.)";
 
   return (
@@ -334,6 +357,7 @@ export default function Painting() {
                 disabled={loading}
                 // onClick={handleConfirmDialog}
                 className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+                onClick={handleDoneClick}
               >
                 Done
               </button>
@@ -449,6 +473,7 @@ export default function Painting() {
                 disabled={loading}
                 // onClick={handleConfirmDialog}
                 className="justify-center rounded-2xl border-[5px] border-solid border-amber-700 bg-orange-300 px-4 py-2"
+                onClick={handleDoneClick}
               >
                 Done
               </button>
