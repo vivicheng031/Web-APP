@@ -4,17 +4,11 @@ import { useState } from "react";
 import { IoChevronBackCircle } from "react-icons/io5";
 import { IoChevronForwardCircle } from "react-icons/io5";
 
-// import { revalidatePath } from "next/cache";
-
-// import { redirect } from "next/navigation";
-
-// import { auth } from "@/lib/auth";
-// import { publicEnv } from "@/lib/env/public";
+import Image from "next/image";
 
 type Page = {
-  id: number;
-  display_id: string;
-  // picture: string;
+  displayId: string;
+  image: string;
   description: string;
   finishDate: string;
 };
@@ -24,12 +18,6 @@ type BookProps = {
 };
 
 export default function BookArea({ book }: BookProps) {
-  // const session = await auth();
-  // if (!session || !session?.user?.id) {
-  //   redirect(publicEnv.NEXT_PUBLIC_BASE_URL);
-  // }
-  // const userId = session.user.id;
-
   const total_page = book.length;
 
   const [page, setPage] = useState(1);
@@ -56,7 +44,15 @@ export default function BookArea({ book }: BookProps) {
       <div className="flex h-full grow flex-row gap-2 rounded-xl bg-white">
         <div className="h-max-full m-4 flex w-1/2 flex-col gap-3">
           <div className="flex h-2/3 justify-center">
-            <div className="aspect-[3/2] w-full bg-purple-200 lg:h-full"></div>
+            <div className="aspect-[3/2] w-full lg:h-full">
+              <Image
+                src={book[page].image}
+                alt="Logo"
+                width={1000}
+                height={1000}
+                className="flex items-center justify-center rounded-2xl"
+              />
+            </div>
           </div>
           <div className="flex h-1/3 flex-col justify-between">
             <p className="whitespace-pre-line break-words text-3xl">
@@ -73,7 +69,13 @@ export default function BookArea({ book }: BookProps) {
           {page + 1 != total_page && (
             <>
               <div className="flex h-2/3 justify-center">
-                <div className="aspect-[3/2] w-full bg-purple-200 lg:h-full"></div>
+                <Image
+                  src={book[page + 1].image}
+                  alt="Logo"
+                  width={1000}
+                  height={1000}
+                  className="flex items-center justify-center rounded-2xl"
+                />
               </div>
               <div className="flex h-1/3 flex-col justify-between">
                 <p className="whitespace-pre-line break-words text-3xl">
