@@ -3,10 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { eq, asc } from "drizzle-orm";
 
 import { db } from "@/db";
-import {
-  pictureTable,
-  picturesToBookTable,
-} from "@/db/schema";
+import { pictureTable, picturesToBookTable } from "@/db/schema";
 
 // POST /api/pic_book
 export async function POST(req: NextRequest) {
