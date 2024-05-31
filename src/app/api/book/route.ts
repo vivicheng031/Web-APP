@@ -6,16 +6,11 @@ import type { Book } from "@/lib/types/db";
 import { bookSchema } from "@/validators/post";
 
 // POST /api/book
-export async function POST(
-  req: NextRequest,
-) {
+export async function POST(req: NextRequest) {
   try {
     // Parse the request body
     const reqBody = await req.json();
-    let validatedReqBody: Pick<
-      Book,
-      "topic"
-    >;
+    let validatedReqBody: Pick<Book, "topic">;
     try {
       validatedReqBody = bookSchema.parse(reqBody);
     } catch (error) {
@@ -33,7 +28,6 @@ export async function POST(
       .execute();
 
     return NextResponse.json({ bookId: bookId[0].id }, { status: 200 });
-
   } catch (error) {
     console.log(error);
     return NextResponse.json(

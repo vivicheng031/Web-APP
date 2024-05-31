@@ -6,16 +6,11 @@ import type { Post } from "@/lib/types/db";
 import { postSchema } from "@/validators/post";
 
 // POST /api/paint
-export async function POST(
-  req: NextRequest,
-) {
+export async function POST(req: NextRequest) {
   try {
     // Parse the request body
     const reqBody = await req.json();
-    let validatedReqBody: Pick<
-      Post,
-      "image" | "description" | "topicId"
-    >;
+    let validatedReqBody: Pick<Post, "image" | "description" | "topicId">;
     try {
       validatedReqBody = postSchema.parse(reqBody);
     } catch (error) {
@@ -28,7 +23,7 @@ export async function POST(
       .insert(pictureTable)
       .values({
         image: validatedReqBody.image,
-        description: validatedReqBody.description,  // 確認字段名稱與schema一致
+        description: validatedReqBody.description, // 確認字段名稱與schema一致
         topicId: validatedReqBody.topicId,
       })
       .execute();

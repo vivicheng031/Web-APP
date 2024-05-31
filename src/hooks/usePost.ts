@@ -85,11 +85,7 @@ export const usePost = () => {
   );
 
   const postBook = useCallback(
-    async ({
-      topic,
-    }: {
-      topic: string;
-    }) => {
+    async ({ topic }: { topic: string }) => {
       setLoading(true);
       try {
         const res = await fetch(`/api/book`, {
@@ -109,7 +105,6 @@ export const usePost = () => {
 
         const data = await res.json();
         return data.bookId;
-
       } catch (error) {
         console.error("Error posting your painting:", error);
       } finally {
@@ -120,13 +115,7 @@ export const usePost = () => {
   );
 
   const postPicBook = useCallback(
-    async ({
-      book,
-      topicId,
-    }: {
-      book: string;
-      topicId: string;
-    }) => {
+    async ({ book, topicId }: { book: string; topicId: string }) => {
       setLoading(true);
       try {
         const res = await fetch(`/api/pic_book`, {
@@ -144,9 +133,8 @@ export const usePost = () => {
           router.push(`/painting`);
           return;
         }
-        
-        router.push(`/work/${book}`);
 
+        router.push(`/work/${book}`);
       } catch (error) {
         console.error("Error posting your painting:", error);
       } finally {

@@ -19,4 +19,3 @@ export type Book = {
   date: string;
   topic: string;
 };
-

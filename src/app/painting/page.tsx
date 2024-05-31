@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import * as React from "react";
 
 import { ChromePicker } from "react-color";
@@ -54,7 +54,6 @@ export default function Painting() {
 
   //   checkPost();
   // }, [posted, userId]);
-
 
   //   checkFirstPost();
   // }, [firstPost, isFirstPost, isPost, userId]);
@@ -130,7 +129,7 @@ export default function Painting() {
     }
   };
 
-  const handleDoneClick = async() => {
+  const handleDoneClick = async () => {
     // POST on picture table
     if (elementRef.current) {
       try {
@@ -171,7 +170,7 @@ export default function Painting() {
       book: bookId,
       topicId: currentTopic.Id,
     });
-  }
+  };
 
   function drawLine({ prevPoint, currentPoint, ctx }: Draw) {
     const { x: currX, y: currY } = currentPoint;
