@@ -8,18 +8,14 @@ export type User = {
 
 export type Post = {
   id: string;
-  userId: string;
-  created_at: string;
-  description: string;
   image: string;
-  topic: string;
+  description: string;
+  date: string;
+  topicId: string;
 };
 
-// export type Book = {
-//   id: string;
-//   displayId: string;
-//   topic: string;
-//   description: string;
-//   teacherId: string;
-//   date: string;
-// };
+export type Book = {
+  id: string;
+  date: string;
+  topic: string;
+};
