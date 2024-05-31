@@ -1,10 +1,6 @@
-// import { redirect } from "next/navigation";
-// import { auth } from "@/lib/auth";
-// import { publicEnv } from "@/lib/env/public";
 import Image from "next/image";
 import Link from "next/link";
 
-// import SignOutButton from "@/components/_components/SignOutButton";
 import BookList from "./_components/BookList";
 
 type Props = {
@@ -12,11 +8,6 @@ type Props = {
 };
 
 async function Work({ children }: Props) {
-  // const session = await auth();
-  // if (!session) {
-  //   redirect(publicEnv.NEXT_PUBLIC_BASE_URL);
-  // }
-
   return (
     <main className="flex h-screen w-full flex-col justify-center overflow-y-scroll md:overflow-hidden">
       <div className="h-1/6 w-full bg-[#FCEFCD]">
