@@ -14,7 +14,6 @@ import type { Draw } from "@/lib/types/shared_types";
 import "./style.css";
 
 export default function Painting() {
-
   const [color, setColor] = useState<string>("#000000");
   const [displayColor, setDisplayColor] = useState<string>("#000000");
   // const [showPicker, setShowPicker] = useState(false);
