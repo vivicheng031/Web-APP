@@ -95,10 +95,8 @@ export default function BookArea({ book }: BookProps) {
       <button
         onClick={nextPage}
         disabled={page >= total_page - 2}
-        className={`text-[60px] ${
-          page >= total_page - 2
-            ? "cursor-not-allowed text-[#A76A48]"
-            : "text-[#A8450F]"
+        className={`text-[64px] text-[#A8450F] ${
+          page >= total_page - 2 ? "cursor-not-allowed opacity-50" : ""
         }`}
       >
         <IoChevronForwardCircle />

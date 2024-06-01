@@ -1,13 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import * as React from "react";
 
 import { ChromePicker } from "react-color";
 import type { ColorResult } from "react-color";
 import { BsEraser } from "react-icons/bs";
 import { PiPaintBrushDuotone } from "react-icons/pi";
-// import { useRouter } from "next/navigation";
 import { useDraw } from "@/hooks/useDraw";
 import { usePost } from "@/hooks/usePost";
 import type { Draw } from "@/lib/types/shared_types";
@@ -15,8 +14,6 @@ import type { Draw } from "@/lib/types/shared_types";
 import "./style.css";
 
 export default function Painting() {
-  // const router = useRouter();
-  // router.push("/painting");
 
   const [color, setColor] = useState<string>("#000000");
   const [displayColor, setDisplayColor] = useState<string>("#000000");
@@ -26,71 +23,32 @@ export default function Painting() {
   const [loading, setLoading] = useState<boolean>(false);
   // console.log(setLoading);
 
-  // const [isPost, setIsPost] = useState<boolean>(false);
-  // const [isFirstPost, setIsFirstPost] = useState<boolean>(false);
-  const [description, setDescription] = useState<string>("");
-  // const [topic, setTopic] = useState<string>("");
-  // const { fetchTopic, postPaint, posted, firstPost } = usePost();
-  const { postPicture, postLastPicture, postBook, postPicBook } = usePost();
-
   // const [isExpanded, setIsExpanded] = useState(false);
   const [brushSize, setBrushSize] = useState(5);
-
   const [brush, setBrush] = useState(false);
   const [eraser, setEraser] = useState(false);
 
+  const [topic, setTopic] = useState("");
+  const [topicId, setTopicId] = useState("");
+  const [description, setDescription] = useState<string>("");
+  const { postPicture, postLastPicture, postBook, postPicBook, getTopic } =
+    usePost();
+
   // console.log("painting...");
 
-  // useEffect(() => {
-  //   const checkPost = async () => {
-  //     try {
-  //       // const post = await posted({ userId });
-  //       const post = false;
-  //       setIsPost(post);
-  //     } catch (error) {
-  //       console.error("Error fetching the topic:", error);
-  //     }
-  //   };
-
-  //   checkPost();
-  // }, [posted, userId]);
-
-  //   checkFirstPost();
-  // }, [firstPost, isFirstPost, isPost, userId]);
-
-  // useEffect(() => {
-  //   if (isPost === false) {
-  //     const loadTopic = async () => {
-  //       try {
-  //         // const fetchedTopic = await fetchTopic({ userId });
-  //         const fetchedTopic = "Example topic";
-  //         setTopic(fetchedTopic);
-  //       } catch (error) {
-  //         console.error("Error fetching the topic:", error);
-  //       }
-  //     };
-
-  //     loadTopic();
-
-  //     const mainElement = document.getElementById("main-element");
-
-  //     if (mainElement) {
-  //       const timer = setTimeout(() => {
-  //         mainElement.classList.remove("blur-lg");
-  //       }, 500);
-
-  //       return () => clearTimeout(timer);
-  //     }
-  //   } else {
-  //     setIsPostDialog(true);
-  //   }
-  // // }, [fetchTopic, firstPost, isFirstPost, isPost, userId]);
-  // }, [fetchTopic, firstPost, isFirstPost, isPost, router, userId]);
-
-  // if (!userId || userId === "") {
-  //   // router.push("/auth/login");
-  //   return <div></div>;
-  // }
+  useEffect(() => {
+    const getCurrentTopic = async () => {
+      console.log("[getCurrentTopic]");
+      try {
+        const currentTopic = await getTopic();
+        setTopic(currentTopic.topic);
+        setTopicId(currentTopic.topicId);
+      } catch (error) {
+        console.error("Error fetching the topic:", error);
+      }
+    };
+    getCurrentTopic();
+  }, []);
 
   const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newSize = parseInt(event.target.value, 10);
@@ -117,7 +75,7 @@ export default function Painting() {
         const response = await result.json(); // response.data is an object containing the image URL
 
         await postPicture({
-          topicId: currentTopic.Id,
+          topicId: topicId,
           description: description,
           image: response.image.data.link,
         });
@@ -149,7 +107,7 @@ export default function Painting() {
         const response = await result.json(); // response.data is an object containing the image URL
 
         await postLastPicture({
-          topicId: currentTopic.Id,
+          topicId: topicId,
           description: description,
           image: response.image.data.link,
         });
@@ -162,13 +120,13 @@ export default function Painting() {
 
     // POST on book table
     const bookId = await postBook({
-      topic: currentTopic.topic,
+      topic: topic,
     });
 
-    // POST on pictures_to_book table
+    // POST on pictures_to_book table and update done status of topic table
     await postPicBook({
       book: bookId,
-      topicId: currentTopic.Id,
+      topicId: topicId,
     });
   };
 
@@ -190,16 +148,11 @@ export default function Painting() {
     ctx.fill();
   }
 
-  const currentTopic = {
-    topic: "post successfully",
-    Id: "f804885f-d38c-4633-8fea-ed912385e5c0",
-  };
-
   return (
     <div id="main-element" className="h-full">
       <main className="h-min-full flex w-full flex-col">
         <div className="mx-24 my-4 flex flex-col justify-center items-center gap-2 text-yellow-600 xl:flex-row">
-          <p className="text-6xl">{currentTopic.topic}</p>
+          <p className="text-6xl">{topic}</p>
           {/* <div className="grow"></div>
           <p className="text-4xl">deadline: {deadline}</p> */}
         </div>

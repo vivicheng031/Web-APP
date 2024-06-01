@@ -1,5 +1,5 @@
 import Book from "./Book";
-import { getBooks, getCover } from "./action";
+import { getBooks, getContent } from "./action";
 
 async function BookList() {
   const books = await getBooks();
@@ -10,13 +10,13 @@ async function BookList() {
         <section className="flex w-full flex-col divide-y-4 divide-slate-400/25 overflow-y-auto pb-12">
           {books &&
             books.map(async (book) => {
-              const cover = await getCover(book.id);
+              const content = await getContent(book.id);
               return (
                 <Book
                   key={book.id}
                   displayId={book.id}
                   name={book.topic}
-                  cover={cover?.picture.image}
+                  cover={content[0]?.image}
                   finish_date={book.finishDate.toISOString().split("T")[0]}
                 />
               );

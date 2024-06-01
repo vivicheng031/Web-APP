@@ -80,20 +80,20 @@ export const getContent = async (bookId: string) => {
   }));
 };
 
-export const getCover = async (bookId: string) => {
-  "use server";
-  // console.log("[getCover]");
+// export const getCover = async (bookId: string) => {
+//   "use server";
+//   // console.log("[getCover]");
 
-  const cover = await db.query.picturesToBookTable.findFirst({
-    where: eq(picturesToBookTable.pictureBookId, bookId),
-    with: {
-      picture: {
-        columns: {
-          image: true,
-        },
-      },
-    },
-  });
+//   const cover = await db.query.picturesToBookTable.findFirst({
+//     where: eq(picturesToBookTable.pictureBookId, bookId),
+//     with: {
+//       picture: {
+//         columns: {
+//           image: true,
+//         },
+//       },
+//     },
+//   });
 
-  return cover;
-};
+//   return cover;
+// };
