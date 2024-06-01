@@ -18,7 +18,7 @@ export default async function Book({
     <div className="group flex w-full cursor-pointer items-center justify-between hover:bg-yellow-100">
       <Link className="mb-1 grow px-3 py-2" href={`/work/${displayId}`}>
         <div className="flex flex-row gap-4">
-          <div className="aspect-[3/2] w-1/4 rounded-2xl bg-gray-200">
+          <div className="flex aspect-[3/2] w-1/4 items-center justify-center rounded-2xl bg-red-50">
             {cover && (
               <Image
                 src={cover}
@@ -29,7 +29,7 @@ export default async function Book({
               />
             )}
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex w-3/4 flex-col gap-2">
             <p className="flex text-5xl font-semibold text-[#3A3731] xl:text-4xl">
               {name}
             </p>

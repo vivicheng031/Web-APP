@@ -39,7 +39,7 @@ export const usePost = () => {
           return;
         }
       } catch (error) {
-        console.error("Error posting your painting:", error);
+        console.error("Error posting your picture:", error);
       } finally {
         window.location.href = `/painting`;
         setLoading(false);
@@ -76,7 +76,7 @@ export const usePost = () => {
           return;
         }
       } catch (error) {
-        console.error("Error posting your painting:", error);
+        console.error("Error posting your last picture:", error);
       } finally {
         setLoading(false);
       }
@@ -106,9 +106,33 @@ export const usePost = () => {
         const data = await res.json();
         return data.bookId;
       } catch (error) {
-        console.error("Error posting your painting:", error);
+        console.error("Error posting your book:", error);
       } finally {
         setLoading(false);
+      }
+    },
+    [router],
+  );
+
+  const putTopic = useCallback(
+    async ({ topicId }: { topicId: string }) => {
+      try {
+        const res = await fetch(`/api/paint/topic`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            topicId: topicId,
+          }),
+        });
+
+        if (!res.ok) {
+          router.push(`/painting`);
+          return;
+        }
+      } catch (error) {
+        console.error("Error updating status of topic:", error);
       }
     },
     [router],
@@ -134,9 +158,12 @@ export const usePost = () => {
           return;
         }
 
+        // update done status API
+        await putTopic({ topicId: topicId });
+
         router.push(`/work/${book}`);
       } catch (error) {
-        console.error("Error posting your painting:", error);
+        console.error("Error posting your picture book:", error);
       } finally {
         setLoading(false);
       }
@@ -144,31 +171,28 @@ export const usePost = () => {
     [router],
   );
 
-  const fetchTopic = useCallback(
-    async ({ userId }: { userId: string }) => {
-      try {
-        const res = await fetch(`/api/paint/topic/${userId}`);
+  const getTopic = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/paint/topic`);
 
-        if (!res.ok) {
-          router.push(`/personal`);
-          return;
-        }
-
-        const data = await res.json();
-        return data.topic;
-      } catch (error) {
-        console.error("Error fetching the topic:", error);
+      if (!res.ok) {
+        return;
       }
-    },
-    [router],
-  );
+
+      const data = await res.json();
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.error("Error fetching the topic:", error);
+    }
+  }, [router]);
 
   return {
     postPicture,
     postLastPicture,
     postBook,
     postPicBook,
-    fetchTopic,
+    getTopic,
     loading,
   };
 };

@@ -101,6 +101,7 @@ export const topicTable = pgTable(
     id: serial("id").primaryKey(), // 使用serial生成主題id
     displayId: uuid("display_id").defaultRandom().notNull().unique(), // 使用uuid生成主題DisplayID
     topic: varchar("topic", { length: 100 }).notNull(),
+    done: boolean("finish").notNull().default(false),
   },
   (table) => ({
     displayIdIndex: index("display_id_index").on(table.displayId),
