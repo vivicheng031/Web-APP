@@ -55,6 +55,12 @@
    docker compose down
    ```
 
-## Reference Code:
+## Third-Party Packages/Frameworks
+
+- Frontend: TypeScript/Next.js/React/React-Icons/Tailwind CSS/Shadcn UI/EmailJS
+- Backend: Drizzle ORM/Next.js/Imgur
+- Database: PostgreSQL
+
+## Reference Code
 
 - https://github.com/joschan21/canvas-drawing-app
