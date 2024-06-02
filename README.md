@@ -1,15 +1,12 @@
 <p align="center">
-  <a href="https://wp1121-final-sooty.vercel.app/">
-    <img src="/logo.png" height="96">
-    <h3 align="center">Welcome to New World !</h3>
-  </a>
-</p>
-
-<p align="center">
   Start Your New Adventure, Create Your Own Picture Books
 </p>
 
 ## Getting Started
+
+0. Install Docker before everything starts
+
+   (Tutorial Link: https://docs.docker.com/get-docker/)
 
 1. Install dependencies
 
@@ -62,6 +59,16 @@
    docker compose down
    ```
 
-## Reference Code:
+## Third-Party Packages/Frameworks
+
+- Frontend: TypeScript/Next.js/React/React-Icons/Tailwind CSS/Shadcn UI/EmailJS
+- Backend: Drizzle ORM/Next.js/Imgur
+- Database: PostgreSQL
+
+## Reference Code
 
 - https://github.com/joschan21/canvas-drawing-app
+
+## DEMO LINK
+
+- https://youtu.be/Za5yy3IxbBo
