@@ -1,38 +1,67 @@
-# Web-APP final project
+<p align="center">
+  <a href="https://wp1121-final-sooty.vercel.app/">
+    <img src="/logo.png" height="96">
+    <h3 align="center">Welcome to New World !</h3>
+  </a>
+</p>
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  Start Your New Adventure, Create Your Own Picture Books
+</p>
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   ```bash
+   yarn
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   Make sure your Node version is higher than 18.
+   If not, please change version before installing:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   nvm use 18.17.0
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. Create `.env.local` file in the project root and add the following content.
 
-## Learn More
+   ```text
+   POSTGRES_URL=postgres://postgres:postgres@localhost:5432/souley-hub
+   AUTH_SECRET=<this can be any random string>
+   IMGUR_CLIENT_ID=
+   NEXT_PUBLIC_BASE_URL=http://localhost:3000
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+   For `IMGUR_CLIENT_ID`, please follow the tutorial provided below to set it up.
+   (Tutorial Link: https://stark920.github.io/2022/05/06/APIimgur/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Start the database
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   docker compose up -d
+   ```
 
-## Deploy on Vercel
+4. Run migrations. If any errors occur, please wait for 10 to 20 seconds and then retry using the following command
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   yarn migrate
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+5. Start the development server
+
+   ```bash
+   yarn dev
+   ```
+
+6. Open http://localhost:3000 in your browser
+
+7. Close the database when you finish your adventure
+
+   ```bash
+   docker compose down
+   ```
+
+## Reference Code:
+
+- https://github.com/joschan21/canvas-drawing-app
