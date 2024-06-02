@@ -4,6 +4,10 @@
 
 ## Getting Started
 
+0. Install Docker before everything starts
+
+   (Tutorial Link: https://docs.docker.com/get-docker/)
+
 1. Install dependencies
 
    ```bash
