@@ -1,11 +1,4 @@
 <p align="center">
-  <a href="https://wp1121-final-sooty.vercel.app/">
-    <img src="/logo.png" height="96">
-    <h3 align="center">Welcome to New World !</h3>
-  </a>
-</p>
-
-<p align="center">
   Start Your New Adventure, Create Your Own Picture Books
 </p>
 
