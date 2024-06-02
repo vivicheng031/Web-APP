@@ -1,10 +1,8 @@
-import { FaRegPaperPlane } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
 
-import { revalidatePath } from "next/cache";
-
 import BookArea from "../_components/BookArea";
-import { sendEmail, getBook, getContent } from "../_components/action";
+import EmailDialog from "../_components/EmailDialog";
+import { getBook, getContent } from "../_components/action";
 
 type Props = {
   params: { bookId: string };
@@ -32,24 +30,9 @@ async function BookPage(props: Props) {
             </div>
           ) : (
             // unsend
-            <form
-              action={async () => {
-                "use server";
-                // console.log(typeof(bookId));
-                await sendEmail(bookId);
-                revalidatePath(`/work/${bookId}`);
-              }}
-            >
-              <button
-                className="flex aspect-[1/1] h-[60px] items-center justify-center rounded-full bg-[#D9D9D9] text-[#373737] md:h-[75px] 2xl:h-[90px]"
-                type={"submit"}
-              >
-                <FaRegPaperPlane className="text-[30px] md:text-[45px] 2xl:text-[60px]" />
-              </button>
-            </form>
+            <EmailDialog bookId={bookId} bookTopic={book_detail.topic} />
           )}
         </div>
-
         <div className="book h-full w-full pt-2">
           <BookArea book={content} />
         </div>

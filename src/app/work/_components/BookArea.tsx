@@ -44,7 +44,7 @@ export default function BookArea({ book }: BookProps) {
       <div className="flex h-full grow flex-row gap-2 rounded-xl bg-white">
         <div className="h-max-full m-4 flex w-1/2 flex-col gap-3">
           <div className="flex h-2/3 justify-center">
-            <div className="aspect-[3/2] w-full lg:h-full">
+            <div className="flex aspect-[3/2] w-full items-center justify-center lg:h-full">
               <Image
                 src={book[page].image}
                 alt="Logo"
@@ -69,13 +69,15 @@ export default function BookArea({ book }: BookProps) {
           {page + 1 != total_page && (
             <>
               <div className="flex h-2/3 justify-center">
-                <Image
-                  src={book[page + 1].image}
-                  alt="Logo"
-                  width={1000}
-                  height={1000}
-                  className="flex items-center justify-center rounded-2xl"
-                />
+                <div className="flex aspect-[3/2] h-2/3 w-full items-center justify-center lg:h-full">
+                  <Image
+                    src={book[page + 1].image}
+                    alt="Logo"
+                    width={1000}
+                    height={1000}
+                    className="flex items-center justify-center rounded-2xl"
+                  />
+                </div>
               </div>
               <div className="flex h-1/3 flex-col justify-between">
                 <p className="whitespace-pre-line break-words text-3xl">

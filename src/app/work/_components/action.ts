@@ -3,17 +3,6 @@ import { eq, desc } from "drizzle-orm";
 import { db } from "@/db";
 import { pictureBookTable, picturesToBookTable } from "@/db/schema";
 
-export const sendEmail = async (bookId: string) => {
-  "use server";
-  // console.log("[sendEmail]");
-
-  await db
-    .update(pictureBookTable)
-    .set({ sendEmail: true })
-    .where(eq(pictureBookTable.displayId, bookId))
-    .execute();
-};
-
 export const getBooks = async () => {
   "use server";
   // console.log("[getBooks]");
